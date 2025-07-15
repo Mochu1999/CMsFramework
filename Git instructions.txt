@@ -1,0 +1,10 @@
+//Initialize git
+git init
+git remote add origin https://github.com/Mochu1999/CMsFramework.git
+echo "# CMsFramework" > README.md
+
+cd C:\Dev\CMsFramework
+git add .
+git commit -m ""
+git push -u origin main
+git push -f origin main   //forces
