@@ -1,13 +1,8 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CMsFramework", "CMsFramework.vcxproj", "{E9193BFB-A0B4-3777-B436-CD4C0604CB67}"
 	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{A722CF66-0DDF-3BFE-8F89-8479BC687C96}"
-	ProjectSection(ProjectDependencies) = postProject
-		{E9193BFB-A0B4-3777-B436-CD4C0604CB67} = {E9193BFB-A0B4-3777-B436-CD4C0604CB67}
 	EndProjectSection
 EndProject
 Global
@@ -37,3 +32,4 @@ Global
 	GlobalSection(ExtensibilityAddIns) = postSolution
 	EndGlobalSection
 EndGlobal
+

@@ -1,8 +1,12 @@
 # Ignore heavy resources
-Resources/Heavy/
+Framework/Resources/Heavy/
 
-# Build output
-x64/
+# 1) Ignore every other thing under Framework
+Framework/*
 
-# Visual Studio
-.vs/
+# 2) Except
+!Framework/CMakeLists.txt
+!Framework/createSolutions.bat
+!Framework/removeSolutions.bat
+!Framework/Sources/
+!Framework/Resources/

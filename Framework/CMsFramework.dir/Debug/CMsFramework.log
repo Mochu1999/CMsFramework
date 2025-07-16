@@ -1,1 +1,1233 @@
-﻿  CMsFramework.vcxproj -> C:\dev\CMsFramework\Framework\Debug\CMsFramework.exe
+﻿  Polygons.cpp
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(80,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/BasicsRendering/Polygons.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244:         ]
+  (compiling source file 'Sources/BasicsRendering/Polygons.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(433,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/BasicsRendering/Polygons.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(478,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/BasicsRendering/Polygons.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Lines3D.hpp(150,40): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/BasicsRendering/Polygons.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(97,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/BasicsRendering/Polygons.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244: '*=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244:         ]
+  (compiling source file 'Sources/BasicsRendering/Polygons.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244: '*=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244:         ]
+  (compiling source file 'Sources/BasicsRendering/Polygons.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244: '*=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244:         ]
+  (compiling source file 'Sources/BasicsRendering/Polygons.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.cpp(56,43): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267: 'initializing': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         ]
+  (compiling source file 'Sources/BasicsRendering/Polygons.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54):
+  the template instantiation context (the oldest one first) is
+  	C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(471,21):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::emplace_back<size_t>(size_t &&)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(862,24):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(780,20):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(795,13):
+  	see reference to function template instantiation 'void std::_Construct_in_place<int,_Ty>(int &,_Ty &&) noexcept' being compiled
+          with
+          [
+              _Ty=size_t
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(251,14):
+  	see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64,0x0>(_Ty *const ,unsigned __int64 &&) noexcept(<expr>)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(255,61): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/BasicsRendering/Polygons.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267: 'initializing': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         ]
+  (compiling source file 'Sources/BasicsRendering/Polygons.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69):
+  the template instantiation context (the oldest one first) is
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(795,13):
+  	see reference to function template instantiation 'void std::_Construct_in_place<int,_Ty>(int &,_Ty &&) noexcept' being compiled
+          with
+          [
+              _Ty=size_t
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(251,14):
+  	see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64,0x0>(_Ty *const ,unsigned __int64 &&) noexcept' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  
+  Text.cpp
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(217,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/BasicsRendering/Text.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(74,3): warning C4244: 'argument': conversion from 'const float' to 'GLsizei', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(73,3): warning C4244: 'argument': conversion from 'const float' to 'GLsizei', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(104,17): warning C4244: 'initializing': conversion from 'FT_Int' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(105,17): warning C4244: 'initializing': conversion from 'FT_Int' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(106,14): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(107,15): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(108,16): warning C4244: 'initializing': conversion from 'FT_Pos' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(158,4): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(214,9): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(214,9): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(214,9): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(214,9): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(214,9): warning C4244:         ]
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(215,9): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(215,9): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(215,9): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(215,9): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(215,9): warning C4244:         ]
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(243,16): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.cpp(253,19): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  Common.cpp
+C:\dev\CMsFramework\Framework\Sources\Common.cpp(232,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Common.cpp(237,21): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Camera.cpp
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(22,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Core/Camera.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(27,32): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Core/Camera.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,50): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,50): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,50): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,50): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,50): warning C4305:         ]
+  (compiling source file 'Sources/Core/Camera.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,40): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,40): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,40): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,40): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,40): warning C4305:         ]
+  (compiling source file 'Sources/Core/Camera.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,30): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,30): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,30): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,30): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,30): warning C4305:         ]
+  (compiling source file 'Sources/Core/Camera.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.cpp(113,53): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.cpp(120,54): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.cpp(126,54): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.cpp(133,53): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+  shader.cpp
+C:\dev\CMsFramework\Framework\Sources\Core\shader.cpp(145,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Core\shader.cpp(145,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Main.cpp
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(22,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(27,32): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,50): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,50): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,50): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,50): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,50): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,40): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,40): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,40): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,40): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,40): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,30): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,30): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,30): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,30): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Core\Camera.hpp(37,30): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Deprecated\Globe.hpp(15,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Deprecated\Globe.hpp(25,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Deprecated\Globe.hpp(38,30): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Deprecated\Globe.hpp(41,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Deprecated\Globe.hpp(107,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Deprecated\Globe.hpp(110,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Deprecated\Globe.hpp(111,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Deprecated\Globe.hpp(128,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Deprecated\Globe.hpp(131,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Deprecated\Globe.hpp(132,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(80,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(433,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(478,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Lines3D.hpp(150,40): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(97,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244: '*=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244: '*=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244: '*=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons2d.hpp(133,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polyhedra.hpp(102,18): warning C4244: 'initializing': conversion from 'unsigned __int64' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polyhedra.hpp(105,34): warning C4244: 'argument': conversion from 'float' to 'GLsizeiptr', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polyhedra.hpp(108,50): warning C4244: 'argument': conversion from 'float' to 'GLsizeiptr', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polyhedra.hpp(111,34): warning C4244: 'argument': conversion from 'float' to 'GLsizeiptr', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polyhedra.hpp(116,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polyhedra.hpp(142,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Lines2D.hpp(95,40): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Circles.hpp(32,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Circles.hpp(110,19): warning C4305: '+=': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Circles.hpp(117,40): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(217,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Pathfinding.hpp(189,21): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Lines2D_Instanced.hpp(102,87): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Lines2D_Instanced.hpp(102,49): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,37): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,37): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,37): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,37): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,37): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,51): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,51): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,51): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,51): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,51): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,45): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,45): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,45): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,45): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,45): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,66): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,66): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,66): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,66): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,66): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,59): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,59): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,59): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,59): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,59): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,81): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,81): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,81): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,81): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,81): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,74): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,74): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,74): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,74): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(83,74): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,13): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,13): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,13): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,13): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,13): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,7): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,7): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,7): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,7): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,7): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,28): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,28): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,28): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,28): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,28): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,22): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,22): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,22): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,22): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,22): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,41): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,41): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,41): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,41): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,41): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,36): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,36): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,36): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,36): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,36): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,51): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,51): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,51): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,51): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\Icons.hpp(84,51): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(20,34): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(20,34): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(20,34): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(20,34): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(20,34): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(20,25): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(20,25): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(20,25): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(20,25): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(20,25): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(21,26): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(21,26): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(21,26): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(21,26): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(21,26): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,34): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,34): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,34): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,34): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,34): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,25): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,25): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,25): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,25): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,25): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,54): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,54): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,54): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,54): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,54): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,45): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,45): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,45): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,45): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,45): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,71): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,71): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,71): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,71): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,71): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,65): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,65): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,65): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,65): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,65): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,91): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,91): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,91): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,91): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,91): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,81): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,81): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,81): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,81): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(37,81): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,17): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,17): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,17): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,17): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,17): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,6): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,6): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,6): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,6): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,6): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,38): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,38): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,38): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,38): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,38): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,28): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,28): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,28): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,28): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(38,28): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\MRS\ShipMRS.hpp(131,37): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Spheres.hpp(13,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Spheres.hpp(13,26): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Spheres.hpp(17,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Spheres.hpp(20,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Spheres.hpp(46,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Spheres.hpp(215,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(29,21): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(29,21): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(29,21): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(29,21): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(29,21): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(29,57): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(31,48): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(33,48): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(34,44): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(35,56): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(36,46): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(179,36): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(179,36): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(179,36): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(179,36): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(179,36): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(180,36): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(180,36): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(180,36): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(180,36): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(180,36): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(181,36): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(181,36): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(181,36): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(181,36): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(181,36): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(189,34): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(189,34): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(189,34): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(189,34): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(189,34): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(190,34): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(190,34): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(190,34): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(190,34): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(190,34): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(191,34): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(191,34): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(191,34): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(191,34): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(191,34): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,49): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,49): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,49): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,49): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,49): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,42): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,42): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,42): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,42): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,42): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,35): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,35): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,35): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,35): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(208,35): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,45): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,45): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,45): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,45): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,45): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,37): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,37): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,37): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,37): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,37): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,30): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,30): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,30): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,30): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,30): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(236,84): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'Sources/Main.cpp')
+  C:\dev\CMsFramework\Framework\Resources\External\Includes\GLFW\glfw3.h(123,1):
+  see previous definition of 'APIENTRY'
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\OpenCascade\AuxFunctionsOC.hpp(10,27): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\OpenCascade\ShapeRenderer.hpp(222,47): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\OpenCascade\ShapeRenderer.hpp(225,45): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\OpenCascade\ShapeRenderer.hpp(233,45): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\axis.hpp(101,44): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\axis.hpp(101,39): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\axis.hpp(101,34): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\OpenCascade\CadCreation.hpp(88,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(393,99): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(455,28): warning C4305: '*=': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(467,28): warning C4305: '/=': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Deprecated\auxiliary_elements.hpp(79,23): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Deprecated\auxiliary_elements.hpp(79,23): warning C4267:         with
+C:\dev\CMsFramework\Framework\Sources\Deprecated\auxiliary_elements.hpp(79,23): warning C4267:         [
+C:\dev\CMsFramework\Framework\Sources\Deprecated\auxiliary_elements.hpp(79,23): warning C4267:             _Ty=std::seed_seq::result_type
+C:\dev\CMsFramework\Framework\Sources\Deprecated\auxiliary_elements.hpp(79,23): warning C4267:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Deprecated\auxiliary_elements.hpp(96,40): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(19,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(23,21): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,19): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,19): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,19): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,19): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,19): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,35): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,35): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,35): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,35): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,35): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,51): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,51): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,51): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,51): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,51): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,67): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,67): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,67): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,67): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,67): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,83): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,83): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,83): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,83): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,83): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,99): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,99): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,99): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,99): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,99): warning C4305:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(220,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(93,25): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(196,32): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(196,32): warning C4267:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(196,32): warning C4267:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(196,32): warning C4267:             _Ty=std::seed_seq::result_type
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(196,32): warning C4267:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(197,32): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(197,32): warning C4267:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(197,32): warning C4267:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(197,32): warning C4267:             _Ty=std::seed_seq::result_type
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(197,32): warning C4267:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(255,44): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(255,31): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(255,24): warning C4244: 'argument': conversion from 'T' to 'GLint', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(255,24): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(255,24): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(255,24): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Graphics.hpp(255,24): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(27,36): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(34,15): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(35,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(68,44): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(68,39): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(68,34): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,69): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,39): warning C4244: 'argument': conversion from 'T' to 'GLsizei', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,39): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,39): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,39): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,39): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27): warning C4244: 'argument': conversion from 'T' to 'GLint', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,30): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,30): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,30): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,30): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,30): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,30):
+  the template instantiation context (the oldest one first) is
+  	C:\dev\CMsFramework\Framework\Sources\Composites\MRS\mainMRS.hpp(312,16):
+  	see reference to function template instantiation 'T round1d<float>(T)' being compiled
+          with
+          [
+              T=float
+          ]
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(357,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(357,28):
+  the template instantiation context (the oldest one first) is
+  	C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(253,26):
+  	see reference to function template instantiation 'unsigned int WettedSurface::calculateDistanceSecondIt<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>>(bool,_T0 &,unsigned int &,unsigned int &)' being compiled
+          with
+          [
+              _Ty=WettedSurface::Intersections,
+              _T0=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<WettedSurface::Intersections>>>
+          ]
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(372,75): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(227,31): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(227,31): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(227,31): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(227,31): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(227,31): warning C4244:         ]
+  (compiling source file 'Sources/Main.cpp')
+  C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(227,31):
+  the template instantiation context (the oldest one first) is
+  	C:\dev\CMsFramework\Framework\Sources\Main.cpp(123,41):
+  	see reference to function template instantiation 'T round2d<float>(T)' being compiled
+          with
+          [
+              T=float
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267: 'initializing': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         ]
+  (compiling source file 'Sources/Main.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54):
+  the template instantiation context (the oldest one first) is
+  	C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(471,21):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::emplace_back<size_t>(size_t &&)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(862,24):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(780,20):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(795,13):
+  	see reference to function template instantiation 'void std::_Construct_in_place<int,_Ty>(int &,_Ty &&) noexcept' being compiled
+          with
+          [
+              _Ty=size_t
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(251,14):
+  	see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64,0x0>(_Ty *const ,unsigned __int64 &&) noexcept(<expr>)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(255,61): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267: 'initializing': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:             _Ty=unsigned int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         ]
+  (compiling source file 'Sources/Main.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54):
+  the template instantiation context (the oldest one first) is
+  	C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(303,17):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::emplace_back<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=std::seed_seq::result_type
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(862,24):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=std::seed_seq::result_type
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(780,20):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=std::seed_seq::result_type
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(795,13):
+  	see reference to function template instantiation 'void std::_Construct_in_place<unsigned int,_Ty>(unsigned int &,_Ty &&) noexcept' being compiled
+          with
+          [
+              _Ty=size_t
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(251,14):
+  	see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64,0x0>(_Ty *const ,unsigned __int64 &&) noexcept(<expr>)' being compiled
+          with
+          [
+              _Ty=unsigned int
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(255,61): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267: 'initializing': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         ]
+  (compiling source file 'Sources/Main.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69):
+  the template instantiation context (the oldest one first) is
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(795,13):
+  	see reference to function template instantiation 'void std::_Construct_in_place<int,_Ty>(int &,_Ty &&) noexcept' being compiled
+          with
+          [
+              _Ty=size_t
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(251,14):
+  	see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64,0x0>(_Ty *const ,unsigned __int64 &&) noexcept' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267: 'initializing': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:             _Ty=unsigned int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         ]
+  (compiling source file 'Sources/Main.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69):
+  the template instantiation context (the oldest one first) is
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(795,13):
+  	see reference to function template instantiation 'void std::_Construct_in_place<unsigned int,_Ty>(unsigned int &,_Ty &&) noexcept' being compiled
+          with
+          [
+              _Ty=size_t
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(251,14):
+  	see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64,0x0>(_Ty *const ,unsigned __int64 &&) noexcept' being compiled
+          with
+          [
+              _Ty=unsigned int
+          ]
+  
+  WettedSurface.cpp
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(80,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(222,54): warning C4244:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(433,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(478,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Lines3D.hpp(150,40): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(97,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244: '*=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(127,20): warning C4244:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244: '*=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(128,20): warning C4244:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244: '*=': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Polygons.hpp(129,20): warning C4244:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(19,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(23,21): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,19): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,19): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,19): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,19): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,19): warning C4305:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,35): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,35): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,35): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,35): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,35): warning C4305:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,51): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,51): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,51): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,51): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,51): warning C4305:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,67): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,67): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,67): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,67): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,67): warning C4305:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,83): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,83): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,83): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,83): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,83): warning C4305:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,99): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,99): warning C4305:         with
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,99): warning C4305:         [
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,99): warning C4305:             T=float
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,99): warning C4305:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(220,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(93,25): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(357,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(357,28):
+  the template instantiation context (the oldest one first) is
+  	C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(253,26):
+  	see reference to function template instantiation 'unsigned int WettedSurface::calculateDistanceSecondIt<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>>(bool,_T0 &,unsigned int &,unsigned int &)' being compiled
+          with
+          [
+              _Ty=WettedSurface::Intersections,
+              _T0=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<WettedSurface::Intersections>>>
+          ]
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(372,75): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267: 'initializing': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54):
+  the template instantiation context (the oldest one first) is
+  	C:\dev\CMsFramework\Framework\Sources\Stability\SweepTriangulation.hpp(471,21):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::emplace_back<size_t>(size_t &&)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(862,24):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(780,20):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(795,13):
+  	see reference to function template instantiation 'void std::_Construct_in_place<int,_Ty>(int &,_Ty &&) noexcept' being compiled
+          with
+          [
+              _Ty=size_t
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(251,14):
+  	see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64,0x0>(_Ty *const ,unsigned __int64 &&) noexcept(<expr>)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(255,61): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267: 'initializing': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:             _Ty=unsigned int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54): warning C4267:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(241,54):
+  the template instantiation context (the oldest one first) is
+  	C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(303,17):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::emplace_back<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=std::seed_seq::result_type
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(862,24):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=std::seed_seq::result_type
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(780,20):
+  	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=std::seed_seq::result_type
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(795,13):
+  	see reference to function template instantiation 'void std::_Construct_in_place<unsigned int,_Ty>(unsigned int &,_Ty &&) noexcept' being compiled
+          with
+          [
+              _Ty=size_t
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(251,14):
+  	see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64,0x0>(_Ty *const ,unsigned __int64 &&) noexcept(<expr>)' being compiled
+          with
+          [
+              _Ty=unsigned int
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(255,61): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267: 'initializing': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69):
+  the template instantiation context (the oldest one first) is
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(795,13):
+  	see reference to function template instantiation 'void std::_Construct_in_place<int,_Ty>(int &,_Ty &&) noexcept' being compiled
+          with
+          [
+              _Ty=size_t
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(251,14):
+  	see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64,0x0>(_Ty *const ,unsigned __int64 &&) noexcept' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267: 'initializing': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:             _Ty=unsigned int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69): warning C4267:         ]
+  (compiling source file 'Sources/Stability/WettedSurface.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(242,69):
+  the template instantiation context (the oldest one first) is
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(795,13):
+  	see reference to function template instantiation 'void std::_Construct_in_place<unsigned int,_Ty>(unsigned int &,_Ty &&) noexcept' being compiled
+          with
+          [
+              _Ty=size_t
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(251,14):
+  	see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64,0x0>(_Ty *const ,unsigned __int64 &&) noexcept' being compiled
+          with
+          [
+              _Ty=unsigned int
+          ]
+  
+  Generating Code...
+glew32s.lib(glew.obj) : warning LNK4099: PDB '' was not found with 'glew32s.lib(glew.obj)' or at ''; linking object as if no debug info
+     Creating library C:/dev/CMsFramework/Framework/build/Debug/CMsFramework.lib and object C:/dev/CMsFramework/Framework/build/Debug/CMsFramework.exp
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  CMsFramework.vcxproj -> C:\dev\CMsFramework\Framework\build\Debug\CMsFramework.exe
+  Copying external DLLs to output directory

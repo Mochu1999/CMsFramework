@@ -1,7 +1,7 @@
 @echo off
 echo Cleaning Framework directory...
 
-:: Delete all folders (including hidden) except Sources and Resources
+:: Delete all folders (including hidden) except build, Sources and Resources
 for /f "delims=" %%F in ('dir /a:d /b') do (
     if /I not "%%F"=="Sources" if /I not "%%F"=="Resources" (
         echo Deleting folder: %%F

@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\dev\CMsFramework\Framework\Debug\CMsFramework.exe</FullPath>
+      <FullPath>C:\dev\CMsFramework\Framework\build\Debug\CMsFramework.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
