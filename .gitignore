@@ -1,12 +1,12 @@
-# Ignore heavy resources
-Framework/Resources/Heavy/
-
-# 1) Ignore every other thing under Framework
+# Ignore all build garbage in Framework
 Framework/*
 
-# 2) Except
+# Keep important files
 !Framework/CMakeLists.txt
 !Framework/createSolutions.bat
 !Framework/removeSolutions.bat
 !Framework/Sources/
 !Framework/Resources/
+
+# Ignore everything in Resources/Heavy
+Framework/Resources/Heavy/*

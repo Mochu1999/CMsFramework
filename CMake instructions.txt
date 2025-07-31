@@ -1,1 +1,0 @@
-The CMakeLists.txt in Framework is the main configuration file, it's at the same level as the .vcxproj
