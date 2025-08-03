@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "Globe.hpp"
-#include "mainMRS.hpp"
+#include "Autopilot.hpp"
 #include "Light.hpp"
 #include "SS.hpp"
 #include "MainOC.hpp"
@@ -12,13 +12,13 @@ int keyCounter = 5;
 struct AllPointers {
 	Camera* camera;
 	GlobalVariables* gv;
-	MainMap* map;
+	World* world;
 	Light* ship;
 	SS* ss;
 	MainOC* mainOC;
 
-	AllPointers(Camera* camera_, GlobalVariables* gv_, MainMap* map_, Light* ship_, MainOC* mainOC_)
-		:camera(camera_), map(map_), gv(gv_), ship(ship_), mainOC(mainOC_) {}
+	AllPointers(Camera* camera_, GlobalVariables* gv_, World* world_, Light* ship_, MainOC* mainOC_)
+		:camera(camera_), world(world_), gv(gv_), ship(ship_), mainOC(mainOC_) {}
 };
 
 //The standard is to use callbacks for one-time event (typing, increase something once per press) and another function
@@ -29,7 +29,7 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 
 	AllPointers* allPointers = static_cast<AllPointers*>(glfwGetWindowUserPointer(window));
 	Camera* camera = allPointers->camera;
-	MainMap* map = allPointers->map;
+	World* world = allPointers->world;
 	Light* ship = allPointers->ship;
 	GlobalVariables* gv = allPointers->gv;
 	MainOC* mainOC = allPointers->mainOC;
@@ -60,7 +60,7 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 				gv->program = openCascade;
 
 				break;
-			case GLFW_KEY_O: //changing maps
+			case GLFW_KEY_O: //changing worlds
 				if (gv->program == MRS)
 				{
 
@@ -97,10 +97,10 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 			case GLFW_KEY_Q:
 				if (gv->program == 1)
 				{
-					if (map->show)
-						map->show = 0;
+					if (world->show)
+						world->show = 0;
 					else
-						map->show = 1;
+						world->show = 1;
 				}
 				break;
 
@@ -249,7 +249,7 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 
 
 //keys functions gets triggered once per frame
-void keyboardRealTimePolls(GLFWwindow* window, GlobalVariables& gv, Camera& camera, MainMap& map) {
+void keyboardRealTimePolls(GLFWwindow* window, GlobalVariables& gv, Camera& camera, World& world) {
 
 	//The rest of the logic is in updateCamera
 
@@ -296,16 +296,16 @@ void keyboardRealTimePolls(GLFWwindow* window, GlobalVariables& gv, Camera& came
 	else if (gv.program == MRS)
 	{
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-			map.translationTotal -= {0, 10};
+			world.translationTotal -= {0, 10};
 
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-			map.translationTotal += {0, 10};
+			world.translationTotal += {0, 10};
 
 		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-			map.translationTotal += {10, 0};
+			world.translationTotal += {10, 0};
 
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-			map.translationTotal -= {10, 0};
+			world.translationTotal -= {10, 0};
 	}
 }
 
@@ -321,7 +321,7 @@ void getPos(GLFWwindow* window, p2& mPos) {
 void mouseEventCallback(GLFWwindow* window, int button, int action, int mods) {
 	AllPointers* allPointers = static_cast<AllPointers*>(glfwGetWindowUserPointer(window));
 	GlobalVariables* gv = allPointers->gv;
-	MainMap* map = allPointers->map;
+	World* world = allPointers->world;
 	MainOC* mainOC = allPointers->mainOC;
 	Camera* camera = allPointers->camera;
 
@@ -445,15 +445,15 @@ void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
 	AllPointers* allPointers = static_cast<AllPointers*>(glfwGetWindowUserPointer(window));
 	Camera* camera = allPointers->camera;
 	GlobalVariables* gv = allPointers->gv;
-	MainMap* map = allPointers->map;
+	World* world = allPointers->world;
 
 
 	if (yoffset > 0)
 	{
 		if (gv->program == MRS)
 		{
-			map->totalPixels *= 1.15;
-			map->update();
+			world->totalPixels *= 1.15;
+			world->update();
 		}
 		else if (gv->program == telemetry || gv->program == solar || gv->program == openCascade)
 		{
@@ -464,8 +464,8 @@ void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
 	{
 		if (gv->program == MRS)
 		{
-			map->totalPixels /= 1.15;
-			map->update();
+			world->totalPixels /= 1.15;
+			world->update();
 		}
 		else if (gv->program == telemetry || gv->program == solar || gv->program == openCascade)
 		{

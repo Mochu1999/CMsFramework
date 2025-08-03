@@ -14,7 +14,7 @@ namespace fs = std::filesystem;
 	p3& cameraPos;
 	p3& forward;
 	GlobalVariables& gv;
-	MainMap& map;
+	Mainworld& world;
 
 
 
@@ -40,17 +40,17 @@ namespace fs = std::filesystem;
 		{CameraPos, &cameraPos, sizeof(cameraPos)},
 		{Forward, &forward, sizeof(forward)},
 		{Program, &gv.program, sizeof(gv.program)},
-		{TotalPixels, &map.totalPixels, sizeof(map.totalPixels)},
+		{TotalPixels, &world.totalPixels, sizeof(world.totalPixels)},
 		{ModelMatrixOCC, &gv.modelMatrixOCC, sizeof(gv.modelMatrixOCC)},
 		{TotalMiddleMPosVariation, &gv.totalMiddleMPosVariation, sizeof(gv.totalMiddleMPosVariation)}
 	};
 
-	std::unordered_map<Variables, VariableEntry*> entryMap;
+	std::unordered_world<Variables, VariableEntry*> entryworld;
 
-	Settings(Camera& camera, GlobalVariables& gv_, MainMap& map_) : cameraPos(camera.cameraPos), forward(camera.forward), gv(gv_), map(map_)
+	Settings(Camera& camera, GlobalVariables& gv_, Mainworld& world_) : cameraPos(camera.cameraPos), forward(camera.forward), gv(gv_), world(world_)
 	{
 		for (auto& entry : entries)
-			entryMap[entry.id] = &entry;
+			entryworld[entry.id] = &entry;
 
 		read();
 	}
@@ -82,8 +82,8 @@ namespace fs = std::filesystem;
 	//			Variables var;
 	//			if (!inFile.read(reinterpret_cast<char*>(&var), sizeof(var))) break;
 
-	//			auto it = entryMap.find(var);
-	//			if (it != entryMap.end())
+	//			auto it = entryworld.find(var);
+	//			if (it != entryworld.end())
 	//				inFile.read(reinterpret_cast<char*>(it->second->ptr), it->second->size);
 	//			else
 	//			{
@@ -112,7 +112,7 @@ struct Settings
 	p3& cameraPos;
 	p3& forward;
 	GlobalVariables& gv;
-	MainMap& map;
+	World& world;
 
 	enum Variables
 	{
@@ -124,7 +124,7 @@ struct Settings
 		TotalMiddleMPosVariation
 	};
 
-	Settings(Camera& camera, GlobalVariables& gv_, MainMap& map_) : cameraPos(camera.cameraPos), forward(camera.forward), gv(gv_), map(map_)
+	Settings(Camera& camera, GlobalVariables& gv_, World& world_) : cameraPos(camera.cameraPos), forward(camera.forward), gv(gv_), world(world_)
 	{
 		read();
 		reset();
@@ -151,7 +151,7 @@ struct Settings
 
 			var = TotalPixels;
 			outFile.write(reinterpret_cast<const char*>(&var), sizeof(var));
-			outFile.write(reinterpret_cast<const char*>(&map.totalPixels), sizeof(map.totalPixels));
+			outFile.write(reinterpret_cast<const char*>(&world.totalPixels), sizeof(world.totalPixels));
 
 			var = ModelMatrixOCC;
 			outFile.write(reinterpret_cast<const char*>(&var), sizeof(var));
@@ -188,8 +188,8 @@ struct Settings
 					inFile.read(reinterpret_cast<char*>(&gv.program), sizeof(gv.program));
 					break;
 				case TotalPixels:
-					inFile.read(reinterpret_cast<char*>(&map.totalPixels), sizeof(map.totalPixels));
-					map.update(); //if we end reducir all thise, just map.update() at the end of read()
+					inFile.read(reinterpret_cast<char*>(&world.totalPixels), sizeof(world.totalPixels));
+					world.update(); //if we end reducir all thise, just world.update() at the end of read()
 					break;
 				case ModelMatrixOCC:
 					inFile.read(reinterpret_cast<char*>(&gv.modelMatrixOCC), sizeof(gv.modelMatrixOCC));
@@ -217,7 +217,7 @@ struct Settings
 	{
 		print(cameraPos);
 		print(forward);
-		print(map.totalPixels);
+		print(world.totalPixels);
 		print(gv.program);
 		print(gv.modelMatrixOCC);
 		print(gv.totalMiddleMPosVariation);
@@ -226,7 +226,7 @@ struct Settings
 	{
 		/*cameraPos = { 0,0,0 };
 		forward = { 1,0,0 };
-		map.totalPixels = 6000;*/
+		world.totalPixels = 6000;*/
 		gv.modelMatrixOCC = gv.identityMatrix;
 		gv.totalMiddleMPosVariation = { 0,0,0 };
 	}

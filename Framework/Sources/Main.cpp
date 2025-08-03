@@ -51,13 +51,13 @@ int main(void)
 	Graphic graphic2(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, "rudderAngle", { 1400,400 }, ship.rudderAngle);
 	ProgressBar pb(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, { 1400 - 50,700 });
 
-	MainMap map(shader2D, shaderText, shader2D_Instanced, camera, gv, tm);
+	World world(shader2D, shaderText, shader2D_Instanced, camera, gv, tm);
 	MainOC mainOC(shader3D, shaderText, camera, gv);
 
-	Settings settings(camera, gv, map);
+	Settings settings(camera, gv, world);
 
 
-	AllPointers allPointers(&camera, &gv, &map, &ship, &mainOC);
+	AllPointers allPointers(&camera, &gv, &world, &ship, &mainOC);
 	glfwSetWindowUserPointer(window, &allPointers);
 	glfwSetKeyCallback(window, keyboardEventCallback);
 	glfwSetMouseButtonCallback(window, mouseEventCallback);
@@ -96,7 +96,7 @@ int main(void)
 				break;
 
 			case MRS:
-				map.draw();
+				world.draw();
 				break;
 
 			case solar:
@@ -159,7 +159,7 @@ int main(void)
 			glLineWidth(1);
 			opaque();
 
-			keyboardRealTimePolls(window, gv, camera, map);
+			keyboardRealTimePolls(window, gv, camera, world);
 			camera.updateCamera();
 
 

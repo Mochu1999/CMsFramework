@@ -33,7 +33,7 @@
 #include "WettedSurface.hpp"
 
 #include "Graphics.hpp"
-#include "MainMRS.hpp"
+#include "Autopilot.hpp"
 #include "Axis.hpp"
 #include "Light.hpp"
 #include "Overlay2D.hpp"
