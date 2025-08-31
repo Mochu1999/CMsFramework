@@ -141,13 +141,13 @@ GLFWwindow* initialize() {
 	glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
 	
 	//fullscreen
-	//GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "PR0JET R4CC00N", glfwGetPrimaryMonitor(), NULL);
-	GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "PR0JET R4CC00N", NULL, NULL);
+	//GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "CM's Framework", glfwGetPrimaryMonitor(), NULL);
+	GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "CM's Framework", NULL, NULL);
 	
 	/*GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 	const GLFWvidmode* mode = glfwGetVideoMode(monitor);
 
-	GLFWwindow* window = glfwCreateWindow(mode->width, mode->height, "PR0JET R4CC00N", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(mode->width, mode->height, "CM's Framework", nullptr, nullptr);
 	glfwSetWindowMonitor(window, nullptr, 0, 0, mode->width, mode->height, mode->refreshRate);*/
 
 

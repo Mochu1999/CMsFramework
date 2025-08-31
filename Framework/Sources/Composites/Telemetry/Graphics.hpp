@@ -213,7 +213,7 @@ struct Graphic {
 		{
 			shader2D_Instanced.bind();
 
-			graphicModel2DMatrix = camera.create2DModelMatrix(gridCorner, 0, { gridWidth,gridHeight });
+			graphicModel2DMatrix = create2DModelMatrix(gridCorner, 0, { gridWidth,gridHeight });
 			shader2D_Instanced.setUniform("u_Model", graphicModel2DMatrix);
 
 			shader2D.setUniform("u_Color", 1, 1, 1, 1);
@@ -249,7 +249,7 @@ struct Graphic {
 		//Data
 		{
 			shader2D_Instanced.setUniform("u_Color", 40.0f / 255.0f, 239.9f / 255.0f, 239.0f / 255.0f, 1);
-			graphicModel2DMatrix = camera.create2DModelMatrix(dataCorner, 0, { 1,scaleY });
+			graphicModel2DMatrix = create2DModelMatrix(dataCorner, 0, { 1,scaleY });
 			shader2D_Instanced.setUniform("u_Model", graphicModel2DMatrix);
 			glEnable(GL_SCISSOR_TEST); //You'll need to try deque method just for potencial memory leaks
 			glScissor(gridCorner.x, 0, windowWidth, windowHeight);

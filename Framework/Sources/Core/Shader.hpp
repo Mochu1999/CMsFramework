@@ -25,7 +25,8 @@ struct Shader {
 
 
 	Shader(const std::string& filepath)
-		:filePath(filepath), ID(0) { //we are maintaining filePath only for debugging purpouses
+		:filePath(filepath), ID(0) 
+	{ //we are maintaining filePath only for debugging purpouses
 		ShaderProgramSource source = parseShader(filepath);
 		ID = createShader(source.VertexSource, source.FragmentSource);
 

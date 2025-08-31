@@ -12,13 +12,13 @@ int keyCounter = 5;
 struct AllPointers {
 	Camera* camera;
 	GlobalVariables* gv;
-	World* world;
+	Autopilot* autopilot;
 	Light* ship;
 	SS* ss;
 	MainOC* mainOC;
 
-	AllPointers(Camera* camera_, GlobalVariables* gv_, World* world_, Light* ship_, MainOC* mainOC_)
-		:camera(camera_), world(world_), gv(gv_), ship(ship_), mainOC(mainOC_) {}
+	AllPointers(Camera* camera_, GlobalVariables* gv_, Autopilot* autopilot_, Light* ship_, MainOC* mainOC_)
+		:camera(camera_), autopilot(autopilot_), gv(gv_), ship(ship_), mainOC(mainOC_) {}
 };
 
 //The standard is to use callbacks for one-time event (typing, increase something once per press) and another function
@@ -29,7 +29,7 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 
 	AllPointers* allPointers = static_cast<AllPointers*>(glfwGetWindowUserPointer(window));
 	Camera* camera = allPointers->camera;
-	World* world = allPointers->world;
+	Autopilot* autopilot = allPointers->autopilot;
 	Light* ship = allPointers->ship;
 	GlobalVariables* gv = allPointers->gv;
 	MainOC* mainOC = allPointers->mainOC;
@@ -60,7 +60,7 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 				gv->program = openCascade;
 
 				break;
-			case GLFW_KEY_O: //changing worlds
+			case GLFW_KEY_O: //changing autopilots
 				if (gv->program == MRS)
 				{
 
@@ -97,10 +97,10 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 			case GLFW_KEY_Q:
 				if (gv->program == 1)
 				{
-					if (world->show)
-						world->show = 0;
+					if (autopilot->ui.show)
+						autopilot->ui.show = 0;
 					else
-						world->show = 1;
+						autopilot->ui.show = 1;
 				}
 				break;
 
@@ -249,7 +249,7 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 
 
 //keys functions gets triggered once per frame
-void keyboardRealTimePolls(GLFWwindow* window, GlobalVariables& gv, Camera& camera, World& world) {
+void keyboardRealTimePolls(GLFWwindow* window, GlobalVariables& gv, Camera& camera, Autopilot& autopilot) {
 
 	//The rest of the logic is in updateCamera
 
@@ -296,16 +296,16 @@ void keyboardRealTimePolls(GLFWwindow* window, GlobalVariables& gv, Camera& came
 	else if (gv.program == MRS)
 	{
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-			world.translationTotal -= {0, 10};
+			autopilot.world.translationFactor -= {0, 10};
 
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-			world.translationTotal += {0, 10};
+			autopilot.world.translationFactor += {0, 10};
 
 		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-			world.translationTotal += {10, 0};
+			autopilot.world.translationFactor += {10, 0};
 
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-			world.translationTotal -= {10, 0};
+			autopilot.world.translationFactor -= {10, 0};
 	}
 }
 
@@ -321,7 +321,7 @@ void getPos(GLFWwindow* window, p2& mPos) {
 void mouseEventCallback(GLFWwindow* window, int button, int action, int mods) {
 	AllPointers* allPointers = static_cast<AllPointers*>(glfwGetWindowUserPointer(window));
 	GlobalVariables* gv = allPointers->gv;
-	World* world = allPointers->world;
+	Autopilot* autopilot = allPointers->autopilot;
 	MainOC* mainOC = allPointers->mainOC;
 	Camera* camera = allPointers->camera;
 
@@ -445,15 +445,26 @@ void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
 	AllPointers* allPointers = static_cast<AllPointers*>(glfwGetWindowUserPointer(window));
 	Camera* camera = allPointers->camera;
 	GlobalVariables* gv = allPointers->gv;
-	World* world = allPointers->world;
+	Autopilot* autopilot = allPointers->autopilot;
 
 
 	if (yoffset > 0)
 	{
 		if (gv->program == MRS)
 		{
-			world->totalPixels *= 1.15;
-			world->update();
+			autopilot->world.totalXpixels *= 1.15;
+			autopilot->world.updateCamera();
+
+			//// --- keep current center fixed across zoom ---
+			//p2 screenCenter = { windowWidth * 0.5f,
+			//					windowHeight * 0.5f };
+			//p2 worldAtCenter = (screenCenter - autopilot->world.translationFactor) / autopilot->world.scalingFactor;
+
+			//autopilot->world.totalXpixels *= 1.15f;
+			//autopilot->world.updateCamera(); // recomputes scale & centers by design
+
+			//// restore so the same world point remains at screen center
+			//autopilot->world.translationFactor = screenCenter - worldAtCenter * autopilot->world.scalingFactor;
 		}
 		else if (gv->program == telemetry || gv->program == solar || gv->program == openCascade)
 		{
@@ -464,8 +475,8 @@ void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
 	{
 		if (gv->program == MRS)
 		{
-			world->totalPixels /= 1.15;
-			world->update();
+			autopilot->world.totalXpixels /= 1.15;
+			autopilot->world.updateCamera();
 		}
 		else if (gv->program == telemetry || gv->program == solar || gv->program == openCascade)
 		{

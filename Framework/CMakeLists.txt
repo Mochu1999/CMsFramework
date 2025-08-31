@@ -79,7 +79,7 @@ add_custom_command(TARGET CMsFramework POST_BUILD
     COMMENT "Copying external DLLs to output directory"
 )
 
-# ---- Put ALL build output under Framework/build/<config>/ ----------------
+# Put ALL build output under Framework/build/<config>/ See if it can be deleted
 set(build_root "${CMAKE_CURRENT_SOURCE_DIR}/build")
 
 # final .exe/.dll/.lib locations

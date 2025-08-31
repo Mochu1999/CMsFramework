@@ -7,9 +7,6 @@
 
 struct Meteo
 {
-	Shader& shader2D;
-	Shader& shader2D_Instanced;
-	Camera& camera;
 	TimeStruct& tm;
 
 	struct MerraDataPoint {
@@ -26,11 +23,12 @@ struct Meteo
 
 	vector<p2> currentLonLats;
 	vector<InstanceAttributes> currentInstancing;
-	ArrowsMRS arrows;
+	ArrowsMeteo arrows;
 	std::string currentTimeString;
+	Text meteoDateText;
 
-	Meteo(Shader& shader2D_, Shader& shader2D_Instanced_, Camera& camera_, TimeStruct& tm_)
-		:shader2D(shader2D_), shader2D_Instanced(shader2D_Instanced_), camera(camera_), arrows(shader2D, shader2D_Instanced, camera),tm(tm_)
+	Meteo(TimeStruct& tm_)
+		:tm(tm_), meteoDateText("resources/Glyphs/Helvetica/Helvetica.otf", 36)
 	{
 		readCSV();
 
@@ -41,11 +39,7 @@ struct Meteo
 
 
 
-	void draw(std::array<float, 16>& mapModel2DMatrix)
-	{
-
-		arrows.draw(mapModel2DMatrix);
-	}
+	
 
 	void readCSV() {
 		std::ifstream file("Resources/MRS/merra202405.csv");
@@ -163,7 +157,7 @@ struct Meteo
 				<< '\n';
 		}
 	}
-	
+
 	float getCurrentSpeed() {
 		if (!allProcessedData.count(currentTimeKey) || allProcessedData[currentTimeKey].empty())
 			return 0.0f;

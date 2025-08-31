@@ -1,1 +1,3 @@
 Forward no puede ser nulo. Si cameraPos se posiciona en en centro en modo centered la cámara explotará.
+
+

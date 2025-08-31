@@ -1,5 +1,5 @@
 ﻿#pragma once
-
+#include "AuxAutopilot.hpp"
 
 void calculateBoundingBox(vector<std::pair<p2, p2>>& boundingBoxes, const vector<vector<p2>>& lonLatPositions)
 {

@@ -404,7 +404,51 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\BasicsRendering\Circles.hpp" />
+    <ClInclude Include="Sources\BasicsRendering\Lines2D.hpp" />
+    <ClInclude Include="Sources\BasicsRendering\Lines2D_Instanced.hpp" />
+    <ClInclude Include="Sources\BasicsRendering\Lines3D.hpp" />
+    <ClInclude Include="Sources\BasicsRendering\Polygons.hpp" />
+    <ClInclude Include="Sources\BasicsRendering\Polygons2D.hpp" />
+    <ClInclude Include="Sources\BasicsRendering\Polyhedra.hpp" />
+    <ClInclude Include="Sources\BasicsRendering\Spheres.hpp" />
+    <ClInclude Include="Sources\BasicsRendering\Text.hpp" />
+    <ClInclude Include="Sources\Common.hpp" />
+    <ClInclude Include="Sources\Composites\Autopilot\Autopilot.hpp" />
     <ClInclude Include="Sources\Composites\Autopilot\AuxAutopilot.hpp" />
+    <ClInclude Include="Sources\Composites\Autopilot\Icons.hpp" />
+    <ClInclude Include="Sources\Composites\Autopilot\Meteo.hpp" />
+    <ClInclude Include="Sources\Composites\Autopilot\Pathfinding.hpp" />
+    <ClInclude Include="Sources\Composites\Autopilot\ShipAutopilot.hpp" />
+    <ClInclude Include="Sources\Composites\Autopilot\UIAutopilot.hpp" />
+    <ClInclude Include="Sources\Composites\Autopilot\World.hpp" />
+    <ClInclude Include="Sources\Composites\Axis.hpp" />
+    <ClInclude Include="Sources\Composites\OpenCascade\AuxFunctionsOC.hpp" />
+    <ClInclude Include="Sources\Composites\OpenCascade\CadCreation.hpp" />
+    <ClInclude Include="Sources\Composites\OpenCascade\IncludesOC.hpp" />
+    <ClInclude Include="Sources\Composites\OpenCascade\MainOC.hpp" />
+    <ClInclude Include="Sources\Composites\OpenCascade\ShapeRenderer.hpp" />
+    <ClInclude Include="Sources\Composites\Overlay2D.hpp" />
+    <ClInclude Include="Sources\Composites\Solar\SS.hpp" />
+    <ClInclude Include="Sources\Composites\Telemetry\Graphics.hpp" />
+    <ClInclude Include="Sources\Composites\Telemetry\Light.hpp" />
+    <ClInclude Include="Sources\Composites\Telemetry\ProgressBar.hpp" />
+    <ClInclude Include="Sources\Core\BinariesManager.hpp" />
+    <ClInclude Include="Sources\Core\Camera.hpp" />
+    <ClInclude Include="Sources\Core\FilesManagement.hpp" />
+    <ClInclude Include="Sources\Core\KeyMouseImputs.hpp" />
+    <ClInclude Include="Sources\Core\Settings.hpp" />
+    <ClInclude Include="Sources\Core\Shader.hpp" />
+    <ClInclude Include="Sources\Core\Time.hpp" />
+    <ClInclude Include="Sources\Deprecated\Arrows.hpp" />
+    <ClInclude Include="Sources\Deprecated\auxiliary_elements.hpp" />
+    <ClInclude Include="Sources\Deprecated\AuxSquare.hpp" />
+    <ClInclude Include="Sources\Deprecated\Globe.hpp" />
+    <ClInclude Include="Sources\MainIncludes.hpp" />
+    <ClInclude Include="Sources\Stability\Delaunay2D.hpp" />
+    <ClInclude Include="Sources\Stability\Fourier.hpp" />
+    <ClInclude Include="Sources\Stability\SweepTriangulation.hpp" />
+    <ClInclude Include="Sources\Stability\WettedSurface.hpp" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>

@@ -23,7 +23,7 @@ namespace fs = std::filesystem;
 		CameraPos,
 		Forward,
 		Program,
-		TotalPixels,
+		totalXpixels,
 		ModelMatrixOCC,
 		TotalMiddleMPosVariation
 	};
@@ -40,7 +40,7 @@ namespace fs = std::filesystem;
 		{CameraPos, &cameraPos, sizeof(cameraPos)},
 		{Forward, &forward, sizeof(forward)},
 		{Program, &gv.program, sizeof(gv.program)},
-		{TotalPixels, &world.totalPixels, sizeof(world.totalPixels)},
+		{totalXpixels, &world.totalXpixels, sizeof(world.totalXpixels)},
 		{ModelMatrixOCC, &gv.modelMatrixOCC, sizeof(gv.modelMatrixOCC)},
 		{TotalMiddleMPosVariation, &gv.totalMiddleMPosVariation, sizeof(gv.totalMiddleMPosVariation)}
 	};
@@ -112,19 +112,19 @@ struct Settings
 	p3& cameraPos;
 	p3& forward;
 	GlobalVariables& gv;
-	World& world;
+	Autopilot& autopilot;
 
 	enum Variables
 	{
 		CameraPos,
 		Forward,
 		Program,
-		TotalPixels,
+		totalXpixels,
 		ModelMatrixOCC,
 		TotalMiddleMPosVariation
 	};
 
-	Settings(Camera& camera, GlobalVariables& gv_, World& world_) : cameraPos(camera.cameraPos), forward(camera.forward), gv(gv_), world(world_)
+	Settings(Camera& camera, GlobalVariables& gv_, Autopilot& autopilot_) : cameraPos(camera.cameraPos), forward(camera.forward), gv(gv_), autopilot(autopilot_)
 	{
 		read();
 		reset();
@@ -149,9 +149,9 @@ struct Settings
 			outFile.write(reinterpret_cast<const char*>(&var), sizeof(var));
 			outFile.write(reinterpret_cast<const char*>(&gv.program), sizeof(gv.program));
 
-			var = TotalPixels;
+			var = totalXpixels;
 			outFile.write(reinterpret_cast<const char*>(&var), sizeof(var));
-			outFile.write(reinterpret_cast<const char*>(&world.totalPixels), sizeof(world.totalPixels));
+			outFile.write(reinterpret_cast<const char*>(&autopilot.world.totalXpixels), sizeof(autopilot.world.totalXpixels));
 
 			var = ModelMatrixOCC;
 			outFile.write(reinterpret_cast<const char*>(&var), sizeof(var));
@@ -187,9 +187,9 @@ struct Settings
 				case Program:
 					inFile.read(reinterpret_cast<char*>(&gv.program), sizeof(gv.program));
 					break;
-				case TotalPixels:
-					inFile.read(reinterpret_cast<char*>(&world.totalPixels), sizeof(world.totalPixels));
-					world.update(); //if we end reducir all thise, just world.update() at the end of read()
+				case totalXpixels:
+					inFile.read(reinterpret_cast<char*>(&autopilot.world.totalXpixels), sizeof(autopilot.world.totalXpixels));
+					autopilot.world.updateCamera(); //if we end reducir all thise, just autopilot.update() at the end of read()
 					break;
 				case ModelMatrixOCC:
 					inFile.read(reinterpret_cast<char*>(&gv.modelMatrixOCC), sizeof(gv.modelMatrixOCC));
@@ -217,7 +217,7 @@ struct Settings
 	{
 		print(cameraPos);
 		print(forward);
-		print(world.totalPixels);
+		print(autopilot.world.totalXpixels);
 		print(gv.program);
 		print(gv.modelMatrixOCC);
 		print(gv.totalMiddleMPosVariation);
@@ -226,7 +226,7 @@ struct Settings
 	{
 		/*cameraPos = { 0,0,0 };
 		forward = { 1,0,0 };
-		world.totalPixels = 6000;*/
+		autopilot.totalXpixels = 6000;*/
 		gv.modelMatrixOCC = gv.identityMatrix;
 		gv.totalMiddleMPosVariation = { 0,0,0 };
 	}

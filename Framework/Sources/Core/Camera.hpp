@@ -112,23 +112,16 @@ struct Camera {
 	void translate3DModelMatrix(std::array<float, 16>& model3DMatrix, const p3 translation_);
 	void scale3DModelMatrix(std::array<float, 16>& model3DMatrix, const float scale_);
 
-	std::array<float, 16> create2DModelMatrix(const p2 translation, float angleDeg, float scale);
-	std::array<float, 16> create2DModelMatrix(const p2 translation, float angleDeg, const p2 scale);
+	
 
 	//the rotations create a new forward vector and the other 2 are deduced from it
 	void calculateForward(p3& forward, const float rotationSpeed, const p3& rotationAxis);
 
-
-
-
-
 	//creates all the vector and updates the view and vp matrices
 	void updateCamera();
-
-
-
-
-
-
 };
 
+//These functions were inside camera, which makes sense, but I was calling 
+std::array<float, 16> create2DModelMatrix(const p2 translation, float angleDeg, float scale);
+
+std::array<float, 16> create2DModelMatrix(const p2 translation, float angleDeg, p2 scale);

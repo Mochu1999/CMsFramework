@@ -24,7 +24,7 @@ struct SweepTrAux {
 	
 
 	//for 2d, project into x,y if you are in 3d
-//triangulates with a sweep algorithm from left to right. It assigns to each point an state and creates and triangulates sequentially chains
+	//triangulates with a sweep algorithm from left to right. It assigns to each point an state and creates and triangulates sequentially chains
 	vector<unsigned int> sweepTriangulation(vector<p3> xyPositions/*int i*/) {
 		//It can produce triangles of 0 area (collinear sPoints)
 

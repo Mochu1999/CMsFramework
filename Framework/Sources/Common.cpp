@@ -6,7 +6,7 @@
 p2 cursor = { 0, 0 };
 float windowHeight = 1080;
 float windowWidth = 1920;
-
+p2 windowCenter = { windowWidth * 0.5f, windowHeight * 0.5f };
 
 
 float fastInverseSqrt(float number) {
@@ -237,3 +237,51 @@ float degrees(float input) {
 	return input * 180 * invPI;
 }
 
+string formatFloat(float value)
+{
+	std::ostringstream oss;
+	oss << std::fixed << std::setprecision(2) << value;
+	return oss.str();
+}
+
+//Computes the intersection between 2 edges AB and CD
+bool calculateIntersectionPoints(const p2 A, const p2 B, const p2 C, const p2 D, p2& i) {
+	//It assumes AB, CD are not 0	//what if they are?
+	p2 AB = B - A;
+	p2 CD = D - C;
+	p2 AC = C - A;
+
+	/*
+	In 2d geometry the cross product is a scalar value, not a vector, it represents the area of their parallelogram
+	when:
+	t = 0: Intersection at point A.
+	0 < t < 1: Intersection between A and B (on the line segment).
+	t = 1: Intersection at point B.
+	t < 0: Intersection lies before A
+	t > 1: Intersection lies beyond B
+	(so t is the percentage between A and B)
+	*/
+	float precalculate = cross2(AB, CD);
+	if (!precalculate) { // They are parallel
+		// Check if C is on the line segment AB
+		float scalarProjection = dot2(AC, AB) / (AB.x * AB.x + AB.y * AB.y);
+		float crossProduct = cross2(AC, AB);
+
+		if (scalarProjection >= 0 && scalarProjection <= 1 && crossProduct == 0) {
+			i = C;
+			return true;
+		}
+		return false;
+	}
+
+	float t = cross2(AC, CD) / precalculate; // (AC×CD)/(AB×CD) //position along AB
+	float u = cross2(AC, AB) / precalculate; // (AC×AB)/(AB×CD) //position along CD
+
+	if (t >= 0 && t <= 1 && u >= 0 && u < 1) { // Return false for intersection in exactly D
+		i.x = A.x + t * AB.x;
+		i.y = A.y + t * AB.y;
+		return true;
+	}
+
+	return false;
+}

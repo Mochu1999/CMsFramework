@@ -28,6 +28,7 @@ using namespace std;
 
 #include <functional>
 #include <random>
+#include <iomanip>
 
 //not templated definitions of functions need to be separated from their declarations in .cpp
 
@@ -40,6 +41,8 @@ constexpr float inv3 = 1.0f / 3.0f;
 constexpr float inv180 = 1.0f / 180.0f;
 
 /////////////////////////////global variables are after vec3
+
+float fastInverseSqrt(float number);
 
 template<typename T>
 struct vec2 {
@@ -63,13 +66,20 @@ struct vec2 {
 		return { x + other.x, y + other.y };
 	}
 
-
 	vec2 operator + (const T other) const { //PASSING WITHOUT REFERENCE MIGHT BE LESS EXPENSIVE, CAN YOU CHECK?
 		return { x + other, y + other };
 	}
 
 	vec2 operator - (const vec2& other) const {
 		return { x - other.x, y - other.y };
+	}
+
+	vec2 operator - (const T other) const { //PASSING WITHOUT REFERENCE MIGHT BE LESS EXPENSIVE, CAN YOU CHECK?
+		return { x - other, y - other };
+	}
+
+	vec2 operator - () const {
+		return { -x, -y };
 	}
 
 	vec2 operator *(T scalar) const {
@@ -112,6 +122,7 @@ struct vec2 {
 		if (x == other.x) return y < other.y;
 		return x < other.x;
 	}
+
 };
 
 
@@ -141,7 +152,7 @@ struct p_HashMultiplicative {
 		return (a * k) ^ (b * k);
 	}
 };
-
+//for key std::pair<p2,p2>
 struct pair_hash_multiplicative {
 	std::size_t operator()(const std::pair<p2, p2>& edge) const {
 		p_HashMultiplicative ph;
@@ -171,6 +182,15 @@ float magnitude2(const vec2<T>& v) { //modulus
 	return sqrt(magnitudeSquared);
 }
 
+template<typename T>
+vec2<T> normalize2(const vec2<T>& v) {
+	T magnitudeSquared = v.x * v.x + v.y * v.y;
+	if (magnitudeSquared == 0.0f) {
+		return vec2<T>(0, 0); // Return a zero vector to avoid division by zero
+	}
+	float magnitude_inv = fastInverseSqrt(magnitudeSquared);
+	return vec2<T>(v.x * magnitude_inv, v.y * magnitude_inv);
+}
 
 
 template<typename T>
@@ -265,7 +285,7 @@ vec3<T> cross3(const vec3<T>& v1, const vec3<T>& v2) {
 	);
 }
 
-float fastInverseSqrt(float number);
+
 
 template<typename T>
 vec3<T> normalize3(const vec3<T>& v) {
@@ -290,9 +310,10 @@ float magnitude3(const vec3<T>& v) { //modulus
 
 
 
-// Mover a gv
+// Mover a gv?
 extern float windowHeight;
 extern float windowWidth;
+extern p2 windowCenter;
 
 enum Programs { telemetry, MRS, solar, openCascade };
 enum CameraModes { drag, FPS, centered };
@@ -320,7 +341,7 @@ struct GlobalVariables
 
 	p2 centerWindow;
 	MrsMode mrsMode = mapMRS;
-	matrix4x4 identityMatrix = { 1, 0, 0, 0, 0, 1, 0, 0,0, 0, 1, 0,0, 0, 0, 1 };
+	matrix4x4 identityMatrix = { 1, 0, 0, 0, 0, 1, 0, 0,0, 0, 1, 0, 0, 0, 0, 1 };
 	matrix4x4 modelMatrixOCC = identityMatrix;
 
 	VisualizationMode visualizationMode = triangulated;
@@ -443,13 +464,6 @@ float crossProduct(const vec2<T>& p0, const vec2<T>& p1, const vec2<T>& p2) {
 
 
 
-
-
-
-
-
-
-
 //consts, cambiale el nombre y deja el nombre "is" para bools
 float isRightOfLine(p2& A, p2& B, p2& P);
 
@@ -499,3 +513,8 @@ float radians(float input);
 
 
 float degrees(float input);
+
+string formatFloat(float value);
+
+//Computes the intersection between 2 edges AB and CD
+bool calculateIntersectionPoints(const p2 A, const p2 B, const p2 C, const p2 D, p2& i);

@@ -1,3 +1,5 @@
+//HAY UN CONFLICTO DE FUNCIONALIDAD Y FORMATO ENTRE BinariesManager.hpp Y FilesManagement.hpp
+
 
 #include "MainIncludes.hpp"
 
@@ -16,11 +18,10 @@ int main(void)
 	Shader shader2D("resources/shaders/shader2D.shader");
 	Shader shader2D_Instanced("resources/shaders/shader2D_Instanced.shader");
 	Shader shaderText("resources/shaders/shaderText.shader");
-
 	//main reason to add all the shaders there is to initialize the associated matrices in an encapsulated way
-		// IT ISN'T REASONABLE TO HAVE THE SHADER INITIALIZATION IN CAMERA, ENCAPSULATE THEM ELSEWHERE
+	// IT ISN'T REASONABLE TO HAVE THE SHADER INITIALIZATION IN CAMERA, ENCAPSULATE IT ELSEWHERE
 	Camera camera(window, shader3D, shader2D, shader2D_Instanced, shaderText, gv);
-
+	
 
 	Polyhedra finalTust;
 	finalTust.addPolyhedra("finalTust.bin");
@@ -50,14 +51,12 @@ int main(void)
 	Graphic graphic(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, "A*cos(x)", { 1400,100 }, graf1Val);
 	Graphic graphic2(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, "rudderAngle", { 1400,400 }, ship.rudderAngle);
 	ProgressBar pb(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, { 1400 - 50,700 });
-
-	World world(shader2D, shaderText, shader2D_Instanced, camera, gv, tm);
+	Autopilot autopilot(shader2D, shaderText, shader2D_Instanced, gv, tm);
 	MainOC mainOC(shader3D, shaderText, camera, gv);
 
-	Settings settings(camera, gv, world);
+	Settings settings(camera, gv, autopilot);
 
-
-	AllPointers allPointers(&camera, &gv, &world, &ship, &mainOC);
+	AllPointers allPointers(&camera, &gv, &autopilot, &ship, &mainOC);
 	glfwSetWindowUserPointer(window, &allPointers);
 	glfwSetKeyCallback(window, keyboardEventCallback);
 	glfwSetMouseButtonCallback(window, mouseEventCallback);
@@ -96,7 +95,7 @@ int main(void)
 				break;
 
 			case MRS:
-				world.draw();
+				autopilot.update();
 				break;
 
 			case solar:
@@ -159,7 +158,7 @@ int main(void)
 			glLineWidth(1);
 			opaque();
 
-			keyboardRealTimePolls(window, gv, camera, world);
+			keyboardRealTimePolls(window, gv, camera, autopilot);
 			camera.updateCamera();
 
 
