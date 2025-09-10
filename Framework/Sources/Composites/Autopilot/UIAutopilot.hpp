@@ -32,6 +32,7 @@ struct UIAutopilot
 	Polygons2D dataBox;
 	Lines2D dataBoxOutline;
 	Text dataText;
+	Text meteoDateText;
 
 	Circles circleFinish;
 
@@ -40,6 +41,7 @@ struct UIAutopilot
 	UIAutopilot(Shader& shader2D_, Shader& shader2D_Instanced_, Shader& shaderText_, GlobalVariables& gv_, World& world_, ShipAutopilot& ship_, Meteo& meteo_)
 		:shader2D(shader2D_), shader2D_Instanced(shader2D_Instanced_), shaderText(shaderText_), gv(gv_), world(world_), ship(ship_), meteo(meteo_)
 		, mouseCoordsText("resources/Glyphs/Helvetica/Helvetica.otf", 36), dataText("resources/Glyphs/Helvetica/Helvetica.otf", 36)
+		, meteoDateText("resources/Glyphs/Helvetica/Helvetica.otf", 36)
 		, circleFinish(5000, 100)
 	{
 		dataBoxOutline.addSet(createRoundedSquare({ 80,370 }, { 600,380 }, 30));
@@ -60,10 +62,8 @@ struct UIAutopilot
 
 		drawWorld();
 
-		
-		//drawShip();
-
-		//drawMeteo();
+		drawMeteo();
+		drawShip();
 
 		drawData();
 
@@ -96,6 +96,8 @@ struct UIAutopilot
 
 	void drawShip()
 	{
+		shader2D.bind();
+
 		circleFinish.clear();
 		circleFinish.addSet(lonLatToMercator(ship.pathWaypoints.front()));
 		//circleFinish.addSet(lonLatToMercator(ship.pathWaypoints));
@@ -168,9 +170,9 @@ struct UIAutopilot
 		meteo.arrows.lines.draw();
 
 		shaderText.bind();
-
-		meteo.meteoDateText.addDynamicText({ {{620,900},meteo.currentTimeString} });
-		meteo.meteoDateText.draw();
+		meteoDateText.addDynamicText({ {{620,900},meteo.currentTimeString} });
+		meteoDateText.draw();
+		
 	}
 
 	void drawData()
@@ -194,8 +196,9 @@ struct UIAutopilot
 			{ { 100,550 }, "Estimated time left: ",eta," hours"},
 			{ { 100,500 }, "Errors:  N/A"}
 			});
-
 		dataText.draw();
+		
+		
 	}
 
 	void drawMouseCoords()

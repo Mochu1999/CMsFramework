@@ -16,11 +16,16 @@ out vec3 fragNormals;  //Output that goes to the fragment shader
 out vec3 fragPositions;
 
 
-void main() {
+void main() 
+{
+    fragPositions = (u_Model * vec4(positions, 1.0)).xyz; //positions after moving them with u_Model //.xyz drops the fourth element
 
-	fragPositions = positions;
-	fragNormals = mat3(u_Model) * normals;
-	gl_Position = u_Perspective * u_View * u_Model * vec4(fragPositions,1.0);
+    //we need to transform normals to adapt to the u_model, so the normal is still pp after the transformation
+	//The algebra of this is better explained in assets\shader
+	fragNormals = normalize(mat3(transpose(inverse(u_Model))) * normals);
+
+	//built-in output keyword, it outputs the final 2d location on the screen 
+    gl_Position = u_Perspective * u_View * vec4(fragPositions, 1.0);
 }
 
 
@@ -36,7 +41,7 @@ in vec3 fragPositions;
 
 vec4 lightColor = vec4(1.0, 1.0, 1.0, 1.0);
 
-uniform int u_fragmentMode; //1 for lit, 0 for full color
+uniform int u_fragmentMode; //1 for flat color, 0 for lit color
 uniform vec3 u_CamPos;
 uniform vec4 u_Color;
 uniform vec3 u_lightPos;
@@ -52,7 +57,7 @@ void main()
 		float specularLight = 0.7f;
 
 		// diffuse lighting
-		vec3 normal = normalize(fragNormals);
+		vec3 normal = fragNormals;
 		vec3 lightDirection = normalize(u_lightPos - fragPositions);
 		float diffuse = max(dot(normal, lightDirection), 0.0f);
 

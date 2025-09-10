@@ -25,10 +25,9 @@ struct Meteo
 	vector<InstanceAttributes> currentInstancing;
 	ArrowsMeteo arrows;
 	std::string currentTimeString;
-	Text meteoDateText;
 
 	Meteo(TimeStruct& tm_)
-		:tm(tm_), meteoDateText("resources/Glyphs/Helvetica/Helvetica.otf", 36)
+		:tm(tm_)
 	{
 		readCSV();
 

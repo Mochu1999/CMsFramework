@@ -25,7 +25,7 @@ target_include_directories(CMsFramework PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/Sources/Stability"
 	"${CMAKE_CURRENT_SOURCE_DIR}/Sources/Deprecated"
 	"${CMAKE_CURRENT_SOURCE_DIR}/Sources/Composites/Solar"
-	"${CMAKE_CURRENT_SOURCE_DIR}/Sources/Composites/MRS"
+	"${CMAKE_CURRENT_SOURCE_DIR}/Sources/Composites/Autopilot"
 	"${CMAKE_CURRENT_SOURCE_DIR}/Sources/Composites/OpenCascade"
 	"${CMAKE_CURRENT_SOURCE_DIR}/Sources/Composites/Telemetry"
 	"${CMAKE_CURRENT_SOURCE_DIR}/Sources/Composites"
@@ -71,12 +71,14 @@ string(REPLACE ";" ";" _EXTRA_LIBS_LIST "${_EXTRA_LIBS}")
 target_link_libraries(CMsFramework PRIVATE ${_EXTRA_LIBS_LIST})
 
 
-#Adding dlls automatically
+#Adding dlls automatically only if newer are detected
+file(GLOB EXTERNAL_DLLS "${CMAKE_CURRENT_SOURCE_DIR}/Resources/External/dlls/*.dll")
+
 add_custom_command(TARGET CMsFramework POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${CMAKE_CURRENT_SOURCE_DIR}/Resources/External/dlls"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${EXTERNAL_DLLS}
             $<TARGET_FILE_DIR:CMsFramework>
-    COMMENT "Copying external DLLs to output directory"
+    COMMENT "Copying external DLLs to output directory (if changed)"
 )
 
 # Put ALL build output under Framework/build/<config>/ See if it can be deleted

@@ -152,7 +152,10 @@ struct Text {
 		for (auto& l : line)
 		{
 			textPosition.push_back(l.pos);
-			textToDraw.push_back(l.text);
+			if (!l.text.empty())
+				textToDraw.push_back(l.text);
+			else
+				textToDraw.push_back(" ");
 		}
 
 		fillVertexBuffer();

@@ -315,7 +315,7 @@ extern float windowHeight;
 extern float windowWidth;
 extern p2 windowCenter;
 
-enum Programs { telemetry, MRS, solar, openCascade };
+enum Programs { telemetry, MRS, solarProgram, openCascade };
 enum CameraModes { drag, FPS, centered };
 enum VisualizationMode { wire, triangulated }; //OCC
 enum MrsMode { mapMRS, mapCustom }; //1 MRS map, 2 custom map

@@ -114,7 +114,7 @@ C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Circles.hpp(110,15): warni
 C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Circles.hpp(117,40): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(217,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(220,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
 C:\dev\CMsFramework\Framework\Sources\Composites\Autopilot\AuxAutopilot.hpp(72,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
@@ -266,10 +266,10 @@ C:\dev\CMsFramework\Framework\Sources\Composites\Autopilot\Icons.hpp(53,51): war
 C:\dev\CMsFramework\Framework\Sources\Composites\Autopilot\World.hpp(48,42): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Composites\Autopilot\World.hpp(111,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Composites\Autopilot\World.hpp(119,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Composites\Autopilot\UIAutopilot.hpp(136,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\dev\CMsFramework\Framework\Sources\Composites\Autopilot\UIAutopilot.hpp(138,37): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
 C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Spheres.hpp(13,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
@@ -431,13 +431,13 @@ C:\dev\CMsFramework\Framework\Sources\Composites\axis.hpp(101,34): warning C4305
 C:\dev\CMsFramework\Framework\Sources\Composites\OpenCascade\CadCreation.hpp(88,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(393,99): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(394,99): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(455,37): warning C4305: '*=': truncation from 'double' to 'float'
+C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(456,37): warning C4305: '*=': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(478,37): warning C4305: '/=': truncation from 'double' to 'float'
+C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(479,37): warning C4305: '/=': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
 C:\dev\CMsFramework\Framework\Sources\Deprecated\auxiliary_elements.hpp(79,23): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
@@ -566,15 +566,15 @@ C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27
 C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27): warning C4244:         ]
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,30): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,30): warning C4244:         with
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,30): warning C4244:         [
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,30): warning C4244:             T=float
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,30): warning C4244:         ]
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(235,30): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(235,30): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(235,30): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(235,30): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(235,30): warning C4244:         ]
   (compiling source file 'Sources/Main.cpp')
-      C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,30):
+      C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(235,30):
       the template instantiation context (the oldest one first) is
-          C:\dev\CMsFramework\Framework\Sources\Composites\Autopilot\UIAutopilot.hpp(188,15):
+          C:\dev\CMsFramework\Framework\Sources\Composites\Autopilot\UIAutopilot.hpp(190,15):
           see reference to function template instantiation 'T round1d<float>(T)' being compiled
           with
           [
@@ -596,15 +596,15 @@ C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(357,28): warni
 C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(372,75): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(227,31): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(227,31): warning C4244:         with
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(227,31): warning C4244:         [
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(227,31): warning C4244:             T=float
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(227,31): warning C4244:         ]
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(230,31): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(230,31): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(230,31): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(230,31): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(230,31): warning C4244:         ]
   (compiling source file 'Sources/Main.cpp')
-      C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(227,31):
+      C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(230,31):
       the template instantiation context (the oldest one first) is
-          C:\dev\CMsFramework\Framework\Sources\Main.cpp(122,41):
+          C:\dev\CMsFramework\Framework\Sources\Main.cpp(121,41):
           see reference to function template instantiation 'T round2d<float>(T)' being compiled
           with
           [
@@ -734,4 +734,4 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.3520
           ]
   
   CMsFramework.vcxproj -> C:\dev\CMsFramework\Framework\build\Debug\CMsFramework.exe
-  Copying external DLLs to output directory
+  Copying external DLLs to output directory (if changed)

@@ -194,7 +194,7 @@ void transparent() {
 
 void clearScreen(GlobalVariables gv)
 {
-	if (gv.program == solar)
+	if (gv.program == solarProgram)
 	{
 		glClearColor(0.035f, 0.065f, 0.085f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

@@ -68,6 +68,7 @@ struct Autopilot
 			ship.speed = meteo.getCurrentSpeed() / 3;
 			ship.updateShipPosition();
 		}
+
 	}
 
 	void update()

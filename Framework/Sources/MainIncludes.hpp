@@ -26,7 +26,6 @@
 #include "AuxSquare.hpp"
 #include "Arrows.hpp"
 #include "Globe.hpp"
-#include "auxiliary_elements.hpp"
 
 #include "Fourier.hpp"
 #include "Delaunay2D.hpp"
@@ -39,5 +38,5 @@
 #include "Overlay2D.hpp"
 #include "ProgressBar.hpp"
 
-#include "SS.hpp"
+#include "Solar.hpp"
 #include "MainOC.hpp"

@@ -43,9 +43,9 @@ int main(void)
 
 
 
-	//Axis axis(shader3D, gv);
+	Axis axis(shader3D, gv);
 	Light ship(shader3D, camera, gv);
-	SS ss(shader3D, camera, gv);
+	Solar solar(shader3D, camera, gv);
 
 	Overlay2D overlay(shader2D, camera);
 	Graphic graphic(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, "A*cos(x)", { 1400,100 }, graf1Val);
@@ -81,7 +81,6 @@ int main(void)
 			switch (gv.program)
 			{
 			case telemetry:
-				//axis.draw();
 				ship.draw();
 
 
@@ -98,9 +97,9 @@ int main(void)
 				autopilot.update();
 				break;
 
-			case solar:
-				//axis.draw();
-				ss.draw();
+			case solarProgram:
+				axis.draw();
+				solar.draw();
 
 				break;
 

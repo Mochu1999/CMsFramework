@@ -12,21 +12,21 @@ void Text::initializeFreeType(const std::string& fontPath, const int fontPixelSi
 		return;
 	}
 	// Set font size in pixels. Word and other apps set the size in dots per inch. RESCALING IS NOT AN OPTION YET
-	FT_Set_Pixel_Sizes(face, 0, fontPixelSize); 
+	FT_Set_Pixel_Sizes(face, 0, fontPixelSize);
 
 	FT_ULong  charcode; //unicode codepoint (the number that represents the character)
 	FT_UInt   glyphIndex;
 
-	
+
 	charcode = FT_Get_First_Char(face, &glyphIndex); //it's 32, if you force glyphIndex to be 0 things as ñ appear in allGlyphs (but there's no glyph for it, idk)
 
 	while (glyphIndex != 0) {
 		//128 first characters are ascii characters. For latin-1 characters (ñ, á, ü) you should have the next 128 or maybe just delete the if
-		if (charcode < 256) 
+		if (charcode < 256)
 		{
 			allGlyphs.push_back(static_cast<char>(charcode));
 		}
-		
+
 		charcode = FT_Get_Next_Char(face, charcode, &glyphIndex);
 	}
 
@@ -83,8 +83,11 @@ void Text::initializeAtlasTexture(const float atlasWidth, const float atlasHeigh
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //linearly interpolates the pixel, smoother, but somewhat blurry 
 	/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);*/ //choose the nearest pixel: pixelated, but sharp 
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);//clamps texture outside 0,1 range? Don't think I need it
+
+	//clamps texture outside 0,1 range? Don't think I need it 
+		//Revision, after months a bug that shows lines outlines have appeared and the clamp is needed
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
@@ -173,7 +176,13 @@ void Text::createAtlasTexture() {
 
 		currentWidth += glyphMetricsMap[c].width;
 
-
+		// This is some padding so it doesn't fall exactly at the edges because it was giving a weird edge artifacts in an edge case
+		float du = 0.5f / atlasWidth;
+		float dv = 0.5f / atlasHeight;
+		glyphMetricsMap[c].texCoordX0 += du;
+		glyphMetricsMap[c].texCoordX1 -= du;
+		glyphMetricsMap[c].texCoordY0 += dv;  
+		glyphMetricsMap[c].texCoordY1 -= dv;
 	}
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 4); //Returning to default for next operations
 
@@ -206,17 +215,16 @@ void Text::fillVertexBuffer() {
 	indices.clear();
 	indexOffset = 0;
 
-	
-	for (size_t i = 0; i <  textToDraw.size(); i++)
+
+	for (size_t i = 0; i < textToDraw.size(); i++)
 	{
-
 		//bottom left coordinates of the string to render
-		int x =  textPosition[i].x;
-		int y =  textPosition[i].y;
+		int x = textPosition[i].x;
+		int y = textPosition[i].y;
 
-		for (size_t j = 0; j <  textToDraw[i].size(); ++j) {
+		for (size_t j = 0; j < textToDraw[i].size(); ++j) {
 
-			char c =  textToDraw[i][j];
+			char c = textToDraw[i][j];
 			GlyphMetrics metrics = glyphMetricsMap[c];
 
 			//logic is sound
@@ -244,7 +252,7 @@ void Text::fillVertexBuffer() {
 
 			createIndices(j);
 		}
-			indexOffset = indices.back() + 1;
+		indexOffset = indices.back() + 1;
 	}
 }
 
