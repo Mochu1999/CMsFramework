@@ -32,6 +32,7 @@ struct TimeStruct {
 	std::chrono::high_resolution_clock::time_point startElapsedTime;
 
 	float currentTime = 0.0f;
+	float  deltaTime = 0.0f;
 
 	float fps = 0.0f;
 	float frameCount = 0.0f;
@@ -43,10 +44,15 @@ struct TimeStruct {
 	unsigned int counterSecondsPlot = 0;
 	unsigned int counterUpdatePlot = 0;
 
-	//MRS
+	//Autopilot
 	const float mRSUpdateInterval = 1;
 	float mRSTimeAccumulator = 0;
 	unsigned int counterUpdateMRS = 0;
+
+	//Solar
+	const float solarUpdateInterval = 0.01f;
+	float solarUpdateAccumulator = 0;
+	unsigned int counterUpdateSolar = 0;
 
 	TimeStruct() {
 		lastFrameTime = std::chrono::high_resolution_clock::now();
@@ -59,31 +65,32 @@ struct TimeStruct {
 
 		currentTime = std::chrono::duration<float>(currentFrameTime - startElapsedTime).count();
 
-		float  deltaTime = std::chrono::duration_cast<std::chrono::duration<float>>(currentFrameTime - lastFrameTime).count();
+		deltaTime = std::chrono::duration_cast<std::chrono::duration<float>>(currentFrameTime - lastFrameTime).count();
 		lastFrameTime = currentFrameTime;
 
+
+		updateFPS();
+		updatePlot();
+		updateMRS();
+		updateSolar();
+	}
+
+	void updateFPS()
+	{
 		frameCount++;
 		timeAccumulator += deltaTime;
-		plotTimeAccumulator += deltaTime;
-		fiveSecondsAccumulator += deltaTime;
 
-		if (currentTime>2)
-			mRSTimeAccumulator += deltaTime;
-
-		if (timeAccumulator >= 0.5f) 
+		if (timeAccumulator >= 0.5f)
 		{
 			fps = frameCount / timeAccumulator;
 			frameCount = 0;
 			timeAccumulator -= 0.5f;
 		}
-
-		updatePlot();
-		updateMRS();
 	}
-
 	void updatePlot() 
 	{
-		
+		plotTimeAccumulator += deltaTime;
+		fiveSecondsAccumulator += deltaTime;
 		if (plotTimeAccumulator >= plotUpdateInterval) 
 		{
 			plotTimeAccumulator -= plotUpdateInterval; // Reset accumulator
@@ -99,11 +106,24 @@ struct TimeStruct {
 	}
 	void updateMRS()
 	{
+		if (currentTime > 2)
+			mRSTimeAccumulator += deltaTime;
+
 		if (mRSTimeAccumulator >= mRSUpdateInterval)
 		{
 			mRSTimeAccumulator -= mRSUpdateInterval;
 
 			counterUpdateMRS++;
+		}
+	}
+	void updateSolar()
+	{
+		solarUpdateAccumulator += deltaTime;
+		if (solarUpdateAccumulator > solarUpdateInterval)
+		{
+			solarUpdateAccumulator -= solarUpdateInterval;
+
+			counterUpdateSolar++;
 		}
 	}
 };
