@@ -119,11 +119,11 @@ struct TimeStruct {
 	void updateSolar()
 	{
 		solarUpdateAccumulator += deltaTime;
-		if (solarUpdateAccumulator > solarUpdateInterval)
+
+		while (solarUpdateAccumulator >= solarUpdateInterval) 
 		{
 			solarUpdateAccumulator -= solarUpdateInterval;
-
-			counterUpdateSolar++;
+			++counterUpdateSolar; 
 		}
 	}
 };
