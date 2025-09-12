@@ -264,6 +264,12 @@ struct vec3 {
 	}
 };
 
+//to do scalar * vec3 appart from vec3 * scalar
+template<typename T>
+vec3<T> operator*(T scalar, const vec3<T>& v) {
+	return { v.x * scalar, v.y * scalar, v.z * scalar };
+}
+
 using p3 = vec3<float>;
 using ui3 = vec3<unsigned int>;
 
@@ -297,8 +303,9 @@ vec3<T> normalize3(const vec3<T>& v) {
 	return vec3<T>(v.x * magnitude_inv, v.y * magnitude_inv, v.z * magnitude_inv);
 }
 
+//modulus
 template<typename T>
-float magnitude3(const vec3<T>& v) { //modulus
+float magnitude3(const vec3<T>& v) { 
 	float magnitudeSquared = v.x * v.x + v.y * v.y + v.z * v.z;
 	return sqrt(magnitudeSquared);
 }

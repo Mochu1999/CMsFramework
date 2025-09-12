@@ -21,7 +21,7 @@ int main(void)
 	//main reason to add all the shaders there is to initialize the associated matrices in an encapsulated way
 	// IT ISN'T REASONABLE TO HAVE THE SHADER INITIALIZATION IN CAMERA, ENCAPSULATE IT ELSEWHERE
 	Camera camera(window, shader3D, shader2D, shader2D_Instanced, shaderText, gv);
-	
+
 
 	Polyhedra finalTust;
 	finalTust.addPolyhedra("finalTust.bin");
@@ -45,7 +45,7 @@ int main(void)
 
 	Axis axis(shader3D, gv);
 	Light ship(shader3D, camera, gv);
-	Solar solar(shader3D, camera, gv);
+	Solar solar(shader3D, camera, gv, tm);
 
 	Overlay2D overlay(shader2D, camera);
 	Graphic graphic(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, "A*cos(x)", { 1400,100 }, graf1Val);
