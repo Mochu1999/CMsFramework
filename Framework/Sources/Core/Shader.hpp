@@ -105,8 +105,7 @@ struct Shader {
 //Initializes glfw and glew
 GLFWwindow* initialize();
 
-void opaque();
-void transparent();
+
 
 void clearScreen(GlobalVariables gv);
 

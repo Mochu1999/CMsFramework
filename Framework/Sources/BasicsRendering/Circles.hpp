@@ -133,7 +133,7 @@ vector<p2> createArc(p2 center, float r, float angle1, float angle2, int segment
 	return positions;
 }
 
-vector<p2> createRoundedSquare(p2 startingPos, p2 length, float radius) {
+vector<p2> createRoundedSquare(p2 startingPos, float width, float height, float radius) {
 	vector<p2> positions;
 	//reserve
 
@@ -142,13 +142,40 @@ vector<p2> createRoundedSquare(p2 startingPos, p2 length, float radius) {
 	vector<p2> temp = createArc(startingPos + radius, radius, radians(180), radians(270));
 	positions.insert(positions.end(), temp.begin(), temp.end());
 
-	temp = createArc({ startingPos.x + length.x - radius,startingPos.y + radius }, radius, radians(270), 0);
+	temp = createArc({ startingPos.x + width - radius,startingPos.y + radius }, radius, radians(270), 0);
 	positions.insert(positions.end(), temp.begin(), temp.end());
 
-	temp = createArc({ startingPos.x + (length.x - radius),startingPos.y + (length.y - radius) }, radius, 0, radians(90));
+	temp = createArc({ startingPos.x + (width - radius),startingPos.y + (height - radius) }, radius, 0, radians(90));
 	positions.insert(positions.end(), temp.begin(), temp.end());
 
-	temp = createArc({ startingPos.x + radius,startingPos.y + length.y - radius }, radius, radians(90), radians(180));
+	temp = createArc({ startingPos.x + radius,startingPos.y + height - radius }, radius, radians(90), radians(180));
+	positions.insert(positions.end(), temp.begin(), temp.end());
+
+	positions.emplace_back(positions.front());
+
+	return positions;
+}
+
+vector<p2> createRoundedSquare(p2 startingPos, p2 endingPos, float radius) {
+	vector<p2> positions;
+
+	float width = endingPos.x - startingPos.x;
+	float height = endingPos.y - startingPos.y;
+
+	// bottom left
+	vector<p2> temp = createArc({ startingPos.x + radius, startingPos.y + radius }, radius, radians(180), radians(270));
+	positions.insert(positions.end(), temp.begin(), temp.end());
+
+	// bottom right
+	temp = createArc({ endingPos.x - radius, startingPos.y + radius }, radius, radians(270), 0);
+	positions.insert(positions.end(), temp.begin(), temp.end());
+
+	// top right
+	temp = createArc({ endingPos.x - radius, endingPos.y - radius }, radius, 0, radians(90));
+	positions.insert(positions.end(), temp.begin(), temp.end());
+
+	// top left
+	temp = createArc({ startingPos.x + radius, endingPos.y - radius }, radius, radians(90), radians(180));
 	positions.insert(positions.end(), temp.begin(), temp.end());
 
 	positions.emplace_back(positions.front());

@@ -12,7 +12,7 @@ struct Overlay2D {
 	Overlay2D(Shader& shader2D_, Camera& camera_) :shader2D(shader2D_), camera(camera_) {
 
 		p2 corner = { 1300,0 };
-		vector<p2> arc = createRoundedSquare({ corner.x,0 }, { windowWidth - corner.x,840 }, 25);
+		vector<p2> arc = createRoundedSquare({ corner.x,0 }, windowWidth - corner.x, 840 , 25);
 		background.addSet(arc);
 		backgroundLines.addSet(arc);
 	}

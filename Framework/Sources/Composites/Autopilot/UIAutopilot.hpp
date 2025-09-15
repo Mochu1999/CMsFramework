@@ -44,8 +44,8 @@ struct UIAutopilot
 		, meteoDateText("resources/Glyphs/Helvetica/Helvetica.otf", 36)
 		, circleFinish(5000, 100)
 	{
-		dataBoxOutline.addSet(createRoundedSquare({ 80,370 }, { 600,380 }, 30));
-		dataBox.addSet(createRoundedSquare({ 80,370 }, { 600,380 }, 30));
+		dataBoxOutline.addSet(createRoundedSquare({ 80,370 }, 600,380 , 30));
+		dataBox.addSet(createRoundedSquare({ 80,370 }, 600,380 , 30));
 
 
 
@@ -169,6 +169,7 @@ struct UIAutopilot
 		shader2D_Instanced.setUniform("u_Color", 1, 1, 1, 1);
 		meteo.arrows.lines.draw();
 
+
 		shaderText.bind();
 		meteoDateText.addDynamicText({ {{620,900},meteo.currentTimeString} });
 		meteoDateText.draw();
@@ -214,7 +215,7 @@ struct UIAutopilot
 			shader2D.setUniform("u_Color", 40 / 255.0f, 40 / 255.0f, 40 / 255.0f, 1.0f);
 			mouseCoordsBox.clear();
 			//mouseCoordsBox should be static and moved with the modelMatrix, now it is getting recreated each frame
-			mouseCoordsBox.addSet(createRoundedSquare({ gv.mPos.x - 4,gv.mPos.y - 10 }, { 270,42 }, 10));
+			mouseCoordsBox.addSet(createRoundedSquare({ gv.mPos.x - 4,gv.mPos.y - 10 }, 270,42, 10));
 			mouseCoordsBox.draw();
 
 			shaderText.bind();

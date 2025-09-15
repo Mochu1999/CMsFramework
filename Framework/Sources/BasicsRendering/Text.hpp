@@ -202,7 +202,9 @@ struct Text {
 
 
 
-	void draw() {
+	void draw() 
+	{
+
 		//if (isBufferUpdated) 
 		{
 			glBindVertexArray(vertexArray);

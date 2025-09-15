@@ -50,7 +50,7 @@ struct TimeStruct {
 	unsigned int counterUpdateMRS = 0;
 
 	//Solar
-	const float solarUpdateInterval = 0.01f;
+	const float solarUpdateInterval = 0.001f;
 	float solarUpdateAccumulator = 0;
 	unsigned int counterUpdateSolar = 0;
 

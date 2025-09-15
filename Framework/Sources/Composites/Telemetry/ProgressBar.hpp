@@ -34,9 +34,9 @@ struct ProgressBar {
 		float algo1 = 0.03;
 		float algo2 = 0.1 * naturalRatio;
 		innerLength = { outerLength.x * algo2, outerLength.y * algo1 };
-		outerArc.addSet(createRoundedSquare(outerCorner, outerLength, 25));
+		outerArc.addSet(createRoundedSquare(outerCorner, outerLength.x, outerLength.y , 25));
 		//innerArc.addSet(createRoundedSquare(outerCorner + innerLength, outerLength - innerLength * 2, 25 * (1 - algo1)));
-		innerArc.addSet(createRoundedSquare(outerCorner, outerLength, 25));
+		innerArc.addSet(createRoundedSquare(outerCorner, outerLength.x, outerLength.y , 25));
 	}
 
 	void update(){

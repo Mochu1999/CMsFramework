@@ -45,13 +45,13 @@ int main(void)
 
 	Axis axis(shader3D, gv);
 	Light ship(shader3D, camera, gv);
-	Solar solar(shader3D, camera, gv, tm);
 
 	Overlay2D overlay(shader2D, camera);
 	Graphic graphic(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, "A*cos(x)", { 1400,100 }, graf1Val);
 	Graphic graphic2(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, "rudderAngle", { 1400,400 }, ship.rudderAngle);
 	ProgressBar pb(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, { 1400 - 50,700 });
 	Autopilot autopilot(shader2D, shaderText, shader2D_Instanced, gv, tm);
+	Solar solar(shader3D, shader2D, shaderText, camera, gv, tm);
 	MainOC mainOC(shader3D, shaderText, camera, gv);
 
 	Settings settings(camera, gv, autopilot);
@@ -110,8 +110,6 @@ int main(void)
 				tustin.draw();
 				break;
 			}
-
-
 
 
 			//text

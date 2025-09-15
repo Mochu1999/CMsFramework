@@ -6,6 +6,7 @@
 p2 cursor = { 0, 0 };
 float windowHeight = 1080;
 float windowWidth = 1920;
+p2 windowTotal = { windowWidth,windowHeight };
 p2 windowCenter = { windowWidth * 0.5f, windowHeight * 0.5f };
 
 
@@ -284,4 +285,19 @@ bool calculateIntersectionPoints(const p2 A, const p2 B, const p2 C, const p2 D,
 	}
 
 	return false;
+}
+
+void opaque() {
+	glDepthMask(GL_TRUE);
+	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_BLEND);
+}
+
+
+void transparent() {
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//deactivates the depth buffer, if activated the objects behind it won't be rendered
+	//, irrelevant if there aren't multiple layers of transparent
+	glDepthMask(GL_FALSE);
 }

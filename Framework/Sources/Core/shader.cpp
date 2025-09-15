@@ -177,20 +177,7 @@ GLFWwindow* initialize() {
 	return window;
 }
 
-void opaque() {
-	glDepthMask(GL_TRUE);
-	glEnable(GL_DEPTH_TEST);
-	glDisable(GL_BLEND);
-}
 
-//CREO QUE BLENDING NO ES QUE SEA TRANSPARENTE, ES QUE PUEDES CONCATENAR COSAS, QUE SEA TR DEPENDE DE ALPHA
-void transparent() {
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	//deactivates the depth buffer, if activated the objects behind it won't be rendered
-	//, irrelevant if there aren't multiple layers of transparent
-	glDepthMask(GL_FALSE);
-}
 
 void clearScreen(GlobalVariables gv)
 {

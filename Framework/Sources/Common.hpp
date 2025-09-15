@@ -320,6 +320,7 @@ float magnitude3(const vec3<T>& v) {
 // Mover a gv?
 extern float windowHeight;
 extern float windowWidth;
+extern p2 windowTotal;
 extern p2 windowCenter;
 
 enum Programs { telemetry, MRS, solarProgram, openCascade };
@@ -525,3 +526,6 @@ string formatFloat(float value);
 
 //Computes the intersection between 2 edges AB and CD
 bool calculateIntersectionPoints(const p2 A, const p2 B, const p2 C, const p2 D, p2& i);
+
+void opaque();
+void transparent();

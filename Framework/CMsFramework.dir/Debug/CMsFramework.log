@@ -114,7 +114,7 @@ C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Circles.hpp(110,15): warni
 C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Circles.hpp(117,40): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(220,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(222,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
 C:\dev\CMsFramework\Framework\Sources\Composites\Autopilot\AuxAutopilot.hpp(72,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
@@ -402,6 +402,12 @@ C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(215,30): wa
 C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\Light.hpp(236,84): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
+C:\dev\CMsFramework\Framework\Sources\Composites\Solar\solar.hpp(24,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Composites\Solar\solar.hpp(49,11): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
   (compiling source file 'Sources/Main.cpp')
       C:\dev\CMsFramework\Framework\Resources\External\Includes\GLFW\glfw3.h(123,11):
@@ -566,15 +572,15 @@ C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27
 C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27): warning C4244:         ]
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(235,30): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(235,30): warning C4244:         with
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(235,30): warning C4244:         [
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(235,30): warning C4244:             T=float
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(235,30): warning C4244:         ]
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30): warning C4244:         ]
   (compiling source file 'Sources/Main.cpp')
-      C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(235,30):
+      C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30):
       the template instantiation context (the oldest one first) is
-          C:\dev\CMsFramework\Framework\Sources\Composites\Autopilot\UIAutopilot.hpp(190,15):
+          C:\dev\CMsFramework\Framework\Sources\Composites\Autopilot\UIAutopilot.hpp(191,15):
           see reference to function template instantiation 'T round1d<float>(T)' being compiled
           with
           [
@@ -596,15 +602,15 @@ C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(357,28): warni
 C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(372,75): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(230,31): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(230,31): warning C4244:         with
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(230,31): warning C4244:         [
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(230,31): warning C4244:             T=float
-C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(230,31): warning C4244:         ]
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,31): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,31): warning C4244:         with
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,31): warning C4244:         [
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,31): warning C4244:             T=float
+C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,31): warning C4244:         ]
   (compiling source file 'Sources/Main.cpp')
-      C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(230,31):
+      C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,31):
       the template instantiation context (the oldest one first) is
-          C:\dev\CMsFramework\Framework\Sources\Main.cpp(121,41):
+          C:\dev\CMsFramework\Framework\Sources\Main.cpp(119,41):
           see reference to function template instantiation 'T round2d<float>(T)' being compiled
           with
           [

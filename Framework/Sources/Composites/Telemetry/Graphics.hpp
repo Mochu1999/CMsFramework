@@ -61,7 +61,7 @@ struct Graphic {
 			{ {0, 0},  radians(90), {1, 1} },
 			});
 
-		frame.addSet(createRoundedSquare({ gridCorner.x - 50,gridCorner.y - 50 }, { 500,300 }, 25));
+		frame.addSet(createRoundedSquare({ gridCorner.x - 50,gridCorner.y - 50 }, 500,300, 25));
 
 
 
