@@ -572,6 +572,21 @@ C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27
 C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27): warning C4244:         ]
   (compiling source file 'Sources/Main.cpp')
   
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(7,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(21,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(27,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(29,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(31,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
 C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
 C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30): warning C4244:         with
 C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30): warning C4244:         [
@@ -610,7 +625,7 @@ C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,31): warning 
   (compiling source file 'Sources/Main.cpp')
       C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,31):
       the template instantiation context (the oldest one first) is
-          C:\dev\CMsFramework\Framework\Sources\Main.cpp(119,41):
+          C:\dev\CMsFramework\Framework\Sources\Main.cpp(121,41):
           see reference to function template instantiation 'T round2d<float>(T)' being compiled
           with
           [

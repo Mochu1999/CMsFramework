@@ -54,6 +54,8 @@ int main(void)
 	Solar solar(shader3D, shader2D, shaderText, camera, gv, tm);
 	MainOC mainOC(shader3D, shaderText, camera, gv);
 
+	Offshore offshore;
+
 	Settings settings(camera, gv, autopilot);
 
 	AllPointers allPointers(&camera, &gv, &autopilot, &ship, &mainOC);
@@ -64,7 +66,7 @@ int main(void)
 
 
 	int counter = 0;
-
+	return 0;
 	//system("cls");
 	while (!glfwWindowShouldClose(window))
 	{
