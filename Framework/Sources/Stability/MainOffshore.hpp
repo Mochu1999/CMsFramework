@@ -4,21 +4,30 @@
 
 struct Offshore
 {
-	float rho = 1025, g = 9.81;
+	double rho = 1025, g = 9.81;
+	double draft = 80;
+	double m;
 
-	float m;
+	double A33; //added mass
+	double C33; //restoring coefficient
 
-	float A33; //added mass
-	float C33; //restoring coefficient
+	double naturalFrequency, waveFrequency; //rad/s
+	double period, wavePeriod; //s
+	double k;//1/m
 
-	float naturalFrequency, period;
+	double waveHeight = 2, waveAmplitude = waveHeight / 2; //m
+
+	double criticalDamping, damping;
+	double Ffk;
+	double RAO;
 
 	Offshore()
 	{
-		float D = 20, T = 80, H = 2;
-		
+		double D = 20, T = 80;
 
-		float area = PI * D * D / 4;
+		waveFrequency = 1.5;
+
+		double area = PI * D * D / 4;
 
 		m = area * T * rho;
 
@@ -29,8 +38,27 @@ struct Offshore
 		naturalFrequency = pow(C33 / (m + A33), 0.5);
 
 		period = 2 * PI / naturalFrequency;
-	
-		printOffshore();
+
+		criticalDamping = 2 * pow((m + A33) * C33, 0.5);
+		damping = criticalDamping * 0.05;
+
+		wavePeriod = 2.0 * PI / waveFrequency;
+		print(waveFrequency);
+		k = waveFrequency * waveFrequency / g;
+		print(waveFrequency);
+
+
+		Ffk = C33 * waveAmplitude * exp(-k * draft);
+		print(Ffk);
+
+		RAO = Ffk / waveAmplitude / (-waveFrequency * waveFrequency * (m + A33) + C33);
+		print(RAO);
+
+		RAO = Ffk / waveAmplitude / pow(pow((-waveFrequency * waveFrequency * (m + A33) + C33),2)+pow(waveFrequency*damping,2),0.5);
+		print(RAO);
+
+
+		//printOffshore();
 	}
 
 	void printOffshore()
