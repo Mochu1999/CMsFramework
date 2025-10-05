@@ -61,6 +61,10 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 				gv->program = openCascade;
 
 				break;
+			case GLFW_KEY_5:
+				gv->program = offshoreProgram;
+
+				break;
 			case GLFW_KEY_O: //changing autopilots
 				if (gv->program == MRS)
 				{
@@ -107,14 +111,16 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 
 				//cameraModes //updateCamera in camera.cpp also need to be updated if ths is to change
 			case GLFW_KEY_X:
-				if (gv->program == telemetry || gv->program == solarProgram || gv->program == openCascade)
+				if (gv->program == telemetry || gv->program == solarProgram || gv->program == openCascade
+					|| gv->program == offshoreProgram)
 				{
 					gv->cameraMode = drag;
 					glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 				}
 				break;
 			case GLFW_KEY_C:
-				if (gv->program == telemetry || gv->program == solarProgram || gv->program == openCascade)
+				if (gv->program == telemetry || gv->program == solarProgram || gv->program == openCascade
+					|| gv->program == offshoreProgram)
 				{
 					gv->cameraMode = FPS;
 					gv->LastLMPos = gv->mPos;
@@ -122,7 +128,8 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 				}
 				break;
 			case GLFW_KEY_V:
-				if (gv->program == telemetry || gv->program == solarProgram || gv->program == openCascade)
+				if (gv->program == telemetry || gv->program == solarProgram || gv->program == openCascade
+					|| gv->program == offshoreProgram)
 				{
 					gv->cameraMode = centered;
 					glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -255,7 +262,7 @@ void keyboardRealTimePolls(GLFWwindow* window, GlobalVariables& gv, Camera& came
 	//The rest of the logic is in updateCamera
 
 	// Rotation
-	if (gv.program == telemetry || gv.program == solarProgram || gv.program == openCascade)
+	if (gv.program == telemetry || gv.program == solarProgram || gv.program == openCascade || gv.program == offshoreProgram)
 	{
 		if (gv.cameraMode == drag || gv.cameraMode == FPS)
 		{
@@ -467,7 +474,7 @@ void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
 			//// restore so the same world point remains at screen center
 			//autopilot->world.translationFactor = screenCenter - worldAtCenter * autopilot->world.scalingFactor;
 		}
-		else if (gv->program == telemetry || gv->program == solarProgram || gv->program == openCascade)
+		else if (gv->program == telemetry || gv->program == solarProgram || gv->program == openCascade ||gv->program == offshoreProgram)
 		{
 			camera->cameraPos = camera->cameraPos + camera->forward * camera->translationSpeed * scrollTranslationSpeedFactor;
 		}
@@ -479,7 +486,7 @@ void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
 			autopilot->world.totalXpixels /= 1.15;
 			autopilot->world.updateCamera();
 		}
-		else if (gv->program == telemetry || gv->program == solarProgram || gv->program == openCascade)
+		else if (gv->program == telemetry || gv->program == solarProgram || gv->program == openCascade || gv->program == offshoreProgram)
 		{
 			camera->cameraPos = camera->cameraPos - camera->forward * camera->translationSpeed * scrollTranslationSpeedFactor;
 		}

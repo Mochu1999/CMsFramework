@@ -1,29 +1,29 @@
 #pragma once
 
 #include "Common.hpp"
+#include "Time.hpp"
 
-
+//centered on 0, squared
 struct Fourier {
-	
 
-	int n = 20; //number of points in one axis of the square grid
+	TimeStruct& tm;
+	float length = 100;
+
+	int n = 20; //number of points in one axis of the square grid, minimum 2
 	int segments = n - 1;
-	float endPosition = 100;
-	float startPosition = 0;
-	float interval = (endPosition - startPosition) / segments;
+
+	float interval = length / segments;
 
 
 
-
-	float period = 3000;
+	float period = 40;
 	float frecuency = 2 * PI / period;
-	float amplitude = 20;
+	float amplitude = 3;
 	float offset = 0;
 	float phase = 0;
 	float phaseSpeed = 0.01;
 
 
-	vector<Lines3D> lines;
 	vector<unsigned int> indices;
 	vector<p3> positions;
 	vector<p3> normals;
@@ -36,46 +36,25 @@ struct Fourier {
 
 
 
-	//Setting initial buffers size
-	size_t currentPositionsBufferSize = 0;
-	size_t currentIndicesBufferSize = 0;
-	size_t currentNormalsBufferSize = 0;
-
-	size_t currentPositionsDataSize = 0;
-	size_t currentIndicesDataSize = 0;
-	size_t currentNormalsDataSize = 0;
 
 	bool isBufferUpdated = false;
 	GLenum usageHint = GL_DYNAMIC_DRAW;
 
-	Fourier() {
+	Fourier(TimeStruct& tm_):tm(tm_)
+	{
 		genBuffers();
-		//createWavePositions();
-		//calculateNormals();
-		//createIndices();
-		/*cout << "fourier: ";
-		printv3(positions);
-		printflat(indices);*/
-		/*print(positions);
-		print(normals);
-		print(indices);*/
-		
-		positions = { {0,0,0},{100,0,0},{100,0,100},{0,0,100} };
-		indices = { 0,1,2,0,2,3};
-		normals =  {{0,-0.999723,0},{0,-0.999723,0},{0,-0.999723,0},{0,-0.999723,0},{0,-0.999723,0},{0,-0.999723,0} };
-		//calculateNormals();
-		print(positions.size());
-		print(normals.size());
-		print(indices.size());
+		createWavePositions();
 
-		print(positions);
-		print(normals);
+		/*print(positions);
 		print(indices);
+		print(normals);*/
+
+		isBufferUpdated = true;
 	}
 	float waveFunction(float x, float z) {
 		//return amplitude * sin(100 * x + phase) * sin(100 * z) + offset;
 		//return amplitude * sin(100 * x + phase) + offset;
-		return amplitude * sin(100 * x);
+		return amplitude * sin(frecuency * x - frecuency*tm.currentTime*10);
 
 	}
 
@@ -85,137 +64,104 @@ struct Fourier {
 		positions.clear();
 		positions.reserve(n * n);
 
-		for (float z = startPosition; z <= endPosition; z += interval)
+		for (float x = 0 - length / 2; x <= 0 + length / 2; x += interval)
 		{
-			for (float x = startPosition; x <= endPosition; x += interval)
+			for (float z = 0 - length / 2; z <= 0 + length / 2; z += interval)
 			{
 				positions.emplace_back(p3{ x,waveFunction(x,z),z });
 
 			}
 		}
-		phase += phaseSpeed;
-		isBufferUpdated = true;
 
-
-		//lines
-		lines.clear();
-		lines.resize(indices.size() / 3);
-		for (int i = 0; i < indices.size(); i += 3)
-		{
-
-			lines[i / 3].addSet({ positions[indices[i]],positions[indices[i + 1]], positions[indices[i + 2]] });
-		}
+		createIndices();
 		calculateNormals();
+
+		isBufferUpdated = true;
+	}
+
+	//indices are created in groups of 4 from one row to the next
+	void createIndices()
+	{
+		indices.clear();
+		for (unsigned int i = 0; i < n * (n - 1); i += n)
+		{
+			for (unsigned int j = 0; j < n - 1; j++)
+			{
+				indices.insert(indices.end(), { i + j,i + j + n,i + j + 1, i + j + 1,i + j + n,i + j + n + 1 });
+			}
+		}
 	}
 
 	//executed in the while loop
 	void updateWavePositions() {
-		size_t index = 0;
-		for (float z = startPosition; z < endPosition; z += interval) {
-			for (float x = startPosition; x < endPosition; x += interval) {
-				positions[index].y = amplitude * sin(100 * x + phase) * sin(100 * z) + offset;
-				index++;
+		positions.clear();
+		for (float x = 0 - length / 2; x <= 0 + length / 2; x += interval)
+		{
+			for (float z = 0 - length / 2; z <= 0 + length / 2; z += interval)
+			{
+				positions.emplace_back(p3{ x,waveFunction(x,z),z });
+
 			}
 		}
-		phase += phaseSpeed;
 		isBufferUpdated = true;
-
-		calculateNormals();
 	}
-
+	//LOS NORMALES DAN NEGATIVO PORQUE NO ESTÁS HACIENDO ixj SINO ixk
+	//MENTIRA, LOS EJES ESTÁN MAL, EL Z NEGATIVO ESTÁ DONDE DEBERÍA ESTAR EL POSITIVO Y NO SÉ PORQUÉ
 	void calculateNormals() {
-		//for (auto& pos : positions)
-		//{
 
-		//// Compute partial derivatives
-		//float partialX = amplitude * 100 * cos(100 * pos.x);
-		//float partialZ = amplitude * sin(100 * pos.x);
-
-		//p3 vx = normalize3(p3{ 1,0,partialX });  // Tangent vector along x
-		//p3 vz = normalize3(p3{ 0,1,partialZ});  // Tangent vector along z
-
-		//// Cross product of vx and vz to get the normal
-		//p3 normal = normalize3(cross3(vx, vz));
-		//if (normal.y<0)
-		//	normals.push_back(p3{ -normal.x, -normal.y, -normal.z });
-		//else
-		//	normals.push_back(normal);
-		//}
-
-		for (size_t i = 0; i < positions.size(); i+=3)
+		for (size_t i = 0; i < positions.size(); i += 3)
 		{
-			
+			p3 v1 = positions[indices[i + 1]] - positions[indices[i]];
+			p3 v2 = positions[indices[i + 2]] - positions[indices[i]];
 
-			p3 v1 = normalize3(positions[indices[i + 1]] - positions[indices[i]]);
-			p3 v2 = normalize3(positions[indices[i + 2]] - positions[indices[i]]);
-
-			p3 normal = normalize3(cross3(v1, v2));
+			p3 normal = -normalize3(cross3(v1, v2));
 			//print(normal);
 			normals.insert(normals.end(), { normal,normal,normal });
 
 		}
-		
+
 	}
 
 
-	void createIndices() {
-		indices.clear();
+	//void createIndices() {
+	//	indices.clear();
 
-		indices.reserve(segments * segments * 6); //checked
-		//indices.insert(indices.end(), { 0,3,1 });
-		//print(segments);
-		for (int z = 0; z < segments; ++z)
-		{
-			for (int x = 0; x < segments; ++x)
-			{
-				unsigned int topLeft = (z * n) + x;
-				unsigned int topRight = topLeft + 1;
-				unsigned int bottomLeft = topLeft + n;
-				unsigned int bottomRight = bottomLeft + 1;
+	//	indices.reserve(segments * segments * 6); //checked
 
-				indices.insert(indices.end(), { topLeft,bottomLeft,topRight,topRight,bottomLeft,bottomRight });
-			}
-		}
-	}
+	//	for (int z = 0; z < segments; ++z)
+	//	{
+	//		for (int x = 0; x < segments; ++x)
+	//		{
+	//			unsigned int topLeft = (z * n) + x;
+	//			unsigned int topRight = topLeft + 1;
+	//			unsigned int bottomLeft = topLeft + n;
+	//			unsigned int bottomRight = bottomLeft + 1;
+
+	//			indices.insert(indices.end(), { topLeft,bottomLeft,topRight,topRight,bottomLeft,bottomRight });
+	//		}
+	//	}
+	//}
 
 	void draw() {
 
 		glBindVertexArray(vertexArray);
 
+		//the buffer is not expected to be updated at all. Can use data instead of subdata
 		if (isBufferUpdated)
 		{
-			currentPositionsDataSize = positions.size() * sizeof(p3);
-			currentIndicesDataSize = indices.size() * sizeof(unsigned int);
-
-			if (currentPositionsDataSize > currentPositionsBufferSize || currentIndicesDataSize > currentIndicesBufferSize)
-			{
-				currentPositionsBufferSize = currentPositionsDataSize * 2;
-				currentIndicesBufferSize = currentIndicesDataSize * 2;
-
-				glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-				glBufferData(GL_ARRAY_BUFFER, currentPositionsBufferSize, nullptr, usageHint);
-
-				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-				glBufferData(GL_ELEMENT_ARRAY_BUFFER, currentIndicesBufferSize, nullptr, usageHint);
-
-				glBindBuffer(GL_ARRAY_BUFFER, normalsBuffer);
-				glBufferData(GL_ARRAY_BUFFER, currentPositionsBufferSize, nullptr, usageHint);
-
-			}
+			//float stlSize = positions.size() * sizeof(p3);
 
 			glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-			glBufferSubData(GL_ARRAY_BUFFER, 0, currentPositionsDataSize, positions.data());
+			glBufferData(GL_ARRAY_BUFFER, positions.size() * sizeof(p3), positions.data(), GL_DYNAMIC_DRAW);
 
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-			glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, currentIndicesDataSize, indices.data());
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_DYNAMIC_DRAW);
 
 			glBindBuffer(GL_ARRAY_BUFFER, normalsBuffer);
-			glBufferSubData(GL_ARRAY_BUFFER, 0, currentPositionsDataSize, normals.data());
+			glBufferData(GL_ARRAY_BUFFER, positions.size() * sizeof(p3), normals.data(), GL_DYNAMIC_DRAW);
 
 			isBufferUpdated = false;
 		}
-
-
 
 		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, nullptr);
 

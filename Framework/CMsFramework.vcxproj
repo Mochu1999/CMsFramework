@@ -449,6 +449,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="Sources\Deprecated\Delaunay2D.hpp" />
     <ClInclude Include="Sources\Stability\Fourier.hpp" />
     <ClInclude Include="Sources\Stability\MainOffshore.hpp" />
+    <ClInclude Include="Sources\Stability\NewWettedSurface.hpp" />
     <ClInclude Include="Sources\Stability\SweepTriangulation.hpp" />
     <ClInclude Include="Sources\Stability\WettedSurface.hpp" />
   </ItemGroup>

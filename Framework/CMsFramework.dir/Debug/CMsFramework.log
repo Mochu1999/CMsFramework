@@ -437,13 +437,13 @@ C:\dev\CMsFramework\Framework\Sources\Composites\axis.hpp(101,34): warning C4305
 C:\dev\CMsFramework\Framework\Sources\Composites\OpenCascade\CadCreation.hpp(88,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(394,99): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(401,99): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(456,37): warning C4305: '*=': truncation from 'double' to 'float'
+C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(463,37): warning C4305: '*=': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(479,37): warning C4305: '/=': truncation from 'double' to 'float'
+C:\dev\CMsFramework\Framework\Sources\Core\KeyMouseImputs.hpp(486,37): warning C4305: '/=': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
 C:\dev\CMsFramework\Framework\Sources\Deprecated\auxiliary_elements.hpp(79,23): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
@@ -456,55 +456,19 @@ C:\dev\CMsFramework\Framework\Sources\Deprecated\auxiliary_elements.hpp(79,23): 
 C:\dev\CMsFramework\Framework\Sources\Deprecated\auxiliary_elements.hpp(96,40): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(19,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(20,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(23,21): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(24,21): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,18): warning C4305: 'argument': truncation from 'double' to 'T'
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,18): warning C4305:         with
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,18): warning C4305:         [
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,18): warning C4305:             T=float
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,18): warning C4305:         ]
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(86,30): warning C4018: '<': signed/unsigned mismatch
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,34): warning C4305: 'argument': truncation from 'double' to 'T'
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,34): warning C4305:         with
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,34): warning C4305:         [
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,34): warning C4305:             T=float
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,34): warning C4305:         ]
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(88,31): warning C4018: '<': signed/unsigned mismatch
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,50): warning C4305: 'argument': truncation from 'double' to 'T'
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,50): warning C4305:         with
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,50): warning C4305:         [
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,50): warning C4305:             T=float
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,50): warning C4305:         ]
-  (compiling source file 'Sources/Main.cpp')
-  
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,66): warning C4305: 'argument': truncation from 'double' to 'T'
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,66): warning C4305:         with
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,66): warning C4305:         [
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,66): warning C4305:             T=float
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,66): warning C4305:         ]
-  (compiling source file 'Sources/Main.cpp')
-  
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,82): warning C4305: 'argument': truncation from 'double' to 'T'
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,82): warning C4305:         with
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,82): warning C4305:         [
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,82): warning C4305:             T=float
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,82): warning C4305:         ]
-  (compiling source file 'Sources/Main.cpp')
-  
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,98): warning C4305: 'argument': truncation from 'double' to 'T'
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,98): warning C4305:         with
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,98): warning C4305:         [
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,98): warning C4305:             T=float
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(65,98): warning C4305:         ]
-  (compiling source file 'Sources/Main.cpp')
-  
-C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(220,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\Fourier.hpp(166,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
 C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.hpp(93,25): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
@@ -572,6 +536,33 @@ C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27
 C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27): warning C4244:         ]
   (compiling source file 'Sources/Main.cpp')
   
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(19,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(53,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(59,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(61,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(63,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(65,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(66,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(68,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(80,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
 C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
 C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30): warning C4244:         with
 C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30): warning C4244:         [
@@ -610,7 +601,7 @@ C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,31): warning 
   (compiling source file 'Sources/Main.cpp')
       C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(232,31):
       the template instantiation context (the oldest one first) is
-          C:\dev\CMsFramework\Framework\Sources\Main.cpp(121,41):
+          C:\dev\CMsFramework\Framework\Sources\Main.cpp(127,41):
           see reference to function template instantiation 'T round2d<float>(T)' being compiled
           with
           [

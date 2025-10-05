@@ -93,13 +93,13 @@ void readSTL(Polyhedra& stl, const std::string& filepath) {
 	std::vector<p3>& positions = stl.positions;
 	std::vector<p3>& normals = stl.normals;
 
-	/*std::string basePath = "Resources/stl models/";*/
-	std::ifstream inFile(/*basePath + */filepath);
+	std::string basePath = "Resources/stl models/";
+	std::ifstream inFile(basePath + filepath);
 
 
 
 	if (!inFile) {
-		std::cerr << "Unable to open file: " << /*basePath + */filepath << std::endl;
+		std::cerr << "Unable to open file: " << basePath + filepath << std::endl;
 		return;
 	}
 

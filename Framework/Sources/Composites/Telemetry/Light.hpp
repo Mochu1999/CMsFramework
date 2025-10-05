@@ -61,13 +61,13 @@ struct Light
 		////{1.640,-1.089, 0.35}
 
 
-		///*readSimplePolyhedra(stl, "foildBabor.bin");
+		//readSimplePolyhedra(stl, "foildBabor.bin");
 		//for (auto& p : stl.positions)
 		//{
 		//	p -= {1.639, -1.090, -0.35};
 		//}
 
-		//writeSimplePolyhedra(stl, "foilPort.bin");*/
+		//writeSimplePolyhedra(stl, "foilPort.bin");
 		foildBabor.addPolyhedra("foilPort.bin");
 		////{1.639,-1.090,-0.35}
 

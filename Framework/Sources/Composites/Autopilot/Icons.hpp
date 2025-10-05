@@ -11,22 +11,22 @@ struct IconLight
 	IconLight()
 	{
 
-		readSTL(interm, "C:/dev/Project-Raccoon/Project Raccoon/Resources/stl models/mainHull.stl");
+		readSTL(interm, "mainHull.stl");
 		polyhedraTo2D(interm, mainHull);
 
-		readSTL(interm, "C:/dev/Project-Raccoon/Project Raccoon/Resources/stl models/sideHull1.stl");
+		readSTL(interm, "sideHull1.stl");
 		polyhedraTo2D(interm, sideHull1);
 
-		readSTL(interm, "C:/dev/Project-Raccoon/Project Raccoon/Resources/stl models/sideHull2.stl");
+		readSTL(interm, "sideHull2.stl");
 		polyhedraTo2D(interm, sideHull2);
 
-		readSTL(interm, "C:/dev/Project-Raccoon/Project Raccoon/Resources/stl models/aux1.stl");
+		readSTL(interm, "aux1.stl");
 		polyhedraTo2D(interm, aux1);
 
-		readSTL(interm, "C:/dev/Project-Raccoon/Project Raccoon/Resources/stl models/aux2.stl");
+		readSTL(interm, "aux2.stl");
 		polyhedraTo2D(interm, aux2);
 
-		readSTL(interm, "C:/dev/Project-Raccoon/Project Raccoon/Resources/stl models/aux3.stl");
+		readSTL(interm, "aux3.stl");
 		polyhedraTo2D(interm, aux3);
 
 

@@ -106,7 +106,7 @@ void Camera::updateCamera() {
 	p2 currentMiddleMPosVariation = gv.LastMMPos - gv.mPos;
 
 
-	if (gv.program == telemetry || gv.program == solarProgram || gv.program == openCascade)
+	if (gv.program == telemetry || gv.program == solarProgram || gv.program == openCascade || gv.program == offshoreProgram)
 	{
 		if (gv.cameraMode == drag && gv.isLmbPressed)
 		{
