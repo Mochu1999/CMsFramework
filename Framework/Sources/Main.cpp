@@ -113,8 +113,8 @@ int main(void)
 				break;
 
 			case offshoreProgram:
-				axis.draw();
 				offshore.draw();
+				axis.draw(); //breaking the "opaque first" rule to get the axis' color unaffected by water
 
 				break;
 			}

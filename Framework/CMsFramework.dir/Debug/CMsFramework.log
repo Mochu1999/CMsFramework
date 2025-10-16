@@ -425,13 +425,13 @@ C:\dev\CMsFramework\Framework\Sources\Composites\OpenCascade\ShapeRenderer.hpp(2
 C:\dev\CMsFramework\Framework\Sources\Composites\OpenCascade\ShapeRenderer.hpp(233,45): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Composites\axis.hpp(101,44): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\dev\CMsFramework\Framework\Sources\Composites\axis.hpp(104,44): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Composites\axis.hpp(101,39): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\dev\CMsFramework\Framework\Sources\Composites\axis.hpp(104,39): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Composites\axis.hpp(101,34): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\dev\CMsFramework\Framework\Sources\Composites\axis.hpp(104,34): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
 C:\dev\CMsFramework\Framework\Sources\Composites\OpenCascade\CadCreation.hpp(88,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
@@ -536,31 +536,34 @@ C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27
 C:\dev\CMsFramework\Framework\Sources\Composites\Telemetry\ProgressBar.hpp(71,27): warning C4244:         ]
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(19,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(23,24): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(53,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(56,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(59,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(62,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(61,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(64,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(63,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(66,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(65,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(68,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(66,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(69,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(68,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(71,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Sources/Main.cpp')
   
-C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(80,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(83,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Sources/Main.cpp')
+  
+C:\dev\CMsFramework\Framework\Sources\Stability\MainOffshore.hpp(108,84): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Sources/Main.cpp')
   
 C:\dev\CMsFramework\Framework\Sources\BasicsRendering\Text.hpp(237,30): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data

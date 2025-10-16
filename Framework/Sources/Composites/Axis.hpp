@@ -67,6 +67,9 @@ struct Axis {
 	}
 };
 
+
+
+
 struct AxisOCC {
 	Shader& shader3D;
 	GlobalVariables& gv;

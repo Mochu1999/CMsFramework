@@ -336,7 +336,7 @@ struct GlobalVariables
 
 
 	Programs program = telemetry;//to be changed in settings
-	CameraModes cameraMode = drag;
+	CameraModes cameraMode = centered;
 	bool isRunning = true;
 	p2 mPos = { 0,0 };
 

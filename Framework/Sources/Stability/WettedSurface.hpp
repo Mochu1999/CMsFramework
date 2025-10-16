@@ -21,7 +21,7 @@ struct WettedSurface
 
 	vector<Intersections> intersections;
 
-	Fourier& fourier; //SOBRA?
+	Fourier& fourier;
 	vector<p3>& fourierPositions = fourier.positions;
 	vector<unsigned int>& fourierIndices = fourier.indices;
 
@@ -43,7 +43,7 @@ struct WettedSurface
 	{
 		
 	}
-	//NO TENIAS UNA QUE NO USABA O(N^2)
+
 	//Finds all intersections and fills them  with intersections, segments and immediates 
 	void calculateIntersections() {
 

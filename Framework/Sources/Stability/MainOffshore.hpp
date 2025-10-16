@@ -15,6 +15,10 @@ struct Offshore
 	TimeStruct& tm;
 
 	Fourier fourier;
+	//Separar el reinicio de lectura del modelo de rhino por otro lado //una struct que gestione si pasar polyhedra o leer stl
+	Polyhedra stl, body;
+	
+	WettedBody wettedBody; //INTENTA NOMBRAR Polyhedra& wettedBody = WettedBody.wettedBody
 
 	float rho = 1025, g = 9.81;
 	float draft = 80;
@@ -33,14 +37,13 @@ struct Offshore
 	float Ffk;
 	float RAO;
 
-	//Separar el reinicio de lectura del modelo de rhino por otro lado?
-	Polyhedra stl,cube;
+	Lines3D lines;
 
 	p3 lightPos = { 10,50,10 };
 
 	Offshore(Shader& shader3D_, Shader& shader2D_, Shader& shaderText_, Camera& camera_, GlobalVariables& gv_, TimeStruct& tm_)
 		: shader3D(shader3D_), shader2D(shader2D_), shaderText(shaderText_), camera(camera_), gv(gv_), tm(tm_)
-		,fourier(tm_)
+		,fourier(tm_), wettedBody(body,fourier)
 	{
 		{
 			activateLight();
@@ -66,27 +69,30 @@ struct Offshore
 			damping = criticalDamping * 0.05;
 
 			wavePeriod = 2.0 * PI / waveFrequency;
-			print(wavePeriod);
+			//print(wavePeriod);
 			k = waveFrequency * waveFrequency / g;
-			print(waveFrequency);
+			//print(waveFrequency);
 
 
 			Ffk = C33 * waveAmplitude * exp(-k * draft);
-			print(Ffk);
+			//print(Ffk);
 
 			RAO = Ffk / waveAmplitude / (-waveFrequency * waveFrequency * (m + A33) + C33);
-			print(RAO);
+			//print(RAO);
 
 			RAO = Ffk / waveAmplitude / pow(pow((-waveFrequency * waveFrequency * (m + A33) + C33), 2) + pow(waveFrequency * damping, 2), 0.5);
-			print(RAO);
+			//print(RAO);
 
 
 			//printOffshore();
 		}
 		
-		//readSTL(stl, "Cube.stl");
-		//writeSimplePolyhedra(stl, "Cube.bin");
-		cube.addPolyhedra("Cube.bin");
+		//readSTL(stl, "body.stl");
+		//writeSimplePolyhedra(stl, "body.bin");
+		body.addPolyhedra("Cube.bin");
+
+		
+		
 	}
 
 	void draw()
@@ -96,15 +102,32 @@ struct Offshore
 		shader3D.setUniform("u_fragmentMode", 0);
 		opaque();
 		shader3D.setUniform("u_Color", 1, 1, 1, 1);
-		cube.draw();
+		body.draw();
 		transparent();
-		//opaque();
-		shader3D.setUniform("u_Color", 40.0f / 255.0f, 189.9f / 255.0f, 255.0f / 255.0f, 0.5);
+		opaque();
+		shader3D.setUniform("u_Color", 40.0f / 255.0f, 189.9f / 255.0f, 255.0f / 255.0f, 0.3);
 		fourier.updateWavePositions();
 		fourier.draw();
 		
+		//{
+		//	wettedBody.calculateWettedBody();
+		//	vector<p3>interm;
+		//	for (auto i : wettedBody.intersections)
+		//	{
+		//		interm.insert(interm.end(), i.begin(), i.end());
+		//	}
+		//	//print(interm);
+		//	lines.clear();
+		//	lines.addSet(interm);
+		//}
 
-		
+		opaque();
+		glLineWidth(4); //this is deprecated and platform dependent
+		shader3D.setUniform("u_fragmentMode", 1);
+
+
+		shader3D.setUniform("u_Color", 1.0, 0.0, 0.0, 1.0);
+		//lines.draw();
 
 	}
 

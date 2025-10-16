@@ -9,7 +9,7 @@ struct Fourier {
 	TimeStruct& tm;
 	float length = 100;
 
-	int n = 20; //number of points in one axis of the square grid, minimum 2
+	int n = 40; //number of points in one axis of the square grid, minimum 2
 	int segments = n - 1;
 
 	float interval = length / segments;
