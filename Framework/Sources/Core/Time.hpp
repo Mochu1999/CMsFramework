@@ -54,6 +54,11 @@ struct TimeStruct {
 	float solarUpdateAccumulator = 0;
 	unsigned int counterUpdateSolar = 0;
 
+	//Offshore
+	const float offshoreUpdateInterval = 0.001f;
+	float offshoreUpdateAccumulator = 0;
+	unsigned int counterUpdateOffshore = 0;
+
 	TimeStruct() {
 		lastFrameTime = std::chrono::high_resolution_clock::now();
 		startElapsedTime = lastFrameTime;
@@ -73,6 +78,7 @@ struct TimeStruct {
 		updatePlot();
 		updateMRS();
 		updateSolar();
+		updateOffshore();
 	}
 
 	void updateFPS()
@@ -124,6 +130,17 @@ struct TimeStruct {
 		{
 			solarUpdateAccumulator -= solarUpdateInterval;
 			++counterUpdateSolar; 
+		}
+	}
+
+	void updateOffshore()
+	{
+		offshoreUpdateAccumulator += deltaTime;
+
+		while (offshoreUpdateAccumulator >= offshoreUpdateInterval)
+		{
+			offshoreUpdateAccumulator -= offshoreUpdateInterval;
+			++counterUpdateOffshore;
 		}
 	}
 };

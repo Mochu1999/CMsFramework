@@ -64,7 +64,6 @@ int main(void)
 	glfwSetMouseButtonCallback(window, mouseEventCallback);
 	glfwSetScrollCallback(window, scrollCallback);
 
-
 	int counter = 0;
 	//return 0;
 	//system("cls");
