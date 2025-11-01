@@ -93,22 +93,17 @@
       <ConformanceMode>true</ConformanceMode>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <ForceConformanceInForLoopScope>
-      </ForceConformanceInForLoopScope>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild>
-      </MinimalRebuild>
+      <MinimalRebuild></MinimalRebuild>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData>
-      </RemoveUnreferencedCodeData>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <SDLCheck>true</SDLCheck>
-      <SupportJustMyCode>
-      </SupportJustMyCode>
-      <TreatWChar_tAsBuiltInType>
-      </TreatWChar_tAsBuiltInType>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_DEBUG;_CONSOLE;GLEW_STATIC;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
@@ -143,18 +138,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;freetype.lib;TKBin.lib;TKBinL.lib;TKBinTObj.lib;TKBinXCAF.lib;TKBO.lib;TKBool.lib;TKBRep.lib;TKCAF.lib;TKCDF.lib;TKD3DHost.lib;TKD3DHostTest.lib;TKDCAF.lib;TKDE.lib;TKDECascade.lib;TKDEGLTF.lib;TKDEIGES.lib;TKDEOBJ.lib;TKDEPLY.lib;TKDESTEP.lib;TKDESTL.lib;TKDEVRML.lib;TKDFBrowser.lib;TKDraw.lib;TKernel.lib;TKExpress.lib;TKFeat.lib;TKFillet.lib;TKG2d.lib;TKG3d.lib;TKGeomAlgo.lib;TKGeomBase.lib;TKHLR.lib;TKIVtk.lib;TKIVtkDraw.lib;TKLCAF.lib;TKMath.lib;TKMesh.lib;TKMeshVS.lib;TKMessageModel.lib;TKMessageView.lib;TKOffset.lib;TKOpenGl.lib;TKOpenGles.lib;TKOpenGlesTest.lib;TKOpenGlTest.lib;TKPrim.lib;TKQADraw.lib;TKRWMesh.lib;TKService.lib;TKShapeView.lib;TKShHealing.lib;TKStd.lib;TKStdL.lib;TKTInspector.lib;TKTInspectorAPI.lib;TKTObj.lib;TKTObjDRAW.lib;TKToolsDraw.lib;TKTopAlgo.lib;TKTopTest.lib;TKTreeModel.lib;TKV3d.lib;TKVCAF.lib;TKView.lib;TKViewerTest.lib;TKVInspector.lib;TKXCAF.lib;TKXDEDRAW.lib;TKXMesh.lib;TKXml.lib;TKXmlL.lib;TKXmlTObj.lib;TKXmlXCAF.lib;TKXSBase.lib;TKXSDRAW.lib;TKXSDRAWDE.lib;TKXSDRAWGLTF.lib;TKXSDRAWIGES.lib;TKXSDRAWOBJ.lib;TKXSDRAWPLY.lib;TKXSDRAWSTEP.lib;TKXSDRAWSTL.lib;TKXSDRAWVRML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:/dev/CMsFramework/Framework/Resources/External/Libs;C:/dev/CMsFramework/Framework/Resources/External/Libs/$(Configuration);C:/dev/CMsFramework/Framework/Resources/External/Libs/OpenCascade;C:/dev/CMsFramework/Framework/Resources/External/Libs/OpenCascade/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
+      <DataExecutionPrevention></DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers>
-      </ImageHasSafeExceptionHandlers>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
       <ImportLibrary>C:/dev/CMsFramework/Framework/build/Debug/CMsFramework.lib</ImportLibrary>
-      <LinkErrorReporting>
-      </LinkErrorReporting>
+      <LinkErrorReporting></LinkErrorReporting>
       <ProgramDataBaseFile>C:/dev/CMsFramework/Framework/build/Debug/CMsFramework.pdb</ProgramDataBaseFile>
-      <RandomizedBaseAddress>
-      </RandomizedBaseAddress>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -168,23 +159,17 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ConformanceMode>true</ConformanceMode>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <ForceConformanceInForLoopScope>
-      </ForceConformanceInForLoopScope>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild>
-      </MinimalRebuild>
+      <MinimalRebuild></MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData>
-      </RemoveUnreferencedCodeData>
-      <RuntimeLibrary>
-      </RuntimeLibrary>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary></RuntimeLibrary>
       <SDLCheck>true</SDLCheck>
-      <SupportJustMyCode>
-      </SupportJustMyCode>
-      <TreatWChar_tAsBuiltInType>
-      </TreatWChar_tAsBuiltInType>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_DEBUG;_CONSOLE;GLEW_STATIC;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
@@ -221,18 +206,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;freetype.lib;TKBin.lib;TKBinL.lib;TKBinTObj.lib;TKBinXCAF.lib;TKBO.lib;TKBool.lib;TKBRep.lib;TKCAF.lib;TKCDF.lib;TKD3DHost.lib;TKD3DHostTest.lib;TKDCAF.lib;TKDE.lib;TKDECascade.lib;TKDEGLTF.lib;TKDEIGES.lib;TKDEOBJ.lib;TKDEPLY.lib;TKDESTEP.lib;TKDESTL.lib;TKDEVRML.lib;TKDFBrowser.lib;TKDraw.lib;TKernel.lib;TKExpress.lib;TKFeat.lib;TKFillet.lib;TKG2d.lib;TKG3d.lib;TKGeomAlgo.lib;TKGeomBase.lib;TKHLR.lib;TKIVtk.lib;TKIVtkDraw.lib;TKLCAF.lib;TKMath.lib;TKMesh.lib;TKMeshVS.lib;TKMessageModel.lib;TKMessageView.lib;TKOffset.lib;TKOpenGl.lib;TKOpenGles.lib;TKOpenGlesTest.lib;TKOpenGlTest.lib;TKPrim.lib;TKQADraw.lib;TKRWMesh.lib;TKService.lib;TKShapeView.lib;TKShHealing.lib;TKStd.lib;TKStdL.lib;TKTInspector.lib;TKTInspectorAPI.lib;TKTObj.lib;TKTObjDRAW.lib;TKToolsDraw.lib;TKTopAlgo.lib;TKTopTest.lib;TKTreeModel.lib;TKV3d.lib;TKVCAF.lib;TKView.lib;TKViewerTest.lib;TKVInspector.lib;TKXCAF.lib;TKXDEDRAW.lib;TKXMesh.lib;TKXml.lib;TKXmlL.lib;TKXmlTObj.lib;TKXmlXCAF.lib;TKXSBase.lib;TKXSDRAW.lib;TKXSDRAWDE.lib;TKXSDRAWGLTF.lib;TKXSDRAWIGES.lib;TKXSDRAWOBJ.lib;TKXSDRAWPLY.lib;TKXSDRAWSTEP.lib;TKXSDRAWSTL.lib;TKXSDRAWVRML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:/dev/CMsFramework/Framework/Resources/External/Libs;C:/dev/CMsFramework/Framework/Resources/External/Libs/$(Configuration);C:/dev/CMsFramework/Framework/Resources/External/Libs/OpenCascade;C:/dev/CMsFramework/Framework/Resources/External/Libs/OpenCascade/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
+      <DataExecutionPrevention></DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers>
-      </ImageHasSafeExceptionHandlers>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
       <ImportLibrary>C:/dev/CMsFramework/Framework/build/Release/CMsFramework.lib</ImportLibrary>
-      <LinkErrorReporting>
-      </LinkErrorReporting>
+      <LinkErrorReporting></LinkErrorReporting>
       <ProgramDataBaseFile>C:/dev/CMsFramework/Framework/build/Release/CMsFramework.pdb</ProgramDataBaseFile>
-      <RandomizedBaseAddress>
-      </RandomizedBaseAddress>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -246,23 +227,17 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ConformanceMode>true</ConformanceMode>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <ForceConformanceInForLoopScope>
-      </ForceConformanceInForLoopScope>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild>
-      </MinimalRebuild>
+      <MinimalRebuild></MinimalRebuild>
       <Optimization>MinSpace</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData>
-      </RemoveUnreferencedCodeData>
-      <RuntimeLibrary>
-      </RuntimeLibrary>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary></RuntimeLibrary>
       <SDLCheck>true</SDLCheck>
-      <SupportJustMyCode>
-      </SupportJustMyCode>
-      <TreatWChar_tAsBuiltInType>
-      </TreatWChar_tAsBuiltInType>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_DEBUG;_CONSOLE;GLEW_STATIC;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
@@ -299,18 +274,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;freetype.lib;TKBin.lib;TKBinL.lib;TKBinTObj.lib;TKBinXCAF.lib;TKBO.lib;TKBool.lib;TKBRep.lib;TKCAF.lib;TKCDF.lib;TKD3DHost.lib;TKD3DHostTest.lib;TKDCAF.lib;TKDE.lib;TKDECascade.lib;TKDEGLTF.lib;TKDEIGES.lib;TKDEOBJ.lib;TKDEPLY.lib;TKDESTEP.lib;TKDESTL.lib;TKDEVRML.lib;TKDFBrowser.lib;TKDraw.lib;TKernel.lib;TKExpress.lib;TKFeat.lib;TKFillet.lib;TKG2d.lib;TKG3d.lib;TKGeomAlgo.lib;TKGeomBase.lib;TKHLR.lib;TKIVtk.lib;TKIVtkDraw.lib;TKLCAF.lib;TKMath.lib;TKMesh.lib;TKMeshVS.lib;TKMessageModel.lib;TKMessageView.lib;TKOffset.lib;TKOpenGl.lib;TKOpenGles.lib;TKOpenGlesTest.lib;TKOpenGlTest.lib;TKPrim.lib;TKQADraw.lib;TKRWMesh.lib;TKService.lib;TKShapeView.lib;TKShHealing.lib;TKStd.lib;TKStdL.lib;TKTInspector.lib;TKTInspectorAPI.lib;TKTObj.lib;TKTObjDRAW.lib;TKToolsDraw.lib;TKTopAlgo.lib;TKTopTest.lib;TKTreeModel.lib;TKV3d.lib;TKVCAF.lib;TKView.lib;TKViewerTest.lib;TKVInspector.lib;TKXCAF.lib;TKXDEDRAW.lib;TKXMesh.lib;TKXml.lib;TKXmlL.lib;TKXmlTObj.lib;TKXmlXCAF.lib;TKXSBase.lib;TKXSDRAW.lib;TKXSDRAWDE.lib;TKXSDRAWGLTF.lib;TKXSDRAWIGES.lib;TKXSDRAWOBJ.lib;TKXSDRAWPLY.lib;TKXSDRAWSTEP.lib;TKXSDRAWSTL.lib;TKXSDRAWVRML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:/dev/CMsFramework/Framework/Resources/External/Libs;C:/dev/CMsFramework/Framework/Resources/External/Libs/$(Configuration);C:/dev/CMsFramework/Framework/Resources/External/Libs/OpenCascade;C:/dev/CMsFramework/Framework/Resources/External/Libs/OpenCascade/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
+      <DataExecutionPrevention></DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers>
-      </ImageHasSafeExceptionHandlers>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
       <ImportLibrary>C:/dev/CMsFramework/Framework/build/MinSizeRel/CMsFramework.lib</ImportLibrary>
-      <LinkErrorReporting>
-      </LinkErrorReporting>
+      <LinkErrorReporting></LinkErrorReporting>
       <ProgramDataBaseFile>C:/dev/CMsFramework/Framework/build/MinSizeRel/CMsFramework.pdb</ProgramDataBaseFile>
-      <RandomizedBaseAddress>
-      </RandomizedBaseAddress>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -325,23 +296,17 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ConformanceMode>true</ConformanceMode>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <ForceConformanceInForLoopScope>
-      </ForceConformanceInForLoopScope>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild>
-      </MinimalRebuild>
+      <MinimalRebuild></MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData>
-      </RemoveUnreferencedCodeData>
-      <RuntimeLibrary>
-      </RuntimeLibrary>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary></RuntimeLibrary>
       <SDLCheck>true</SDLCheck>
-      <SupportJustMyCode>
-      </SupportJustMyCode>
-      <TreatWChar_tAsBuiltInType>
-      </TreatWChar_tAsBuiltInType>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_DEBUG;_CONSOLE;GLEW_STATIC;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
@@ -376,18 +341,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;freetype.lib;TKBin.lib;TKBinL.lib;TKBinTObj.lib;TKBinXCAF.lib;TKBO.lib;TKBool.lib;TKBRep.lib;TKCAF.lib;TKCDF.lib;TKD3DHost.lib;TKD3DHostTest.lib;TKDCAF.lib;TKDE.lib;TKDECascade.lib;TKDEGLTF.lib;TKDEIGES.lib;TKDEOBJ.lib;TKDEPLY.lib;TKDESTEP.lib;TKDESTL.lib;TKDEVRML.lib;TKDFBrowser.lib;TKDraw.lib;TKernel.lib;TKExpress.lib;TKFeat.lib;TKFillet.lib;TKG2d.lib;TKG3d.lib;TKGeomAlgo.lib;TKGeomBase.lib;TKHLR.lib;TKIVtk.lib;TKIVtkDraw.lib;TKLCAF.lib;TKMath.lib;TKMesh.lib;TKMeshVS.lib;TKMessageModel.lib;TKMessageView.lib;TKOffset.lib;TKOpenGl.lib;TKOpenGles.lib;TKOpenGlesTest.lib;TKOpenGlTest.lib;TKPrim.lib;TKQADraw.lib;TKRWMesh.lib;TKService.lib;TKShapeView.lib;TKShHealing.lib;TKStd.lib;TKStdL.lib;TKTInspector.lib;TKTInspectorAPI.lib;TKTObj.lib;TKTObjDRAW.lib;TKToolsDraw.lib;TKTopAlgo.lib;TKTopTest.lib;TKTreeModel.lib;TKV3d.lib;TKVCAF.lib;TKView.lib;TKViewerTest.lib;TKVInspector.lib;TKXCAF.lib;TKXDEDRAW.lib;TKXMesh.lib;TKXml.lib;TKXmlL.lib;TKXmlTObj.lib;TKXmlXCAF.lib;TKXSBase.lib;TKXSDRAW.lib;TKXSDRAWDE.lib;TKXSDRAWGLTF.lib;TKXSDRAWIGES.lib;TKXSDRAWOBJ.lib;TKXSDRAWPLY.lib;TKXSDRAWSTEP.lib;TKXSDRAWSTL.lib;TKXSDRAWVRML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:/dev/CMsFramework/Framework/Resources/External/Libs;C:/dev/CMsFramework/Framework/Resources/External/Libs/$(Configuration);C:/dev/CMsFramework/Framework/Resources/External/Libs/OpenCascade;C:/dev/CMsFramework/Framework/Resources/External/Libs/OpenCascade/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
+      <DataExecutionPrevention></DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers>
-      </ImageHasSafeExceptionHandlers>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
       <ImportLibrary>C:/dev/CMsFramework/Framework/build/RelWithDebInfo/CMsFramework.lib</ImportLibrary>
-      <LinkErrorReporting>
-      </LinkErrorReporting>
+      <LinkErrorReporting></LinkErrorReporting>
       <ProgramDataBaseFile>C:/dev/CMsFramework/Framework/build/RelWithDebInfo/CMsFramework.pdb</ProgramDataBaseFile>
-      <RandomizedBaseAddress>
-      </RandomizedBaseAddress>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -403,57 +364,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\dev\CMsFramework\Framework\Sources\Main.cpp" />
     <ClCompile Include="C:\dev\CMsFramework\Framework\Sources\Stability\WettedSurface.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Sources\BasicsRendering\Circles.hpp" />
-    <ClInclude Include="Sources\BasicsRendering\Lines2D.hpp" />
-    <ClInclude Include="Sources\BasicsRendering\Lines2D_Instanced.hpp" />
-    <ClInclude Include="Sources\BasicsRendering\Lines3D.hpp" />
-    <ClInclude Include="Sources\BasicsRendering\Polygons.hpp" />
-    <ClInclude Include="Sources\BasicsRendering\Polygons2D.hpp" />
-    <ClInclude Include="Sources\BasicsRendering\Polyhedra.hpp" />
-    <ClInclude Include="Sources\BasicsRendering\Spheres.hpp" />
-    <ClInclude Include="Sources\BasicsRendering\Text.hpp" />
-    <ClInclude Include="Sources\Common.hpp" />
-    <ClInclude Include="Sources\Composites\Autopilot\Autopilot.hpp" />
-    <ClInclude Include="Sources\Composites\Autopilot\AuxAutopilot.hpp" />
-    <ClInclude Include="Sources\Composites\Autopilot\Icons.hpp" />
-    <ClInclude Include="Sources\Composites\Autopilot\Meteo.hpp" />
-    <ClInclude Include="Sources\Composites\Autopilot\Pathfinding.hpp" />
-    <ClInclude Include="Sources\Composites\Autopilot\ShipAutopilot.hpp" />
-    <ClInclude Include="Sources\Composites\Autopilot\UIAutopilot.hpp" />
-    <ClInclude Include="Sources\Composites\Autopilot\World.hpp" />
-    <ClInclude Include="Sources\Composites\Axis.hpp" />
-    <ClInclude Include="Sources\Composites\OpenCascade\AuxFunctionsOC.hpp" />
-    <ClInclude Include="Sources\Composites\OpenCascade\CadCreation.hpp" />
-    <ClInclude Include="Sources\Composites\OpenCascade\IncludesOC.hpp" />
-    <ClInclude Include="Sources\Composites\OpenCascade\MainOC.hpp" />
-    <ClInclude Include="Sources\Composites\OpenCascade\ShapeRenderer.hpp" />
-    <ClInclude Include="Sources\Composites\Overlay2D.hpp" />
-    <ClInclude Include="Sources\Composites\Solar\Body.hpp" />
-    <ClInclude Include="Sources\Composites\Solar\Solar.hpp" />
-    <ClInclude Include="Sources\Composites\Telemetry\Graphics.hpp" />
-    <ClInclude Include="Sources\Composites\Telemetry\Light.hpp" />
-    <ClInclude Include="Sources\Composites\Telemetry\ProgressBar.hpp" />
-    <ClInclude Include="Sources\Core\BinariesManager.hpp" />
-    <ClInclude Include="Sources\Core\Camera.hpp" />
-    <ClInclude Include="Sources\Core\FilesManagement.hpp" />
-    <ClInclude Include="Sources\Core\KeyMouseImputs.hpp" />
-    <ClInclude Include="Sources\Core\Settings.hpp" />
-    <ClInclude Include="Sources\Core\Shader.hpp" />
-    <ClInclude Include="Sources\Core\Time.hpp" />
-    <ClInclude Include="Sources\Deprecated\Arrows.hpp" />
-    <ClInclude Include="Sources\Deprecated\auxiliary_elements.hpp" />
-    <ClInclude Include="Sources\Deprecated\AuxSquare.hpp" />
-    <ClInclude Include="Sources\Deprecated\Globe.hpp" />
-    <ClInclude Include="Sources\MainIncludes.hpp" />
-    <ClInclude Include="Sources\Deprecated\Delaunay2D.hpp" />
-    <ClInclude Include="Sources\Stability\Fourier.hpp" />
-    <ClInclude Include="Sources\Stability\MainOffshore.hpp" />
-    <ClInclude Include="Sources\Stability\NewWettedSurface.hpp" />
-    <ClInclude Include="Sources\Stability\Pendulum.hpp" />
-    <ClInclude Include="Sources\Stability\SweepTriangulation.hpp" />
-    <ClInclude Include="Sources\Stability\WettedSurface.hpp" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
