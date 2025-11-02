@@ -30,6 +30,9 @@ using namespace std;
 #include <random>
 #include <iomanip>
 
+#include <filesystem>
+namespace fs = std::filesystem;
+
 //not templated definitions of functions need to be separated from their declarations in .cpp
 
 // Constants
@@ -39,6 +42,9 @@ constexpr double invPI = 1.0f / PI;
 
 constexpr float inv3 = 1.0f / 3.0f;
 constexpr float inv180 = 1.0f / 180.0f;
+
+constexpr float rho = 1025;
+constexpr float g = 9.80665;
 
 /////////////////////////////global variables are after vec3
 
@@ -324,7 +330,7 @@ extern p2 windowTotal;
 extern p2 windowCenter;
 
 enum Programs { telemetry, MRS, solarProgram, openCascade, offshoreProgram };
-enum CameraModes { drag, FPS, centered };
+enum CameraModes { drag, FPS, centered }; //Por qué no está en camara?
 enum VisualizationMode { wire, triangulated }; //OCC
 enum MrsMode { mapMRS, mapCustom }; //1 MRS map, 2 custom map
 enum CadMode { none, polyline, rectangle, circle, sphere, extrusion};
@@ -342,19 +348,19 @@ struct GlobalVariables
 
 	bool isLmbPressed = 0;
 	bool isMmbPressed = 0;
-	p2 LastLMPos = { 0,0 };
+	p2 LastLMPos = { 0,0 }; 
 	p2 LastMMPos = { 0,0 };
-	p3 totalMiddleMPosVariation;
+	p3 totalMiddleMPosVariation; //NO SÉ QUE ES
 	p3 accumulativePositionChange; //LastMMPos measures mpos change, this is traspased to 3d with forward and right operations made on it
 
 	p2 centerWindow;
-	MrsMode mrsMode = mapMRS;
+	MrsMode mrsMode = mapMRS;//QUITAR
 	matrix4x4 identityMatrix = { 1, 0, 0, 0, 0, 1, 0, 0,0, 0, 1, 0, 0, 0, 0, 1 };
-	matrix4x4 modelMatrixOCC = identityMatrix;
+	matrix4x4 modelMatrixOCC = identityMatrix; //QUITAR
 
-	VisualizationMode visualizationMode = triangulated;
-	CadMode cadMode = none;
-	vector <p3> cadPositions = { {0,0,0} };
+	VisualizationMode visualizationMode = triangulated;//QUITAR
+	CadMode cadMode = none; //QUITAR
+	vector <p3> cadPositions = { {0,0,0} };//QUITAR
 
 	GlobalVariables()
 	{

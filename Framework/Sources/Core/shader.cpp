@@ -181,6 +181,7 @@ GLFWwindow* initialize() {
 
 void clearScreen(GlobalVariables gv)
 {
+	opaque();
 	if (gv.program == solarProgram)
 	{
 		glClearColor(0.035f, 0.065f, 0.085f, 1.0f);

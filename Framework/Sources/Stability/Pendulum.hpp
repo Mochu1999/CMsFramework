@@ -1,17 +1,11 @@
 #pragma once
+#include "Buoy.hpp"
 
 struct Pendulum
 {
-	Shader& shader3D;
-	Camera& camera;
-	TimeStruct& tm;
-
 	Polyhedra body;
 
-	float& omegaStructure;
-	float& xStructure;
-	float& ax; //horizontal acceleration of the structure
-	float& ay; //vertical acceleration of the structure
+	Buoy& buoy;
 
 	float r = 0.75; //m
 	float m = 7850 * 4 / 3 * PI * r * r * r; //kg //13871.2 kg
@@ -22,7 +16,6 @@ struct Pendulum
 	float omega = 0;// rad/s
 	float alpha = 0;// rad/s^2
 
-	float g = 9.80665; //ECHAR A COMMON
 	float b = 0; //damping
 
 	float lambda = 1;
@@ -31,10 +24,9 @@ struct Pendulum
 
 	float naturalPeriod = 2 * PI * sqrtf(g / l); //small angles
 
-	matrix4x4 model3DMatrix = camera.identityMatrix;
 
-	Pendulum(Shader& shader3D_, Camera& camera_, TimeStruct& tm_, float& omegaStructure_, float& xStructure_, float& ax_, float& ay_)
-		:tm(tm_), shader3D(shader3D_), camera(camera_), omegaStructure(omegaStructure_), ax(ax_), ay(ay_), xStructure(xStructure_)
+	Pendulum(Buoy& buoy_)
+		:buoy(buoy_)
 	{
 		Polyhedra stl;
 		/*readSTL(stl, "pendulum2.stl");
@@ -61,7 +53,7 @@ struct Pendulum
 		//tBear = 0;
 
 		float tWeight = -(g / l) * sinf(theta);
-		float tGen = -lambda * (bGen / inertia) * (omega - omegaStructure);
+		float tGen = -lambda * (bGen / inertia) * (omega - buoy.omega);
 		tGen = 0;
 
 		//relative velocity always try to be 0
@@ -71,7 +63,7 @@ struct Pendulum
 		// ml^2*alpha = -mgl*sin(theta) - bBear*omega - bGen*(omegaPend - omegaStr)
 		// alpha = -g/l*sin(theta) - bGen/inertia*(omegaPend - omegaStr)
 
-		float tInertial = -(ay / l) * sinf(theta) - (ax / l) * cosf(theta);
+		float tInertial = -(buoy.ay / l) * sinf(theta) - (buoy.ax / l) * cosf(theta);
 
 		alpha = tWeight + tBear + tGen + tInertial;
 
@@ -79,14 +71,5 @@ struct Pendulum
 
 	
 
-	void draw()
-	{
-
-		camera.rotate3DModelMatrix(model3DMatrix, degrees(theta), { 0,0,1 });
-		print(xStructure);
-		camera.translate3DModelMatrix(model3DMatrix, { xStructure,0,0 });
-		shader3D.setUniform("u_Model", model3DMatrix);
-
-		body.draw();
-	}
+	
 };

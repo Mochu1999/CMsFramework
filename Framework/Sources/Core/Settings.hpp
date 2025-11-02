@@ -7,6 +7,8 @@ namespace fs = std::filesystem;
 #include "Camera.hpp"
 
 
+
+
 /*struct Settings
 {
 	std::string settingsPath = "Resources/Settings.bin";
@@ -104,10 +106,10 @@ namespace fs = std::filesystem;
 
 
 //Old settings
-
+//NOW THIS IS ONLY FOR GENERAL, THE IDEA IS TO REMAKE THE STRUCTURE
 struct Settings
 {
-	std::string settingsPath = "Resources/Settings.bin";
+	std::string settingsPath = "Resources/Settings/Settings.bin";
 
 	p3& cameraPos;
 	p3& forward;
@@ -124,7 +126,8 @@ struct Settings
 		TotalMiddleMPosVariation
 	};
 
-	Settings(Camera& camera, GlobalVariables& gv_, Autopilot& autopilot_) : cameraPos(camera.cameraPos), forward(camera.forward), gv(gv_), autopilot(autopilot_)
+	Settings(Camera& camera, GlobalVariables& gv_, Autopilot& autopilot_) 
+		: cameraPos(camera.cameraPos), forward(camera.forward), gv(gv_), autopilot(autopilot_)
 	{
 		read();
 		reset();

@@ -34,4 +34,6 @@ for /d %%D in (*) do (
 )
 
 echo Done.
-pause
+
+rem If script was launched directly (not via another .bat), pause
+if "%~0"=="%~f0" pause

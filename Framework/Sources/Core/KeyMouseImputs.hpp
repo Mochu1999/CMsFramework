@@ -5,6 +5,11 @@
 #include "Light.hpp"
 #include "solar.hpp"
 #include "MainOC.hpp"
+#include "Common.hpp"
+#include "Camera.hpp"
+
+
+//Only have a single KeyMouseInputs included, the functions names are repeated!
 
 int keyCounter = 5;
 
