@@ -9,7 +9,12 @@ struct UIOffshore
 	TimeStruct& tm;
 	Camera& camera;
 
+	Buoy& buoy;
 	Pendulum& pendulum;
+
+	Fourier& fourier;
+	WettedBody& wettedBody;
+	Lines3D lines;
 
 	//aux
 	Text text;
@@ -26,9 +31,9 @@ struct UIOffshore
 	matrix4x4 model3DMatrix = camera.identityMatrix;
 
 	UIOffshore(Shader& shader3D_, Shader& shader2D_, Shader& shaderText_, GlobalVariables& gv_, TimeStruct& tm_
-		, Camera& camera_, Pendulum& pendulum_)
-		:shader3D(shader3D_), shader2D(shader2D_), shaderText(shaderText_), gv(gv_), tm(tm_),camera(camera_)
-		, pendulum(pendulum_)
+		, Camera& camera_, Buoy& buoy_, Pendulum& pendulum_, Fourier& fourier_, WettedBody& wettedBody_)
+		:shader3D(shader3D_), shader2D(shader2D_), shaderText(shaderText_), gv(gv_), tm(tm_), camera(camera_)
+		, buoy(buoy_), pendulum(pendulum_), fourier(fourier_), wettedBody(wettedBody_)
 		, text("resources/Glyphs/Helvetica/Helvetica.otf", 36), textAux("resources/Glyphs/Helvetica/Helvetica.otf", 48)
 		, dataText("resources/Glyphs/Helvetica/Helvetica.otf", 20)
 		, axis(shader3D, gv)
@@ -60,21 +65,61 @@ struct UIOffshore
 		opaque();
 
 		shader3D.setUniform("u_Color", 1, 1, 1, 1);
-		//body.draw();
+
+		buoy.body.draw();
+
+		//drawPendulum();
+
+
+
 
 		
-		drawPendulum();
+
+		{
+
+			transparent();
+			//opaque();
+			shader3D.setUniform("u_Color", 40.0f / 255.0f, 189.9f / 255.0f, 255.0f / 255.0f, 0.3);
+			fourier.updateWavePositions();
+			fourier.draw();
+
+			{
+				wettedBody.calculateWettedBody();
+				vector<p3>interm;
+				for (auto i : wettedBody.intersections)
+				{
+					interm.insert(interm.end(), i.begin(), i.end());
+				}
+				lines.clear();
+				lines.addSet(interm);
+			}
+
+			opaque();
+			glLineWidth(4); //this is deprecated and platform dependent
+			shader3D.setUniform("u_fragmentMode", 1);
 
 
-		drawAux();
+			shader3D.setUniform("u_Color", 1.0, 0.0, 0.0, 1.0);
+			lines.draw();
+
+		}
 
 		axis.draw(); //breaking the "opaque first" rule to get the axis' color unaffected by water
+
+		drawAux();
 	}
+
+
+
+
 	void drawPendulum()
 	{
 
 		camera.rotate3DModelMatrix(model3DMatrix, degrees(pendulum.theta), { 0,0,1 });
-		//camera.translate3DModelMatrix(model3DMatrix, { buoy.x,0,0 });
+		camera.translate3DModelMatrix(model3DMatrix, { buoy.x,0,0 });
+		//buoy.x += 0.05;
+		//buoy.ax = 5;
+
 		shader3D.setUniform("u_Model", model3DMatrix);
 
 		shader3D.setUniform("u_Color", 1, 1, 1, 1);

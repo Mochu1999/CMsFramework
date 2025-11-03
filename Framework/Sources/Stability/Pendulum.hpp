@@ -12,7 +12,7 @@ struct Pendulum
 	float l = 2; //m
 	float inertia = m * l * l; //puntual mass, kg*m^2 
 
-	float theta = PI / 3;// rad
+	float theta =  PI *2/ 3;// rad
 	float omega = 0;// rad/s
 	float alpha = 0;// rad/s^2
 
@@ -47,10 +47,10 @@ struct Pendulum
 		float zeta = 0.05f; //it's a percentage
 		float bBear = 2.0f * zeta * m * l * l * sqrtf(g / l);
 		//bBear = 0;
-		float bGen = 0.05; //kt^2/Rl
+		float bGen = 0.0; //kt^2/Rl
 
 		float tBear = -(bBear / inertia) * omega;
-		//tBear = 0;
+		tBear = 0;
 
 		float tWeight = -(g / l) * sinf(theta);
 		float tGen = -lambda * (bGen / inertia) * (omega - buoy.omega);
@@ -60,12 +60,9 @@ struct Pendulum
 		//if they share direction and structure is faster pendulum gains energy 
 		//if they don't share directions 
 
-		// ml^2*alpha = -mgl*sin(theta) - bBear*omega - bGen*(omegaPend - omegaStr)
-		// alpha = -g/l*sin(theta) - bGen/inertia*(omegaPend - omegaStr)
-
 		float tInertial = -(buoy.ay / l) * sinf(theta) - (buoy.ax / l) * cosf(theta);
 
-		alpha = tWeight + tBear + tGen + tInertial;
+		alpha = tWeight + tBear +tGen + tInertial;
 
 	}
 
