@@ -1,29 +1,41 @@
 ﻿#pragma once
 
+#include "Buoy.hpp"
+#include "Waves.hpp"
 
 
-
-
-//The wetted body could be calculated with just a function, but I decided to use a struct for better encapsulation, later state storing (saving
-// data for the next intersection calculation)
 
 
 struct WettedBody
 {
-	Polyhedra wettedBody;
-
 	Polyhedra& body;
-	Fourier& mesh;
+	Polyhedra wet; //wetted surface
+	Waves& wv;
 
 
-	//a vector<p3> for each body triangle, to keep track of which body triangle the intersection belongs
-		// if intersection does not occur, an empty vector will be pushed
-	vector<vector<p3>> intersections; //saco esta variable de calculateWetted body para dibujar lines
+	//a vector of coordinates for each body triangle, to keep track of whom each intersection belongs
+	// if an intersection does not occur, an empty vector will be pushed
+	vector<vector<p3>> intersections; //inner vector<p3> are always triangles
+	vector<vector<p3>> wetTriangles; //
 
-	WettedBody(Polyhedra& body_, Fourier& mesh_)
-		:body(body_), mesh(mesh_)
+	WettedBody(Buoy& buoy_, Waves& wv_)
+		:body(buoy_.body), wv(wv_)
 	{
-		// calculateWettedBody isn't here because when the struct is instanced body is not created yet
+		calculateWettedBody();
+
+		for (unsigned int i = 0; i < body.indices.size(); i += 3)
+		{
+			p3 r = body.positions[body.indices[i]];
+			p3 s = body.positions[body.indices[i + 1]];
+			p3 t = body.positions[body.indices[i + 2]];
+
+			vector<p3> interm;
+			interm.insert(interm.end(), { r,s,t });
+
+			print(interm);
+
+			print(intersections[i / 3]);
+		}
 	}
 
 
@@ -34,16 +46,17 @@ struct WettedBody
 		intersections.clear();
 
 		/*print(body.positions);
-		print(mesh.positions);*/
-		calculateIntersections(intersections);
+		print(wv.positions);*/
+		calculateIntersections();
+		calculateWettedSurfaces();
 
-		/*print(intersections.size());
-		for (auto& i : intersections)
-			print(i);*/
 	}
 
+	
+
 	//It calculates all the intersections at the same time in hope the algorithm ends being executed in the gpu
-	void calculateIntersections(vector<vector<p3>>& intersections)
+	//it takes each body triangle and checks it with every wave triangle
+	void calculateIntersections()
 	{
 		for (unsigned int i = 0; i < body.indices.size(); i += 3)
 		{
@@ -51,16 +64,19 @@ struct WettedBody
 			p3 s = body.positions[body.indices[i + 1]];
 			p3 t = body.positions[body.indices[i + 2]];
 
+			//for bounding box calculation
 			p2 minB = { std::min({ r.x,s.x,t.x }),std::min({ r.z,s.z,t.z }) }; //internally the ({...}) are a std::initializer_list<float>
 			p2 maxB = { std::max({ r.x,s.x,t.x }),std::max({ r.z,s.z,t.z }) };
 
+			//intersections of each body triangle
 			vector<p3> currentIntersections;
 
-			for (unsigned int j = 0; j < mesh.indices.size(); j += 3)
+
+			for (unsigned int j = 0; j < wv.indices.size(); j += 3)
 			{
-				p3 a = mesh.positions[mesh.indices[j]];
-				p3 b = mesh.positions[mesh.indices[j + 1]];
-				p3 c = mesh.positions[mesh.indices[j + 2]];
+				p3 a = wv.positions[wv.indices[j]];
+				p3 b = wv.positions[wv.indices[j + 1]];
+				p3 c = wv.positions[wv.indices[j + 2]];
 
 				p2 minF = { std::min({ a.x,b.x,c.x }),std::min({ a.z,b.z,c.z }) }; //internally the ({...}) are a std::initializer_list<float>
 				p2 maxF = { std::max({ a.x,b.x,c.x }),std::max({ a.z,b.z,c.z }) };
@@ -86,6 +102,17 @@ struct WettedBody
 			}
 			intersections.push_back(currentIntersections);
 		}
+		//deleting repeated points of intersections
+		for (auto& v : intersections) {
+			std::sort(v.begin(), v.end(),
+				[](auto& a, auto& b) {
+					return (a.x != b.x) ? a.x < b.x :
+						(a.y != b.y) ? a.y < b.y :
+						a.z < b.z;
+				});
+			v.erase(std::unique(v.begin(), v.end()), v.end());
+		}
+		
 	}
 
 
@@ -158,4 +185,82 @@ struct WettedBody
 		edge(P2, d2, P0, d0);
 		return count;
 	}
+
+
+	void calculateWettedSurfaces()
+	{
+		for (unsigned int i = 0; i < body.indices.size(); i += 3)
+		{
+			break; //leaving this idea for the moment
+			p3 a = body.positions[body.indices[i]];
+			p3 b = body.positions[body.indices[i + 1]];
+			p3 c = body.positions[body.indices[i + 2]];
+
+			vector<p3> interm;
+			interm.insert(interm.end(), { a,b,c }); //solo para print
+
+			print(interm);
+
+			vector<p3>intersectionLn = intersections[i / 3];
+			print(intersectionLn);
+
+			p3 n = normalize3(cross3(b - a, c - a));
+
+			//// up vector not parallel to n
+			//p3 up = fabs(n.y) < 0.9f ? p3{ 0,1,0 } : p3{ 1,0,0 };
+
+			//p3 t = normalize3(cross3(n, up)); // tangent direction on triangle plane
+
+			//std::sort(intersectionLn.begin(), intersectionLn.end(),
+			//	[&](const p3& p1, const p3& p2)
+			//	{
+			//		float s1 = dot3(p1, t);
+			//		float s2 = dot3(p2, t);
+			//		return s1 > s2; // > gives "right to left"
+			//	});
+		}
+		for (unsigned int i = 0; i < body.indices.size(); i += 3)
+		{
+			if (i /= 3 < 4)
+			{
+				p3 a = body.positions[body.indices[i]];
+				p3 b = body.positions[body.indices[i + 1]];
+				p3 c = body.positions[body.indices[i + 2]];
+
+				vector<p3>intersectionLn = intersections[i / 3];
+
+				vector<p3> allSrfPsts = intersectionLn;
+				
+				if (a.y < intersectionLn[0].y) allSrfPsts.push_back(a);
+				if (b.y < intersectionLn[0].y) allSrfPsts.push_back(b);
+				if (c.y < intersectionLn[0].y) allSrfPsts.push_back(c);
+
+			}
+		}
+	}
+	static p3 centroidAndSort(std::vector<p3>& pts, const p3& n)
+	{
+		int m = pts.size();
+		p3 c{ 0,0,0 };
+		for (auto& p : pts) c = c + p;
+		c = (1.f / m) * c;
+
+		// build basis in plane
+		p3 a = (fabs(n.x) > 0.9f) ? p3{ 0,1,0 } : p3{ 1,0,0 };
+		p3 t = normalize3(cross3(n, a));
+		p3 s = cross3(n, t);
+
+		struct A { p3 p; float ang; };
+		std::vector<A> v; v.reserve(m);
+		for (auto& p : pts) {
+			p3 d = p - c;
+			float x = dot3(d, t), y = dot3(d, s);
+			v.push_back({ p, atan2f(y,x) });
+		}
+		std::sort(v.begin(), v.end(), [](auto& a, auto& b) {return a.ang < b.ang; });
+
+		for (int i = 0; i < m; ++i) pts[i] = v[i].p;
+		return c;
+	}
+
 };

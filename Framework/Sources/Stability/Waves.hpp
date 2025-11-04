@@ -4,7 +4,7 @@
 #include "Time.hpp"
 
 //centered on 0, squared
-struct Fourier {
+struct Waves {
 
 	TimeStruct& tm;
 	float length = 100;
@@ -40,7 +40,7 @@ struct Fourier {
 	bool isBufferUpdated = false;
 	GLenum usageHint = GL_DYNAMIC_DRAW;
 
-	Fourier(TimeStruct& tm_):tm(tm_)
+	Waves(TimeStruct& tm_):tm(tm_)
 	{
 		genBuffers();
 		createWavePositions();
@@ -187,7 +187,7 @@ struct Fourier {
 		glBindVertexArray(0);
 	}
 
-	~Fourier() {
+	~Waves() {
 		glDeleteVertexArrays(1, &vertexArray);
 		glDeleteBuffers(1, &vertexBuffer);
 		glDeleteBuffers(1, &indexBuffer);

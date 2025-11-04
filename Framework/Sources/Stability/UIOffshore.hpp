@@ -12,7 +12,7 @@ struct UIOffshore
 	Buoy& buoy;
 	Pendulum& pendulum;
 
-	Fourier& fourier;
+	Waves& wv;
 	WettedBody& wettedBody;
 	Lines3D lines;
 
@@ -31,9 +31,9 @@ struct UIOffshore
 	matrix4x4 model3DMatrix = camera.identityMatrix;
 
 	UIOffshore(Shader& shader3D_, Shader& shader2D_, Shader& shaderText_, GlobalVariables& gv_, TimeStruct& tm_
-		, Camera& camera_, Buoy& buoy_, Pendulum& pendulum_, Fourier& fourier_, WettedBody& wettedBody_)
+		, Camera& camera_, Buoy& buoy_, Pendulum& pendulum_, Waves& wv_, WettedBody& wettedBody_)
 		:shader3D(shader3D_), shader2D(shader2D_), shaderText(shaderText_), gv(gv_), tm(tm_), camera(camera_)
-		, buoy(buoy_), pendulum(pendulum_), fourier(fourier_), wettedBody(wettedBody_)
+		, buoy(buoy_), pendulum(pendulum_), wv(wv_), wettedBody(wettedBody_)
 		, text("resources/Glyphs/Helvetica/Helvetica.otf", 36), textAux("resources/Glyphs/Helvetica/Helvetica.otf", 48)
 		, dataText("resources/Glyphs/Helvetica/Helvetica.otf", 20)
 		, axis(shader3D, gv)
@@ -80,8 +80,8 @@ struct UIOffshore
 			transparent();
 			//opaque();
 			shader3D.setUniform("u_Color", 40.0f / 255.0f, 189.9f / 255.0f, 255.0f / 255.0f, 0.3);
-			fourier.updateWavePositions();
-			fourier.draw();
+			wv.updateWavePositions();
+			wv.draw();
 
 			{
 				wettedBody.calculateWettedBody();

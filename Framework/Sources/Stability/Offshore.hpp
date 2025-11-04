@@ -2,7 +2,7 @@
 
 #include "Common.hpp"
 #include "NewWettedSurface.hpp"
-#include "Fourier.hpp"
+#include "Waves.hpp"
 #include "Pendulum.hpp"
 #include "UIOffshore.hpp"
 #include "Buoy.hpp"
@@ -23,11 +23,14 @@ struct Offshore
 
 	
 
-	WettedBody wettedBody; //INTENTA NOMBRAR Polyhedra& wettedBody = WettedBody.wettedBody
-	Fourier fourier;
 
 	Buoy buoy;
 	Pendulum pendulum;
+	Waves wv;
+	
+	//[0,1,front,2,3,bottom,4,5,back,6,7,top]
+	WettedBody wettedBody;
+
 	UIOffshore ui;
 
 	
@@ -38,8 +41,8 @@ struct Offshore
 
 	Offshore(Shader& shader3D_, Shader& shader2D_, Shader& shaderText_, Camera& camera_, GlobalVariables& gv_, TimeStruct& tm_)
 		: shader3D(shader3D_), shader2D(shader2D_), shaderText(shaderText_), camera(camera_), gv(gv_), tm(tm_)
-		, fourier(tm_), wettedBody(buoy.body, fourier), pendulum(buoy)
-		, ui(shader3D, shader2D, shaderText, gv, tm, camera, buoy, pendulum,fourier,wettedBody)
+		, wv(tm_), wettedBody(buoy, wv), pendulum(buoy)
+		, ui(shader3D, shader2D, shaderText, gv, tm, camera, buoy, pendulum,wv,wettedBody)
 	{
 
 	}
@@ -74,7 +77,7 @@ struct Offshore
 				//calculatePendulumAcceleration();
 
 				buoy.vx += 0.5f * dt * buoy.ax;
-				print(buoy.ax);
+				//print(buoy.ax);
 			}
 			
 
