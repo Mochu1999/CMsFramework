@@ -31,6 +31,8 @@ struct Offshore
 	//[0,1,front,2,3,bottom,4,5,back,6,7,top]
 	WettedBody wettedBody;
 
+	
+
 	UIOffshore ui;
 
 	
@@ -44,7 +46,7 @@ struct Offshore
 		, wv(tm_), wettedBody(buoy, wv), pendulum(buoy)
 		, ui(shader3D, shader2D, shaderText, gv, tm, camera, buoy, pendulum,wv,wettedBody)
 	{
-
+		//gv.isRunning = false;
 	}
 
 

@@ -66,14 +66,14 @@ struct UIOffshore
 
 		shader3D.setUniform("u_Color", 1, 1, 1, 1);
 
-		buoy.body.draw();
+		//buoy.body.draw();
 
 		//drawPendulum();
 
 
 
 
-		
+
 
 		{
 
@@ -81,10 +81,9 @@ struct UIOffshore
 			//opaque();
 			shader3D.setUniform("u_Color", 40.0f / 255.0f, 189.9f / 255.0f, 255.0f / 255.0f, 0.3);
 			wv.updateWavePositions();
-			wv.draw();
+			//wv.draw();
 
 			{
-				wettedBody.calculateWettedBody();
 				vector<p3>interm;
 				for (auto i : wettedBody.intersections)
 				{
@@ -92,6 +91,11 @@ struct UIOffshore
 				}
 				lines.clear();
 				lines.addSet(interm);
+
+
+
+
+
 			}
 
 			opaque();
@@ -101,6 +105,14 @@ struct UIOffshore
 
 			shader3D.setUniform("u_Color", 1.0, 0.0, 0.0, 1.0);
 			lines.draw();
+
+
+			wettedBody.calculateWettedBody();
+			shader3D.setUniform("u_fragmentMode", 1);
+
+			wettedBody.wet.draw();
+
+			shader3D.setUniform("u_fragmentMode", 0);
 
 		}
 

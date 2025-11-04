@@ -2,40 +2,52 @@
 
 #include "Buoy.hpp"
 #include "Waves.hpp"
-
-
+#include "Polyhedra.hpp"
 
 
 struct WettedBody
 {
 	Polyhedra& body;
-	Polyhedra wet; //wetted surface
 	Waves& wv;
+
+	Polyhedra wet; //wetted surface
 
 
 	//a vector of coordinates for each body triangle, to keep track of whom each intersection belongs
 	// if an intersection does not occur, an empty vector will be pushed
 	vector<vector<p3>> intersections; //inner vector<p3> are always triangles
-	vector<vector<p3>> wetTriangles; //
+	vector<vector<p3>> bodyTr;
+	vector<vector<p3>> allSrfPsts;
+
+	struct Face
+	{
+		float area = 0;
+		p3 centroid;
+		p3 n;
+
+		Face(float area_, p3 centroid_, p3 n_) :area(area_), centroid(centroid_), n(n_)
+		{
+		}
+	};
+	vector<Face> faces;
+
 
 	WettedBody(Buoy& buoy_, Waves& wv_)
 		:body(buoy_.body), wv(wv_)
 	{
-		calculateWettedBody();
-
-		for (unsigned int i = 0; i < body.indices.size(); i += 3)
+		//initializing bodyTr
+		for (int i = 0; i < body.indices.size(); i += 3)
 		{
 			p3 r = body.positions[body.indices[i]];
 			p3 s = body.positions[body.indices[i + 1]];
 			p3 t = body.positions[body.indices[i + 2]];
 
-			vector<p3> interm;
-			interm.insert(interm.end(), { r,s,t });
-
-			print(interm);
-
-			print(intersections[i / 3]);
+			bodyTr.insert(bodyTr.end(), { r,s,t });
 		}
+
+		calculateWettedBody();
+		//calculateWettedBody();
+		
 	}
 
 
@@ -44,12 +56,25 @@ struct WettedBody
 	void calculateWettedBody()
 	{
 		intersections.clear();
+		allSrfPsts.clear();
 
-		/*print(body.positions);
-		print(wv.positions);*/
 		calculateIntersections();
 		calculateWettedSurfaces();
 
+		wet.clear();
+		for (size_t i = 0; i < allSrfPsts.size(); i++)
+		{
+			//print("a");
+			if (allSrfPsts[i].size())
+			{
+				wet.addPositions(allSrfPsts[i]);
+			}
+			else
+			{
+				
+			}
+		}
+		
 	}
 
 	
@@ -158,9 +183,7 @@ struct WettedBody
 	
 	// returns how many points were found (0, 1, or 2). MVP assumes generic cases → usually 2 or 0.
 // n·x + d = 0 is the PLANE OF THE OTHER TRIANGLE.
-	int calculateLine(const p3& P0, const p3& P1, const p3& P2,
-		const p3& n, float d,
-		p3& outA, p3& outB)
+	int calculateLine(const p3& P0, const p3& P1, const p3& P2, const p3& n, float d, p3& outA, p3& outB)
 	{
 		auto sd = [&](const p3& p) { return dot3(n, p) + d; };
 
@@ -186,81 +209,101 @@ struct WettedBody
 		return count;
 	}
 
-
+	//After getting the srf points, we calculate the centroid and order the points ccw from any point
 	void calculateWettedSurfaces()
 	{
-		for (unsigned int i = 0; i < body.indices.size(); i += 3)
+		for (unsigned int i = 0; i < bodyTr.size(); i ++)
 		{
-			break; //leaving this idea for the moment
-			p3 a = body.positions[body.indices[i]];
-			p3 b = body.positions[body.indices[i + 1]];
-			p3 c = body.positions[body.indices[i + 2]];
-
-			vector<p3> interm;
-			interm.insert(interm.end(), { a,b,c }); //solo para print
-
-			print(interm);
-
-			vector<p3>intersectionLn = intersections[i / 3];
-			print(intersectionLn);
-
-			p3 n = normalize3(cross3(b - a, c - a));
-
-			//// up vector not parallel to n
-			//p3 up = fabs(n.y) < 0.9f ? p3{ 0,1,0 } : p3{ 1,0,0 };
-
-			//p3 t = normalize3(cross3(n, up)); // tangent direction on triangle plane
-
-			//std::sort(intersectionLn.begin(), intersectionLn.end(),
-			//	[&](const p3& p1, const p3& p2)
-			//	{
-			//		float s1 = dot3(p1, t);
-			//		float s2 = dot3(p2, t);
-			//		return s1 > s2; // > gives "right to left"
-			//	});
-		}
-		for (unsigned int i = 0; i < body.indices.size(); i += 3)
-		{
-			if (i /= 3 < 4)
+			//4 and 5 are the lateral faces
+			if (i < 8)
 			{
-				p3 a = body.positions[body.indices[i]];
-				p3 b = body.positions[body.indices[i + 1]];
-				p3 c = body.positions[body.indices[i + 2]];
+				//print(i);
+				if (intersections[i].size())
+				{
+					//print(bodyTr[i]);
+					p3 a = bodyTr[i][0];
+					p3 b = bodyTr[i][1];
+					p3 c = bodyTr[i][2];
 
-				vector<p3>intersectionLn = intersections[i / 3];
+					p3 n = normalize3(cross3(b - a, c - a));
 
-				vector<p3> allSrfPsts = intersectionLn;
-				
-				if (a.y < intersectionLn[0].y) allSrfPsts.push_back(a);
-				if (b.y < intersectionLn[0].y) allSrfPsts.push_back(b);
-				if (c.y < intersectionLn[0].y) allSrfPsts.push_back(c);
+					vector<p3>intersectionLn = intersections[i];
+
+					p3 aa = intersectionLn[0];
+					p3 bb = intersectionLn[0];
+
+					for (const p3& p : intersectionLn) {
+						if (p.z < aa.z) aa = p;
+						if (p.z > bb.z) bb = p;
+					}
+
+					std::vector<p3> reduced = { aa, bb };
+
+
+					vector<p3> srfPsts = reduced;
+
+
+					//adding abc to the set of surface points if their .y is smaller than the one from intersectionLn
+					if (intersectionLn.size())
+					{
+						vector<p3> interm = { a,b,c };
+						for (p3& i : interm)
+						{
+							if (i.y < intersectionLn[0].y) srfPsts.push_back(i);
+						}
+					}
+					//print(srfPsts);
+
+					p3 centroid;
+					for (auto& p : srfPsts) centroid += p;
+					centroid = (1.f / srfPsts.size()) * centroid;
+					//print(centroid);
+
+					// build basis in plane
+					p3 algo = (fabs(n.x) > 0.9f) ? p3{ 0,1,0 } : p3{ 1,0,0 };
+					p3 t = normalize3(cross3(n, algo));
+					p3 s = cross3(n, t);
+
+					struct A { p3 p; float ang; };
+					std::vector<A> v;
+					v.reserve(srfPsts.size());
+
+					for (auto& p : srfPsts) {
+						p3 d = p - centroid;
+						float x = dot3(d, t), y = dot3(d, s);
+						v.push_back({ p, atan2f(y,x) });
+					}
+					std::sort(v.begin(), v.end(), [](auto& a, auto& b) {return a.ang < b.ang; });
+
+					for (int i = 0; i < srfPsts.size(); ++i) srfPsts[i] = v[i].p;
+
+					//print(srfPsts);
+
+					allSrfPsts.push_back(srfPsts);
+					faces.push_back({2, centroid, n});
+				}
+				else
+				{
+					if (bodyTr[i][0].y < 0)
+					{
+						allSrfPsts.push_back(bodyTr[i]);
+
+						
+						/*p3 a = bodyTr[i][0];
+						p3 b = bodyTr[i][1];
+						p3 c = bodyTr[i][2];
+
+						p3 n = normalize3(cross3(b - a, c - a));
+
+						p3 centroid;
+						for (auto& p : srfPsts) centroid += p;
+						centroid = (1.f / srfPsts.size()) * centroid;*/
+					}
+				}
 
 			}
 		}
 	}
-	static p3 centroidAndSort(std::vector<p3>& pts, const p3& n)
-	{
-		int m = pts.size();
-		p3 c{ 0,0,0 };
-		for (auto& p : pts) c = c + p;
-		c = (1.f / m) * c;
 
-		// build basis in plane
-		p3 a = (fabs(n.x) > 0.9f) ? p3{ 0,1,0 } : p3{ 1,0,0 };
-		p3 t = normalize3(cross3(n, a));
-		p3 s = cross3(n, t);
-
-		struct A { p3 p; float ang; };
-		std::vector<A> v; v.reserve(m);
-		for (auto& p : pts) {
-			p3 d = p - c;
-			float x = dot3(d, t), y = dot3(d, s);
-			v.push_back({ p, atan2f(y,x) });
-		}
-		std::sort(v.begin(), v.end(), [](auto& a, auto& b) {return a.ang < b.ang; });
-
-		for (int i = 0; i < m; ++i) pts[i] = v[i].p;
-		return c;
-	}
 
 };

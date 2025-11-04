@@ -56,6 +56,22 @@ struct Polygons {
 
 	void addSet(vector<p3> items);
 
+	//Mira tío, he hecho amago por integrar esto, pero está muy sucio este file, prefiero usar polyhedra la verdad
+	//void addSetNew(vector<p3> items, int mode = 0)
+	//{
+
+	//}
+	//void createConvexIndices(const vector<p2>& items) {
+
+	//	for (unsigned int i = 0; i < items.size() - 3; i++)
+	//	{
+	//		indices.insert(indices.end(), { indexOffset,indexOffset + i + 1,indexOffset + i + 2 });
+
+	//	}
+
+	//	indexOffset = indices.back() + 2;//position[indices.back()+1] is positions[indices.front()], must be +2
+
+	//}
 
 	void calculateNormal() {
 		for (int i = 0; i < positions.size() - 1; i++)

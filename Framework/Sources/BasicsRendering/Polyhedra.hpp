@@ -68,7 +68,39 @@ struct Polyhedra {
 		{
 			std::cerr << "Error opening file for reading." << std::endl;
 		}
-		
+
+	}
+
+	//0 convex
+	void addPositions(const vector<p3>& positions_, int mode = 0)
+	{
+
+		positions.insert(positions.end(), positions_.begin(), positions_.end());
+		createConvexIndices(positions_);
+		calculateNormals();
+		isBufferUpdated = true;
+	}
+
+	unsigned int indexOffset = 0;
+	void createConvexIndices(const vector<p3>& positions_ ) {
+		for (unsigned int i = 0; i < positions_.size() - 2; i++)
+		{
+			indices.insert(indices.end(), { indexOffset,indexOffset + i + 1,indexOffset + i + 2 });
+
+		}
+		indexOffset = indices.back() + 1;
+
+	}
+
+	void calculateNormals() {
+		for (int i = 0; i < indices.size(); i+=3)
+		{
+			p3 a = positions[indices[i]];
+			p3 b = positions[indices[i+1]];
+			p3 c = positions[indices[i+2]];
+
+			normals.push_back(normalize3(cross3(b - a, c - a)));
+		}
 	}
 
 	void addPolyhedra(const vector<p3>& positions_, const vector<unsigned int>& indices_, const vector<p3>& normals_)
@@ -91,7 +123,7 @@ struct Polyhedra {
 	//polyhedras that were stl before, with the same .size() for positions, indices and normals
 	//  ,but the size of indices in floats while the others in p3
 	//indices are in order in triangles {1,2,3,4,5,6,7,8,9}
-	void stlDraw() 
+	void stlDraw()
 	{
 
 		glBindVertexArray(vertexArray);
@@ -118,7 +150,7 @@ struct Polyhedra {
 	}
 
 	//No optimizations. Optimize as in polygons::draw()
-	void draw() 
+	void draw()
 	{
 		glBindVertexArray(vertexArray);
 
@@ -201,6 +233,8 @@ struct Polyhedra {
 
 
 	void clear() {
+		indexOffset = 0;
+
 		positions.clear();
 		indices.clear();
 		normals.clear();
