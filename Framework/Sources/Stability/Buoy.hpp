@@ -4,7 +4,7 @@ struct Buoy
 {
 	Polyhedra body;
 	Polyhedra support;
-	Polyhedra generator;
+	Polyhedra alternator;
 
 	float x = 0;
 	float y = 0;
@@ -13,10 +13,11 @@ struct Buoy
 	float ax = 0;
 	float ay = 0;
 
-	float theta = PI * 2 / 3;// rad
+	float theta = radians(61);// rad
 	float omega = 0;// rad/s
 	float alpha = 0;// rad/s^2
 
+	float lambda=1;
 
 	//EXCEL, A CAMBIAR
 	float draft = 80;
@@ -37,17 +38,19 @@ struct Buoy
 
 	Buoy()
 	{
-		Polyhedra stl;
-		readSTL(stl, "body.stl");
-		writeSimplePolyhedra(stl, "body.bin");
+		/*Polyhedra stl;
+		readSTL(stl, "Alternator.stl");
+		writeSimplePolyhedra(stl, "Alternator.bin");
 
-		readSTL(stl, "body.stl");
-		writeSimplePolyhedra(stl, "body.bin");
+		readSTL(stl, "Buoy.stl");
+		writeSimplePolyhedra(stl, "Buoy.bin");
 
-		readSTL(stl, "body.stl");
-		writeSimplePolyhedra(stl, "body.bin");
+		readSTL(stl, "Support.stl");
+		writeSimplePolyhedra(stl, "Support.bin");*/
 
 		body.addPolyhedra("Cube.bin");
+		alternator.addPolyhedra("Alternator.bin");
+		support.addPolyhedra("Support.bin");
 
 		excel();
 

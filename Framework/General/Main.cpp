@@ -47,14 +47,14 @@ int main(void)
 	Light ship(shader3D, camera, gv);
 
 	Overlay2D overlay(shader2D, camera);
-	Graphic graphic(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, "A*cos(x)", { 1400,100 }, graf1Val);
-	Graphic graphic2(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, "rudderAngle", { 1400,400 }, ship.rudderAngle);
-	ProgressBar pb(shader2D, shader2D_Instanced, shaderText, camera, ship, tm, { 1400 - 50,700 });
+	Graphic graphic(shader2D, shader2D_Instanced, shaderText, camera, tm, "A*cos(x)", { 1400,100 }, graf1Val);
+	Graphic graphic2(shader2D, shader2D_Instanced, shaderText, camera, tm, "rudderAngle", { 1400,400 }, ship.rudderAngle);
+	//ProgressBar pb(shader2D, shader2D_Instanced, shaderText, camera, tm, { 1400 - 50,700 });
 	Autopilot autopilot(shader2D, shaderText, shader2D_Instanced, gv, tm);
 	Solar solar(shader3D, shader2D, shaderText, camera, gv, tm);
 	MainOC mainOC(shader3D, shaderText, camera, gv);
 
-	Offshore offshore(shader3D, shader2D, shaderText, camera, gv, tm);
+	//Offshore offshore(shader3D, shader2D, shaderText, camera, gv, tm);
 
 	Settings settings(camera, gv, autopilot);
 
@@ -90,7 +90,7 @@ int main(void)
 				graf1Val = cosPlot(c);
 				graphic.draw();
 				graphic2.draw();
-				pb.draw();
+				//pb.draw();
 
 				break;
 
@@ -112,7 +112,7 @@ int main(void)
 				break;
 
 			case offshoreProgram:
-				offshore.draw();
+				//offshore.draw();
 				axis.draw(); //breaking the "opaque first" rule to get the axis' color unaffected by water
 
 				break;

@@ -11,7 +11,6 @@ struct ProgressBar {
 	TimeStruct& tm;
 
 	Camera& camera;
-	Light& ship;
 
 	unsigned int counterUpdatePlot = 0;
 
@@ -24,12 +23,15 @@ struct ProgressBar {
 	p2 innerLength;
 	float naturalRatio = outerLength.y / outerLength.x;
 
-	float percentage = 1, variation = 0.0005;
+	float& percentage;
+	float variation = 0.0005;
+	string title;
 
-	ProgressBar(Shader& shader2D_, Shader& shader2D_Instanced_, Shader& shaderText_, Camera& camera_, Light& ship_, TimeStruct& tm_
-		, p2 outerCorner_)
+	ProgressBar(Shader& shader2D_, Shader& shader2D_Instanced_, Shader& shaderText_, Camera& camera_, TimeStruct& tm_
+		, p2 outerCorner_, string title_,float& percentage_)
 		: shader2D(shader2D_), shader2D_Instanced(shader2D_Instanced_), shaderText(shaderText_), tm(tm_)
-		, camera(camera_), ship(ship_), text("resources/Glyphs/Helvetica/Helvetica.otf", 20), outerCorner(outerCorner_)
+		, camera(camera_), text("resources/Glyphs/Helvetica/Helvetica.otf", 20), outerCorner(outerCorner_)
+		,title(title_), percentage(percentage_)
 	{
 		float algo1 = 0.03;
 		float algo2 = 0.1 * naturalRatio;
@@ -40,15 +42,12 @@ struct ProgressBar {
 	}
 
 	void update(){
-		if (percentage >= 1 || percentage <= 0)
-			variation = -variation;
-
-		percentage += variation;
+		
 
 		text.addDynamicText(
-			{ { {outerCorner.x + 30,outerCorner.y + outerLength.y + 10} ,"Battery"},
+			{ { {outerCorner.x + 30,outerCorner.y + outerLength.y + 10} , title},
 			{ {outerCorner.x + outerLength.x * percentage,outerCorner.y - 25} ,round1d(percentage * 100)},
-			{ {outerCorner.x + outerLength.x * percentage + 40,outerCorner.y - 25} ," %"} });
+			{ {outerCorner.x + outerLength.x * percentage + 20,outerCorner.y - 25} ," %"} }); //meter porcentaje y "%" juntos como un osstring
 	}
 
 	void draw() {

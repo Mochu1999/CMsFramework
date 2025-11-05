@@ -16,7 +16,6 @@ struct Graphic {
 	TimeStruct& tm;
 
 	Camera& camera;
-	Light& ship;
 
 	Lines2D_Instanced gridStatic;
 	Lines2D_Instanced gridDynamic, currentXgrid;
@@ -39,15 +38,15 @@ struct Graphic {
 	float counter = 0;
 	p2 gridCorner, dataCorner;
 	float minDataX = 0, maxDataX = 0, minDataY = 0, maxDataY = 0;
-	float scaleY = 4;
+	float scaleY = 40;
 	float gridWidth = 400, gridHeight = 200;
 	float currentX = 0;
 	float& currentY;
 
-	Graphic(Shader& shader2D_, Shader& shader2D_Instanced_, Shader& shaderText_, Camera& camera_, Light& ship_, TimeStruct& tm_
+	Graphic(Shader& shader2D_, Shader& shader2D_Instanced_, Shader& shaderText_, Camera& camera_, TimeStruct& tm_
 		, string name_, p2 gridCorner_,float& currentY_)
 		: shader2D(shader2D_), shader2D_Instanced(shader2D_Instanced_), shaderText(shaderText_), tm(tm_)
-		, camera(camera_), ship(ship_), text("resources/Glyphs/Helvetica/Helvetica.otf", 16),
+		, camera(camera_), text("resources/Glyphs/Helvetica/Helvetica.otf", 16),
 		name(name_), gridCorner(gridCorner_), currentY(currentY_)
 	{
 		gridStatic.addSet({ {0,0},{1,0} });

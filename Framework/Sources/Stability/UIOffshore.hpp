@@ -67,6 +67,16 @@ struct UIOffshore
 		shader3D.setUniform("u_Color", 1, 1, 1, 1);
 
 		//buoy.body.draw();
+		shader3D.setUniform("u_Color", 0.1, 0.1, 1, 1);
+
+		camera.rotate3DModelMatrix(model3DMatrix, degrees(buoy.theta), { 0,0,1 });
+		camera.translate3DModelMatrix(model3DMatrix, { buoy.x,0,0 });
+		shader3D.setUniform("u_Model", model3DMatrix);
+		buoy.support.draw();
+
+
+		shader3D.setUniform("u_Color", 1, 0, 0, 1);
+		buoy.alternator.draw();
 
 		drawPendulum();
 
@@ -125,8 +135,6 @@ struct UIOffshore
 
 		camera.rotate3DModelMatrix(model3DMatrix, degrees(pendulum.theta), { 0,0,1 });
 		camera.translate3DModelMatrix(model3DMatrix, { buoy.x,0,0 });
-		//buoy.x += 0.05;
-		//buoy.ax = 5;
 
 		shader3D.setUniform("u_Model", model3DMatrix);
 
@@ -169,7 +177,7 @@ struct UIOffshore
 
 		shaderText.bind();
 		dataText.addDynamicText({
-			{windowTotal - p2{280,60}, "Total Energy: ",pendulum.totalEnergy}
+			{windowTotal - p2{280,60}, "Total Energy: ",0/*pendulum.totalEnergy*/}
 			});
 		dataText.draw();
 	}

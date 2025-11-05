@@ -21,7 +21,7 @@ int main(void)
 
 
 
-	Offshore offshore(shader3D, shader2D, shaderText, camera, gv, tm);
+	Offshore offshore(shader3D, shader2D, shaderText, shader2D_Instanced, camera, gv, tm);
 
 	SettingsOffshore settings(camera, gv);
 

@@ -7,7 +7,8 @@
 #include "UIOffshore.hpp"
 #include "Buoy.hpp"
 
-
+#include "Overlay2D.hpp"
+#include "Graphics.hpp"
 
 
 //This is the general struct which has instances of Buoy, Fourier, Pendulum, Mooring and generator
@@ -16,7 +17,8 @@ struct Offshore
 	Shader& shader3D;
 	Shader& shader2D;
 	Shader& shaderText;
-
+	Shader& shader2D_Instanced;
+	
 	Camera& camera;
 	GlobalVariables& gv;
 	TimeStruct& tm;
@@ -35,23 +37,45 @@ struct Offshore
 
 	UIOffshore ui;
 
+	float graf1Val = 0;
+	Overlay2D overlay;
+	Graphic graphic;
+	Graphic graphic2;
+	ProgressBar pb;
 	
 
-	
-
-	
-
-	Offshore(Shader& shader3D_, Shader& shader2D_, Shader& shaderText_, Camera& camera_, GlobalVariables& gv_, TimeStruct& tm_)
-		: shader3D(shader3D_), shader2D(shader2D_), shaderText(shaderText_), camera(camera_), gv(gv_), tm(tm_)
+	Offshore(Shader& shader3D_, Shader& shader2D_, Shader& shaderText_, Shader& shader2D_Instanced_, Camera& camera_, GlobalVariables& gv_, TimeStruct& tm_)
+		: shader3D(shader3D_), shader2D(shader2D_), shaderText(shaderText_), shader2D_Instanced(shader2D_Instanced_), camera(camera_), gv(gv_), tm(tm_)
 		, wv(tm_), wettedBody(buoy, wv), pendulum(buoy)
 		, ui(shader3D, shader2D, shaderText, gv, tm, camera, buoy, pendulum,wv,wettedBody)
+		, overlay(shader2D, camera)
+		, graphic(shader2D, shader2D_Instanced, shaderText, camera, tm, "deltaTheta", { 1400,100 }, pendulum.deltaTheta)
+		, graphic2(shader2D, shader2D_Instanced, shaderText, camera, tm, "alternator energy", { 1400,400 }, pendulum.tGen)
+		, pb(shader2D, shader2D_Instanced, shaderText, camera, tm, { 1400 - 50,700 },"Alternator.lambda",buoy.lambda)
 	{
 		//gv.isRunning = false;
 	}
 
-
+	int buoyMovement = 1;
 	void update()
 	{
+		//print(pendulum.tGen);
+		pendulum.deltaTheta = buoy.theta - pendulum.theta;
+
+		if (buoy.theta > radians(60) && buoyMovement == 1)
+			buoyMovement = -1;
+		if (buoy.theta < radians(-60) && buoyMovement == -1)
+			buoyMovement = 1;
+		if (buoyMovement == 1)
+		{
+			buoy.theta += 0.03;
+			buoy.omega = 0.03;
+		}
+		else 
+		{
+			buoy.theta -= 0.03;
+			buoy.omega = -0.03;
+		}
 
 		while (tm.counterUpdateOffshore > 0)
 		{
@@ -96,7 +120,14 @@ struct Offshore
 		update();
 
 		ui.draw();
-		
+
+		overlay.draw();
+
+		graf1Val = cosPlot(c);
+		graphic.draw();
+		graphic2.draw();
+
+		pb.draw();
 	}
 
 

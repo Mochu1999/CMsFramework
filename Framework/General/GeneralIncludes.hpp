@@ -27,7 +27,7 @@
 #include "Arrows.hpp"
 #include "Globe.hpp"
 
-#include "Fourier.hpp"
+#include "Waves.hpp"
 #include "Delaunay2D.hpp"
 #include "WettedSurface.hpp"
 
