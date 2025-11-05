@@ -68,10 +68,10 @@ struct UIOffshore
 
 		//buoy.body.draw();
 
-		//drawPendulum();
+		drawPendulum();
 
-
-
+		//resetting identity matrix for wettedBoddy
+		shader3D.setUniform("u_Model", gv.identityMatrix);
 
 
 
@@ -91,10 +91,6 @@ struct UIOffshore
 				}
 				lines.clear();
 				lines.addSet(interm);
-
-
-
-
 
 			}
 

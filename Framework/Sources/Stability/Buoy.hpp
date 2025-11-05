@@ -3,6 +3,8 @@
 struct Buoy
 {
 	Polyhedra body;
+	Polyhedra support;
+	Polyhedra generator;
 
 	float x = 0;
 	float y = 0;
@@ -35,9 +37,16 @@ struct Buoy
 
 	Buoy()
 	{
-		//Polyhedra stl;
-		//readSTL(stl, "body.stl");
-		//writeSimplePolyhedra(stl, "body.bin");
+		Polyhedra stl;
+		readSTL(stl, "body.stl");
+		writeSimplePolyhedra(stl, "body.bin");
+
+		readSTL(stl, "body.stl");
+		writeSimplePolyhedra(stl, "body.bin");
+
+		readSTL(stl, "body.stl");
+		writeSimplePolyhedra(stl, "body.bin");
+
 		body.addPolyhedra("Cube.bin");
 
 		excel();
