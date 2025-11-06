@@ -13,7 +13,7 @@ struct Buoy
 	float ax = 0;
 	float ay = 0;
 
-	float theta = radians(61);// rad
+	float theta = radians(30);// rad
 	float omega = 0;// rad/s
 	float alpha = 0;// rad/s^2
 
@@ -53,6 +53,14 @@ struct Buoy
 		support.addPolyhedra("Support.bin");
 
 		excel();
+
+	}
+	void calculatePendulumAcceleration()
+	{
+		//Just for testing purposes
+		float tWeight = -(g / 10) * sinf(theta);
+
+		alpha = tWeight;
 
 	}
 	void excel()

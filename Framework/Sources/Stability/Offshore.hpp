@@ -43,6 +43,7 @@ struct Offshore
 	Graphic graphic2;
 	ProgressBar pb;
 	
+	
 
 	Offshore(Shader& shader3D_, Shader& shader2D_, Shader& shaderText_, Shader& shader2D_Instanced_, Camera& camera_, GlobalVariables& gv_, TimeStruct& tm_)
 		: shader3D(shader3D_), shader2D(shader2D_), shaderText(shaderText_), shader2D_Instanced(shader2D_Instanced_), camera(camera_), gv(gv_), tm(tm_)
@@ -50,7 +51,7 @@ struct Offshore
 		, ui(shader3D, shader2D, shaderText, gv, tm, camera, buoy, pendulum,wv,wettedBody)
 		, overlay(shader2D, camera)
 		, graphic(shader2D, shader2D_Instanced, shaderText, camera, tm, "deltaTheta", { 1400,100 }, pendulum.deltaTheta)
-		, graphic2(shader2D, shader2D_Instanced, shaderText, camera, tm, "alternator energy", { 1400,400 }, pendulum.tGen)
+		, graphic2(shader2D, shader2D_Instanced, shaderText, camera, tm, "alternator torque", { 1400,400 }, pendulum.genEnergy)
 		, pb(shader2D, shader2D_Instanced, shaderText, camera, tm, { 1400 - 50,700 },"Alternator.lambda",buoy.lambda)
 	{
 		//gv.isRunning = false;
@@ -62,20 +63,7 @@ struct Offshore
 		//print(pendulum.tGen);
 		pendulum.deltaTheta = buoy.theta - pendulum.theta;
 
-		if (buoy.theta > radians(60) && buoyMovement == 1)
-			buoyMovement = -1;
-		if (buoy.theta < radians(-60) && buoyMovement == -1)
-			buoyMovement = 1;
-		if (buoyMovement == 1)
-		{
-			buoy.theta += 0.03;
-			buoy.omega = 0.03;
-		}
-		else 
-		{
-			buoy.theta -= 0.03;
-			buoy.omega = -0.03;
-		}
+		
 
 		while (tm.counterUpdateOffshore > 0)
 		{
@@ -93,6 +81,19 @@ struct Offshore
 
 				// second kick
 				pendulum.omega += 0.5f * dt * pendulum.alpha;
+			}
+			//pendulum
+			{
+				// first kick
+				buoy.omega += 0.5f * dt * buoy.alpha;
+
+				// drift
+				buoy.theta += dt * buoy.omega;
+
+				buoy.calculatePendulumAcceleration();
+
+				// second kick
+				buoy.omega += 0.5f * dt * buoy.alpha;
 			}
 			//translation
 			{
@@ -123,7 +124,6 @@ struct Offshore
 
 		overlay.draw();
 
-		graf1Val = cosPlot(c);
 		graphic.draw();
 		graphic2.draw();
 

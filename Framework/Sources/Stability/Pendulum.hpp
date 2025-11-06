@@ -7,12 +7,12 @@ struct Pendulum
 
 	Buoy& buoy;
 
-	float r = 0.75; //m
+	float r = 1.75; //m
 	float m = 7850 * 4 / 3 * PI * r * r * r; //kg //13871.2 kg
 	float l = 2; //m
 	float inertia = m * l * l; //puntual mass, kg*m^2 
 
-	float theta = buoy.theta;// PI * 2 / 3;// rad
+	float theta = PI * 2 / 3;// rad
 	float omega = 0;// rad/s
 	float alpha = 0;// rad/s^2
 
@@ -26,6 +26,7 @@ struct Pendulum
 
 	float deltaTheta = 0;
 
+	float genEnergy = 0;
 
 	Pendulum(Buoy& buoy_)
 		:buoy(buoy_)
@@ -56,10 +57,11 @@ struct Pendulum
 
 		float tWeight = -(g / l) * sinf(theta);
 
-		if (omega - buoy.omega < 0) buoy.lambda = 0;
-		else buoy.lambda = 1;
-		float bGen = 2; //kt^2/Rl
+		/*if (omega - buoy.omega < 0) buoy.lambda = 0;
+		else*/ buoy.lambda = 1;
+		float bGen = 1; //kt^2/Rl
 		tGen = -buoy.lambda * (bGen /*/ inertia*/) * (omega - buoy.omega);
+		genEnergy = abs(tGen) * 0.98*9.81*1000;
 		//tGen = 0;
 		//print(tGen);
 		//print(buoy.lambda);

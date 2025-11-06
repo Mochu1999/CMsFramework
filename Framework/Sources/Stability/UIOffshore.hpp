@@ -92,6 +92,12 @@ struct UIOffshore
 			shader3D.setUniform("u_Color", 40.0f / 255.0f, 189.9f / 255.0f, 255.0f / 255.0f, 0.3);
 			wv.updateWavePositions();
 			//wv.draw();
+			shader3D.setUniform("u_Color", 1, 1, 1,0.2);
+			camera.rotate3DModelMatrix(model3DMatrix, degrees(buoy.theta), { 0,0,1 });
+			camera.translate3DModelMatrix(model3DMatrix, { buoy.x,0,0 });
+			shader3D.setUniform("u_Model", model3DMatrix);
+			buoy.body.draw();
+
 
 			{
 				vector<p3>interm;
@@ -110,13 +116,13 @@ struct UIOffshore
 
 
 			shader3D.setUniform("u_Color", 1.0, 0.0, 0.0, 1.0);
-			lines.draw();
+			//lines.draw();
 
 
 			wettedBody.calculateWettedBody();
-			shader3D.setUniform("u_fragmentMode", 1);
+			shader3D.setUniform("u_fragmentMode", 0);
 
-			wettedBody.wet.draw();
+			//wettedBody.wet.draw();
 
 			shader3D.setUniform("u_fragmentMode", 0);
 
@@ -165,7 +171,7 @@ struct UIOffshore
 
 
 
-		transparent();
+		/*transparent();
 		shader2D.bind();
 		shader2D.setUniform("u_Model", gv.identityMatrix);
 		shader2D.setUniform("u_Color", 40 / 255.0f, 40 / 255.0f, 40 / 255.0f, 1.0f);
@@ -177,9 +183,9 @@ struct UIOffshore
 
 		shaderText.bind();
 		dataText.addDynamicText({
-			{windowTotal - p2{280,60}, "Total Energy: ",0/*pendulum.totalEnergy*/}
+			{windowTotal - p2{280,60}, "Total Energy: ",pendulum.totalEnergy}
 			});
-		dataText.draw();
+		dataText.draw();*/
 	}
 
 	void activateLight()
