@@ -7,7 +7,8 @@
 
 struct WettedBody
 {
-	Polyhedra& body;
+	vector<p3>& bodyPositions;
+	vector<unsigned int>& bodyIndices;
 	Waves& wv;
 
 	Polyhedra wet; //wetted surface
@@ -32,21 +33,13 @@ struct WettedBody
 	vector<Face> faces;
 
 
-	WettedBody(Buoy& buoy_, Waves& wv_)
-		:body(buoy_.body), wv(wv_)
+	WettedBody(vector<p3>& bodyPositions_, vector<unsigned int>& bodyIndices_, Waves& wv_)
+		:bodyPositions(bodyPositions_), bodyIndices(bodyIndices_), wv(wv_)
 	{
-		//initializing bodyTr
-		for (int i = 0; i < body.indices.size(); i += 3)
-		{
-			p3 r = body.positions[body.indices[i]];
-			p3 s = body.positions[body.indices[i + 1]];
-			p3 t = body.positions[body.indices[i + 2]];
+		
 
-			bodyTr.insert(bodyTr.end(), { r,s,t });
-		}
 
 		calculateWettedBody();
-		//calculateWettedBody();
 		
 	}
 
@@ -56,12 +49,25 @@ struct WettedBody
 	void calculateWettedBody()
 	{
 		intersections.clear();
+		bodyTr.clear();
 		allSrfPsts.clear();
+
+		for (int i = 0; i < bodyIndices.size(); i += 3)
+		{
+			p3 r = bodyPositions[bodyIndices[i]];
+			p3 s = bodyPositions[bodyIndices[i + 1]];
+			p3 t = bodyPositions[bodyIndices[i + 2]];
+
+			bodyTr.insert(bodyTr.end(), { r,s,t });
+		}
 
 		calculateIntersections();
 		calculateWettedSurfaces();
 
 		wet.clear();
+
+		
+
 		for (size_t i = 0; i < allSrfPsts.size(); i++)
 		{
 			//print("a");
@@ -83,11 +89,11 @@ struct WettedBody
 	//it takes each body triangle and checks it with every wave triangle
 	void calculateIntersections()
 	{
-		for (unsigned int i = 0; i < body.indices.size(); i += 3)
+		for (unsigned int i = 0; i < bodyIndices.size(); i += 3)
 		{
-			p3 r = body.positions[body.indices[i]];
-			p3 s = body.positions[body.indices[i + 1]];
-			p3 t = body.positions[body.indices[i + 2]];
+			p3 r = bodyPositions[bodyIndices[i]];
+			p3 s = bodyPositions[bodyIndices[i + 1]];
+			p3 t = bodyPositions[bodyIndices[i + 2]];
 
 			//for bounding box calculation
 			p2 minB = { std::min({ r.x,s.x,t.x }),std::min({ r.z,s.z,t.z }) }; //internally the ({...}) are a std::initializer_list<float>
@@ -284,21 +290,21 @@ struct WettedBody
 				}
 				else
 				{
-					if (bodyTr[i][0].y < 0)
+					bool allBelow = true; //only if are all bellow the condition will attach the triangle
+
+					for (const p3& pos : bodyTr[i])
 					{
-						allSrfPsts.push_back(bodyTr[i]);
-
-						
-						/*p3 a = bodyTr[i][0];
-						p3 b = bodyTr[i][1];
-						p3 c = bodyTr[i][2];
-
-						p3 n = normalize3(cross3(b - a, c - a));
-
-						p3 centroid;
-						for (auto& p : srfPsts) centroid += p;
-						centroid = (1.f / srfPsts.size()) * centroid;*/
+						if (pos.y >= wv.amplitude)
+						{
+							allBelow = false;
+							break;
+						}
 					}
+
+					if (allBelow) allSrfPsts.push_back(bodyTr[i]);
+
+					
+					
 				}
 
 			}

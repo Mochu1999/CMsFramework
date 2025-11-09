@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Mooring.hpp"
 struct UIOffshore
 {
 	Shader& shader3D;
@@ -14,6 +14,7 @@ struct UIOffshore
 
 	Waves& wv;
 	WettedBody& wettedBody;
+	Mooring& line1;
 	Lines3D lines;
 
 	//aux
@@ -31,9 +32,10 @@ struct UIOffshore
 	matrix4x4 model3DMatrix = camera.identityMatrix;
 
 	UIOffshore(Shader& shader3D_, Shader& shader2D_, Shader& shaderText_, GlobalVariables& gv_, TimeStruct& tm_
-		, Camera& camera_, Buoy& buoy_, Pendulum& pendulum_, Waves& wv_, WettedBody& wettedBody_)
+		, Camera& camera_, Buoy& buoy_, Pendulum& pendulum_, Waves& wv_, WettedBody& wettedBody_,Mooring& line1_)
+
 		:shader3D(shader3D_), shader2D(shader2D_), shaderText(shaderText_), gv(gv_), tm(tm_), camera(camera_)
-		, buoy(buoy_), pendulum(pendulum_), wv(wv_), wettedBody(wettedBody_)
+		, buoy(buoy_), pendulum(pendulum_), wv(wv_), wettedBody(wettedBody_),line1(line1_)
 		, text("resources/Glyphs/Helvetica/Helvetica.otf", 36), textAux("resources/Glyphs/Helvetica/Helvetica.otf", 48)
 		, dataText("resources/Glyphs/Helvetica/Helvetica.otf", 20)
 		, axis(shader3D, gv)
@@ -54,6 +56,8 @@ struct UIOffshore
 			dataBoxOutline.addSet(dataRectangle);
 			dataBox.addSet(dataRectangle);
 		}
+
+		print(line1.line.positions);
 	}
 
 
@@ -67,37 +71,34 @@ struct UIOffshore
 		shader3D.setUniform("u_Color", 1, 1, 1, 1);
 
 		//buoy.body.draw();
-		shader3D.setUniform("u_Color", 0.1, 0.1, 1, 1);
+		//shader3D.setUniform("u_Color", 0.1, 0.1, 1, 1);
 
-		camera.rotate3DModelMatrix(model3DMatrix, degrees(buoy.theta), { 0,0,1 });
-		camera.translate3DModelMatrix(model3DMatrix, { buoy.x,0,0 });
-		shader3D.setUniform("u_Model", model3DMatrix);
-		buoy.support.draw();
+		//camera.rotate3DModelMatrix(model3DMatrix, degrees(buoy.theta), { 0,0,1 });
+		//camera.translate3DModelMatrix(model3DMatrix, { buoy.x,0,0 });
+		//shader3D.setUniform("u_Model", model3DMatrix);
+		//buoy.support.draw();
+		//shader3D.setUniform("u_Color", 1, 0, 0, 1);
+		//buoy.alternator.draw();
+		//drawPendulum();
 
-
-		shader3D.setUniform("u_Color", 1, 0, 0, 1);
-		buoy.alternator.draw();
-
-		drawPendulum();
-
-		//resetting identity matrix for wettedBoddy
 		shader3D.setUniform("u_Model", gv.identityMatrix);
 
 
 
 		{
 
+			
+
+			transparent();
+			//opaque();
+			shader3D.setUniform("u_Color", 1, 1, 1,1);
+			buoy.body.draw();
+
 			transparent();
 			//opaque();
 			shader3D.setUniform("u_Color", 40.0f / 255.0f, 189.9f / 255.0f, 255.0f / 255.0f, 0.3);
 			wv.updateWavePositions();
-			//wv.draw();
-			shader3D.setUniform("u_Color", 1, 1, 1,0.2);
-			camera.rotate3DModelMatrix(model3DMatrix, degrees(buoy.theta), { 0,0,1 });
-			camera.translate3DModelMatrix(model3DMatrix, { buoy.x,0,0 });
-			shader3D.setUniform("u_Model", model3DMatrix);
-			buoy.body.draw();
-
+			wv.draw();
 
 			{
 				vector<p3>interm;
@@ -116,25 +117,41 @@ struct UIOffshore
 
 
 			shader3D.setUniform("u_Color", 1.0, 0.0, 0.0, 1.0);
-			//lines.draw();
+			lines.draw();
 
 
 			wettedBody.calculateWettedBody();
-			shader3D.setUniform("u_fragmentMode", 0);
+			shader3D.setUniform("u_fragmentMode", 1);
 
-			//wettedBody.wet.draw();
+			wettedBody.wet.draw();
 
 			shader3D.setUniform("u_fragmentMode", 0);
 
 		}
-
+		
+		drawMooring();
 		axis.draw(); //breaking the "opaque first" rule to get the axis' color unaffected by water
 
 		drawAux();
 	}
 
 
+	void drawMooring()
+	{
+		shader3D.bind();
+		shader3D.setUniform("u_Model", gv.identityMatrix);
 
+		glLineWidth(3);
+		shader3D.setUniform("u_fragmentMode", 1);
+
+
+		shader3D.setUniform("u_Color", 0.1, 0.1, 1, 1);
+		line1.line.draw();
+
+		glLineWidth(1);
+
+		shader3D.setUniform("u_Color", 1, 1, 1, 1.0);
+	}
 
 	void drawPendulum()
 	{

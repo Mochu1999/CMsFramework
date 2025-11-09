@@ -6,6 +6,10 @@ struct Buoy
 	Polyhedra support;
 	Polyhedra alternator;
 
+	vector<p3> oPositions;
+	vector<p3> positions;
+	p3 translation;
+
 	float x = 0;
 	float y = 0;
 	float vx = 0;
@@ -13,11 +17,11 @@ struct Buoy
 	float ax = 0;
 	float ay = 0;
 
-	float theta = radians(30);// rad
+	float theta = radians(45);// rad
 	float omega = 0;// rad/s
 	float alpha = 0;// rad/s^2
 
-	float lambda=1;
+	float lambda = 1;
 
 	//EXCEL, A CAMBIAR
 	float draft = 80;
@@ -49,12 +53,38 @@ struct Buoy
 		writeSimplePolyhedra(stl, "Support.bin");*/
 
 		body.addPolyhedra("Cube.bin");
+		oPositions = body.positions;
+		updatePositions();
+
 		alternator.addPolyhedra("Alternator.bin");
 		support.addPolyhedra("Support.bin");
 
 		excel();
 
 	}
+
+	void updatePositions()
+	{
+		positions = oPositions; //reseting from reference
+
+		std::array<float, 4> q = createQuaternion(theta, { 0,0,1 });
+		std::array<float, 4> qInv = inverseQuaternion(q);
+
+		for (auto& p : positions)
+		{
+			// rotate around Z
+			std::array<float, 4> pQuat = { 0, p.x, p.y, p.z };
+			auto rotated = multiplyQuaternions(multiplyQuaternions(q, pQuat), qInv);
+
+			// update and apply translation
+			p.x = rotated[1] + translation.x;
+			p.y = rotated[2] + translation.y;
+			p.z = rotated[3] + translation.z;
+		}
+		body.positions=positions;
+		body.isBufferUpdated = true;
+	}
+
 	void calculatePendulumAcceleration()
 	{
 		//Just for testing purposes
