@@ -20,15 +20,21 @@ struct WettedBody
 	vector<vector<p3>> bodyTr;
 	vector<vector<p3>> allSrfPsts;
 
+
 	struct Face
 	{
 		float area = 0;
 		p3 centroid;
 		p3 n;
+		float force = 0;
+		p3 forceVec;
 
-		Face(float area_, p3 centroid_, p3 n_) :area(area_), centroid(centroid_), n(n_)
+		Face(float area_, p3 centroid_, p3 n_, float depth) :area(area_), centroid(centroid_), n(n_)
 		{
+			force = -1025 * g * depth * area;
+			forceVec = n * force;
 		}
+		
 	};
 	vector<Face> faces;
 
@@ -36,11 +42,11 @@ struct WettedBody
 	WettedBody(vector<p3>& bodyPositions_, vector<unsigned int>& bodyIndices_, Waves& wv_)
 		:bodyPositions(bodyPositions_), bodyIndices(bodyIndices_), wv(wv_)
 	{
-		
+
 
 
 		calculateWettedBody();
-		
+
 	}
 
 
@@ -48,6 +54,8 @@ struct WettedBody
 	// divide the triangle in two and take the wetted part
 	void calculateWettedBody()
 	{
+
+		faces.clear();
 		intersections.clear();
 		bodyTr.clear();
 		allSrfPsts.clear();
@@ -66,7 +74,7 @@ struct WettedBody
 
 		wet.clear();
 
-		
+
 
 		for (size_t i = 0; i < allSrfPsts.size(); i++)
 		{
@@ -77,13 +85,13 @@ struct WettedBody
 			}
 			else
 			{
-				
+
 			}
 		}
-		
+
 	}
 
-	
+
 
 	//It calculates all the intersections at the same time in hope the algorithm ends being executed in the gpu
 	//it takes each body triangle and checks it with every wave triangle
@@ -143,7 +151,7 @@ struct WettedBody
 				});
 			v.erase(std::unique(v.begin(), v.end()), v.end());
 		}
-		
+
 	}
 
 
@@ -186,7 +194,7 @@ struct WettedBody
 		return true;
 	}
 
-	
+
 	// returns how many points were found (0, 1, or 2). MVP assumes generic cases → usually 2 or 0.
 // n·x + d = 0 is the PLANE OF THE OTHER TRIANGLE.
 	int calculateLine(const p3& P0, const p3& P1, const p3& P2, const p3& n, float d, p3& outA, p3& outB)
@@ -218,7 +226,9 @@ struct WettedBody
 	//After getting the srf points, we calculate the centroid and order the points ccw from any point
 	void calculateWettedSurfaces()
 	{
-		for (unsigned int i = 0; i < bodyTr.size(); i ++)
+
+		float currentMaxHeight = 0;
+		for (unsigned int i = 0; i < bodyTr.size(); i++)
 		{
 			//4 and 5 are the lateral faces
 			if (i < 8)
@@ -286,7 +296,17 @@ struct WettedBody
 					//print(srfPsts);
 
 					allSrfPsts.push_back(srfPsts);
-					faces.push_back({2, centroid, n});
+
+					//area calc
+					float area = 0.f;
+					for (size_t k = 0; k < srfPsts.size(); ++k)
+					{
+						p3 p0 = srfPsts[k];
+						p3 p1 = srfPsts[(k + 1) % srfPsts.size()];
+						area += magnitude3(cross3(p0 - centroid, p1 - centroid)) * 0.5f;
+					}
+					currentMaxHeight = aa.y;
+					faces.push_back({ area, centroid, n,currentMaxHeight - centroid.y });
 				}
 				else
 				{
@@ -301,10 +321,20 @@ struct WettedBody
 						}
 					}
 
-					if (allBelow) allSrfPsts.push_back(bodyTr[i]);
+					if (allBelow) 
+					{
+						allSrfPsts.push_back(bodyTr[i]);
 
-					
-					
+						p3 a = bodyTr[i][0];
+						p3 b = bodyTr[i][1];
+						p3 c = bodyTr[i][2];
+
+						p3 n = normalize3(cross3(b - a, c - a));
+						float area = 0.5f * magnitude3(cross3(b - a, c - a));
+						p3 centroid = (a + b + c) / 3.f;
+
+						faces.push_back({ area, centroid, n,currentMaxHeight - centroid.y });
+					}
 				}
 
 			}

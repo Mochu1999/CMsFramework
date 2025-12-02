@@ -8,16 +8,15 @@ struct Buoy
 
 	vector<p3> oPositions;
 	vector<p3> positions;
-	p3 translation;
 
 	float x = 0;
-	float y = 0;
+	float y = -0.73;
 	float vx = 0;
 	float vy = 0;
 	float ax = 0;
 	float ay = 0;
 
-	float theta = radians(45);// rad
+	float theta = radians(0);// rad
 	float omega = 0;// rad/s
 	float alpha = 0;// rad/s^2
 
@@ -25,7 +24,7 @@ struct Buoy
 
 	//EXCEL, A CAMBIAR
 	float draft = 80;
-	float m;
+	float m = 585606; //kg //support + structure
 
 	float A33; //added mass
 	float C33; //restoring coefficient
@@ -39,6 +38,9 @@ struct Buoy
 	float RAO;
 
 	float waveHeight = 2, waveAmplitude = waveHeight / 2; //m
+
+	p3 oCconnectionPoint = { 0,-5,0 };
+	p3 connectionPoint = { 0,-5,0 };
 
 	Buoy()
 	{
@@ -59,13 +61,14 @@ struct Buoy
 		alternator.addPolyhedra("Alternator.bin");
 		support.addPolyhedra("Support.bin");
 
-		excel();
+		//excel();
 
 	}
 
 	void updatePositions()
 	{
 		positions = oPositions; //reseting from reference
+		
 
 		std::array<float, 4> q = createQuaternion(theta, { 0,0,1 });
 		std::array<float, 4> qInv = inverseQuaternion(q);
@@ -77,59 +80,64 @@ struct Buoy
 			auto rotated = multiplyQuaternions(multiplyQuaternions(q, pQuat), qInv);
 
 			// update and apply translation
-			p.x = rotated[1] + translation.x;
-			p.y = rotated[2] + translation.y;
-			p.z = rotated[3] + translation.z;
+			p.x = rotated[1] + x;
+			p.y = rotated[2] + y;
+			p.z = rotated[3] + 0;
+		}
+		{//connection point
+			connectionPoint = oCconnectionPoint;
+			// rotate around Z
+			std::array<float, 4> pQuat = { 0, connectionPoint.x, connectionPoint.y, connectionPoint.z };
+			auto rotated = multiplyQuaternions(multiplyQuaternions(q, pQuat), qInv);
+
+			// update and apply translation
+			connectionPoint.x = rotated[1] + x;
+			connectionPoint.y = rotated[2] + y;
+			connectionPoint.z = rotated[3] + 0;
 		}
 		body.positions=positions;
 		body.isBufferUpdated = true;
+		
 	}
 
-	void calculatePendulumAcceleration()
-	{
-		//Just for testing purposes
-		float tWeight = -(g / 10) * sinf(theta);
+	
+	//void excel()
+	//{
+	//	float D = 20, T = 80;
+	//	p3 cog = { 0,0,0 };
 
-		alpha = tWeight;
+	//	waveFrequency = 1.5;
 
-	}
-	void excel()
-	{
-		float D = 20, T = 80;
-		p3 cog = { 0,0,0 };
+	//	float area = PI * D * D / 4;
 
-		waveFrequency = 1.5;
+	//	m = area * T * rho;
 
-		float area = PI * D * D / 4;
+	//	C33 = rho * g * area;
 
-		m = area * T * rho;
+	//	A33 = (2.0 / 3 * PI * D * D * D / 8) * rho; //Volume of the semi sphere
 
-		C33 = rho * g * area;
+	//	naturalFrequency = pow(C33 / (m + A33), 0.5);
 
-		A33 = (2.0 / 3 * PI * D * D * D / 8) * rho; //Volume of the semi sphere
+	//	period = 2 * PI / naturalFrequency;
 
-		naturalFrequency = pow(C33 / (m + A33), 0.5);
+	//	criticalDamping = 2 * pow((m + A33) * C33, 0.5);
+	//	damping = criticalDamping * 0.05;
 
-		period = 2 * PI / naturalFrequency;
-
-		criticalDamping = 2 * pow((m + A33) * C33, 0.5);
-		damping = criticalDamping * 0.05;
-
-		wavePeriod = 2.0 * PI / waveFrequency;
-		//print(wavePeriod);
-		k = waveFrequency * waveFrequency / g;
-		//print(waveFrequency);
+	//	wavePeriod = 2.0 * PI / waveFrequency;
+	//	//print(wavePeriod);
+	//	k = waveFrequency * waveFrequency / g;
+	//	//print(waveFrequency);
 
 
-		Ffk = C33 * waveAmplitude * exp(-k * draft);
-		//print(Ffk);
+	//	Ffk = C33 * waveAmplitude * exp(-k * draft);
+	//	//print(Ffk);
 
-		RAO = Ffk / waveAmplitude / (-waveFrequency * waveFrequency * (m + A33) + C33);
-		//print(RAO);
+	//	RAO = Ffk / waveAmplitude / (-waveFrequency * waveFrequency * (m + A33) + C33);
+	//	//print(RAO);
 
-		RAO = Ffk / waveAmplitude / pow(pow((-waveFrequency * waveFrequency * (m + A33) + C33), 2) + pow(waveFrequency * damping, 2), 0.5);
-		//print(RAO);
-	}
+	//	RAO = Ffk / waveAmplitude / pow(pow((-waveFrequency * waveFrequency * (m + A33) + C33), 2) + pow(waveFrequency * damping, 2), 0.5);
+	//	//print(RAO);
+	//}
 	void printOffshore()
 	{
 		print(A33);

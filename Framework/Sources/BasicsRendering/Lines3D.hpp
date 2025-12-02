@@ -72,17 +72,16 @@ struct Lines3D {
 			createIndices0(items);
 		}
 		////pairs
-		//else if (isConsecutiveIndices == 2)
-		//{
-		//	
-		//} 
+		else if (isConsecutiveIndices == 2) {
+			createIndices2(items);
+		}
 
 		isBufferUpdated = true;
 	}
 
 	unsigned int indexOffset = 0;	//to add indices over previoses sets
 
-	//mode 0 is consecutive, COMPROBAR, RESERVES
+	//mode 0 is consecutive
 	void createIndices0(const vector<p3>& items) {
 
 		for (unsigned int i = 0; i < items.size() - 1; i++)
@@ -93,16 +92,18 @@ struct Lines3D {
 		indexOffset = indices.back() + 1;
 	}
 
-	////pairs, NO SÉ QUE ES ESTO, estaba antes de que separara createIndices de addSet
-	//void createIndices1(const vector<p2>& items){
-	//	indices.clear();
-	//	indices.reserve(items.size());
-	//	for (unsigned int i = 0; i < items.size() - 1; i += 2)
-	//	{
-	//		indices.emplace_back(i);
-	//		indices.emplace_back(i + 1);
-	//	}
-	//}
+	// mode 2 = pairs (i, i+1) for each arrow
+	void createIndices2(const vector<p3>& items) {
+		if (items.size() < 2) return;
+
+		const unsigned int n = static_cast<unsigned int>(items.size());
+		const unsigned int last = n - (n % 2); // ignore last if odd
+
+		for (unsigned int i = 0; i + 1 < last; i += 2) {
+			indices.insert(indices.end(), { indexOffset + i, indexOffset + i + 1 });
+		}
+		if (!indices.empty()) indexOffset = indices.back() + 1;
+	}
 
 	//SUBSTITUTE IS MISSING
 

@@ -6,7 +6,7 @@ struct Axis {
 	Shader& shader3D;
 	GlobalVariables& gv;
 
-	Lines3D xLine, yLine, zLine, xLine2, zLine2;
+	Lines3D xLine, yLine, zLine, xLine2, zLine2,extra;
 
 	Axis(Shader& shader3D_, GlobalVariables& gv_) :shader3D(shader3D_), gv(gv_)
 	{
@@ -15,7 +15,7 @@ struct Axis {
 		zLine.addSet({ {0,0,-100},{0,0,100} });
 		xLine2.addSet({ {0,0,0},{5,0,0} });
 		zLine2.addSet({ {0,0,0},{0,0,5} });
-
+		extra.addSet({ {0,0,0},{5.76847,5.76847,5.76847} },2);
 
 
 
@@ -38,12 +38,15 @@ struct Axis {
 		yLine.draw();
 		shader3D.setUniform("u_Color", 0.0, 0.0, 1.0, 1.0);
 		zLine.draw();
+		shader3D.setUniform("u_Color", 1, 1, 1, 1.0);
+		//extra.draw();
 
 		glLineWidth(1);
 
 		shader3D.setUniform("u_Color", 1, 1, 1, 1.0);
 
 	}
+	//deprecated?
 	void draw(matrix4x4& modelMatrix)
 	{
 		shader3D.bind();

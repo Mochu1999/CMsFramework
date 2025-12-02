@@ -9,16 +9,19 @@ struct Waves {
 	TimeStruct& tm;
 	float length = 100;
 
-	int n = 40; //number of points in one axis of the square grid, minimum 2
+	int n = 20; //number of points in one axis of the square grid, minimum 2
 	int segments = n - 1;
 
 	float interval = length / segments;
 
 
 
-	float period = 40;
+	float period = 7;
 	float frecuency = 2 * PI / period;
-	float amplitude = 3;
+	float omega = 2 * PI / period;
+	float k = (omega * omega) / g;
+
+	float amplitude = 1.5;
 	float offset = 0;
 	float phase = 0;
 	float phaseSpeed = 0.01;
@@ -54,8 +57,8 @@ struct Waves {
 	float waveFunction(float x, float z) {
 		//return amplitude * sin(100 * x + phase) * sin(100 * z) + offset;
 		//return amplitude * sin(100 * x + phase) + offset;
-		return amplitude * sin(frecuency * x - frecuency*tm.currentTime*10);
-
+		//return amplitude * sin(frecuency * x - frecuency*tm.currentTime*10);
+		return amplitude * sin(k * x - omega * tm.currentTime);
 	}
 
 

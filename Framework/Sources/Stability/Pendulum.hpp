@@ -12,7 +12,7 @@ struct Pendulum
 	float l = 2; //m
 	float inertia = m * l * l; //puntual mass, kg*m^2 
 
-	float theta = PI * 2 / 3;// rad
+	float theta = radians(10);// rad
 	float omega = 0;// rad/s
 	float alpha = 0;// rad/s^2
 
@@ -61,6 +61,7 @@ struct Pendulum
 		else*/ buoy.lambda = 1;
 		float bGen = 1; //kt^2/Rl
 		tGen = -buoy.lambda * (bGen /*/ inertia*/) * (omega - buoy.omega);
+		//tGen = 0;
 		genEnergy = abs(tGen) * 0.98*9.81*1000;
 		//tGen = 0;
 		//print(tGen);

@@ -80,10 +80,6 @@ struct ProgressBar {
 
 		shaderText.bind();
 
-
-
-		
-
 		text.draw();
 
 	}

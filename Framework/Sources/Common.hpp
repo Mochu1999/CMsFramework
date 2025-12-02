@@ -309,7 +309,8 @@ vec3<T> normalize3(const vec3<T>& v) {
 	return vec3<T>(v.x * magnitude_inv, v.y * magnitude_inv, v.z * magnitude_inv);
 }
 
-//modulus
+
+//modulus - length
 template<typename T>
 float magnitude3(const vec3<T>& v) { 
 	float magnitudeSquared = v.x * v.x + v.y * v.y + v.z * v.z;

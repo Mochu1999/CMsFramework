@@ -24,33 +24,37 @@ struct Mooring
 	float A = PI * d * d / 4;
 	float w = (rhoRope - rhoWater) * g * A; //N/m
 
+	p3 tension; //in the connection point, vector
 
 	//horizontal distance,
 	float H = sqrt((connectionPoint.x - fixedPoint.x) * (connectionPoint.x - fixedPoint.x)
 		+ (connectionPoint.z - fixedPoint.z) * (connectionPoint.z - fixedPoint.z));
 
-	float L =  1.03 * sqrt(H * H + v * v);
+	float L =  1.06 * sqrt(H * H + v * v);
 
 	float a;//catenary parameter [m], higher a higher tension
 
 	Mooring(p3 fixedPoint_, p3& connectionPoint_)
 		:fixedPoint(fixedPoint_), connectionPoint(connectionPoint_)
 	{
+		print(w);
 		update();
 
 		generateCurve();
-		print(positions);
+		//print(positions);
 	}
 
 	void update()
 	{
+
+		line.clear();
 		calculateA();
 
-		print(w);
+		/*print(w);
 		print(a);
 		print(L);
 		print(H);
-		print(v);
+		print(v);*/
 
 		float AL = L / a, BV = v / a, D = 0.5 * sqrt(AL * AL - BV * BV);
 		float u = atanh(BV / AL);
@@ -60,12 +64,31 @@ struct Mooring
 		float Tfixed = w * sqrt(a * a + s1 * s1);
 		float Tconn = w * sqrt(a * a + s2 * s2);
 
-		print(T0);
+		/*print(T0);
 		print(Tfixed);
-		print(Tconn);
+		print(Tconn);*/
 
 		generateCurve();
-		getCurveLength();
+		getConnectionForce();
+		//getCurveLength();
+	}
+
+	void getConnectionForce()
+	{
+		float AL = L / a, BV = v / a, D = 0.5f * sqrt(AL * AL - BV * BV);
+		float u = atanh(BV / AL);
+		float s2 = a * sinh(u + asinh(D));
+
+		float T0 = w * a;
+		float Ty = w * s2;
+		float T = sqrt(T0 * T0 + Ty * Ty);
+
+		// dirección en planta (horizontal)
+		p3 dirH = normalize3(p3{ connectionPoint.x - fixedPoint.x, 0.0f, connectionPoint.z - fixedPoint.z });
+
+		// componentes vectoriales
+		tension = { -dirH.x * T0, -Ty, -dirH.z * T0 }; // apunta desde conexión hacia línea
+		
 	}
 
 	void calculateA()
