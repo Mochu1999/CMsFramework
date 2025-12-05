@@ -125,8 +125,9 @@ void Shader::unbind() {
 
 
 
-
-GLFWwindow* initialize() {
+//General window, where you don't specify anything
+GLFWwindow* initialize() 
+{
 	glfwInit();
 
 
@@ -161,6 +162,45 @@ GLFWwindow* initialize() {
 
 	GLFWwindow* window = glfwCreateWindow(mode->width, mode->height, "PR0JET R4CC00N", NULL, NULL);
 	*/
+
+
+	glfwMakeContextCurrent(window);
+	//glewExperimental = GL_TRUE;
+	glewInit();
+	glfwSwapInterval(1); //0 is vsync disable
+
+	glEnable(GL_LINE_SMOOTH);
+	glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+
+
+
+
+	return window;
+}
+
+//specific version where you set the window's height and name
+GLFWwindow* initialize(float windowWidth_,float windowHeight_, const char* windowName)
+{
+	windowWidth = windowWidth_;
+	windowHeight = windowHeight_;
+	glfwInit();
+
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+	glfwWindowHint(GLFW_FLOATING, GLFW_TRUE);
+
+	glfwWindowHint(GLFW_SAMPLES, 4);  // Request 4x MSAA for antialiasing
+	glEnable(GL_MULTISAMPLE);
+
+	//glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
+
+	//fullscreen
+	//GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "CM's Framework", glfwGetPrimaryMonitor(), NULL);
+	GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, windowName, NULL, NULL);
+
 
 
 	glfwMakeContextCurrent(window);

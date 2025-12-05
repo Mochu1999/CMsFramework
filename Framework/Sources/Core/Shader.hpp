@@ -104,7 +104,7 @@ struct Shader {
 
 //Initializes glfw and glew
 GLFWwindow* initialize();
-
+GLFWwindow* initialize(float windowWidth_, float windowHeight_, const char* windowName = " ");
 
 
 void clearScreen(GlobalVariables gv);

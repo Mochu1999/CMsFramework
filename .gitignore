@@ -1,37 +1,20 @@
-# Build & IDE garbage
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
-*.sln
-*.user
-*.log
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-build/
-*.dir/
-.vs/
-.idea/
-
-# Ignore everything inside Framework
 Framework/**
+#to include foldes of a ignored file
+!Framework/**/
 
 # Allow top-level scripts & marker
 !Framework/cleanFramework.bat
 !Framework/createSolutions.bat
-!Framework/.gitkeep
 
 # Allow project dirs
-!Framework/Sources/
-!Framework/Resources/
-!Framework/General/
-!Framework/Offshore/
+!Framework/Resources/**
+# Except the heavy folder
+Framework/Resources/Heavy/**
 
 # Allow content inside those dirs
-!Framework/Sources/**
-!Framework/Resources/**
-!Framework/General/**
-!Framework/Offshore/**
+!Framework/**/*.h
+!Framework/**/*.hpp
+!Framework/**/*.cpp
+!Framework/**/CMakeLists.txt
 
-# Ignore heavy folder
-Framework/Resources/Heavy/**
+
