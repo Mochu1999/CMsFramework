@@ -2,11 +2,8 @@
 
 #include "Common.hpp"
 #include "Body.hpp"
+#include "Lines3D.hpp"
 
-
-//if press numpad when solarProgram focus on the body
-//custom camera different from telemtry and such
-//DIST CAN BE ZERO
 
 struct Solar
 {
@@ -29,7 +26,9 @@ struct Solar
 	Lines2D dataBoxOutline;
 	Text dataText;
 
-	matrix4x4 model3DMatrix = camera.identityMatrix;
+	matrix4x4 model3DMatrix = identityMatrix;
+
+	vector<Lines3D> trajectoriesLines;
 
 
 	Solar(Shader& shader3D_, Shader& shader2D_, Shader& shaderText_, Camera& camera_, GlobalVariables& gv_, TimeStruct& tm_)
@@ -37,22 +36,23 @@ struct Solar
 		, dataText("resources/Glyphs/Helvetica/Helvetica.otf", 20)
 	{
 
-		vector<p2> dataRectangle = createRoundedSquare(windowTotal-p2{300,100}, windowTotal, 30);
+		vector<p2> dataRectangle = createRoundedSquare(windowTotal - p2{ 300,100 }, windowTotal, 30);
 		dataBoxOutline.addSet(dataRectangle);
 		dataBox.addSet(dataRectangle);
 
-		if (gv.program == solarProgram) //an if because all other programs use other u_lightPos
-			activateLight();
+		activateLight();
 
 		//Sphere is not copy/move safe, so it won't survive reallocation. Reserve for all the bodies or they'll break
 		bodies.reserve(100);
-		addBody(7.5e10, 2, { 0,0,0 }, { 0,0,0 });
-		addBody(1e6, 0.5, { 5,0,0 }, { 0,0,1 });
-		//addBody(1000, 0.5, { 25,0,0 }, { 0,0,-15 });
+		addBody(7.5e18, 1000, { 0,0,0 }, { 0,0,0 });
+		addBody(1e15, 100, { 10000,0,0 }, { 0,0,123 });
+		addBody(1e15, 100, { 20000,0,0 }, { 0,0,158 });
 
 		cancelingMomentumSun();
 		calculateAccelerations();
+		calculateTrajectories();
 	}
+
 
 	void addBody(float mass, float radius, p3 position = { 0,0,0 }, p3 velocity = { 0,0,0 })
 	{
@@ -68,16 +68,20 @@ struct Solar
 		{
 			for (size_t j = i + 1; j < bodies.size(); ++j)
 			{
-				// vector from i to j
 				p3 r = bodies[j].position - bodies[i].position;
-				float dist = magnitude3(r);
-				p3 dir = normalize3(r);
+				// a = G*m*r/|r^3|
+				float r2 = dot3(r, r) + eps * eps; //Plummer softening
+				float inv = 1.0 / sqrt(r2);
+				float inv3 = inv * inv * inv;
 
-				bodies[i].acceleration += G * bodies[j].mass * dir / (dist * dist);
-				bodies[j].acceleration += -G * bodies[i].mass * dir / (dist * dist);
+				bodies[i].acceleration += G * bodies[j].mass * r * inv3;
+				bodies[j].acceleration -= G * bodies[i].mass * r * inv3;
 			}
 		}
 	}
+
+
+
 
 	//velocity verlet, kick-drift-kick or leapfrog
 	void update()
@@ -113,6 +117,7 @@ struct Solar
 
 	void draw()
 	{
+		calculateTrajectories();
 		update();
 
 		opaque();
@@ -125,6 +130,7 @@ struct Solar
 		shader3D.setUniform("u_Model", model3DMatrix);
 
 		shader3D.setUniform("u_Color", 249 / 255.0f, 215 / 255.0f, 28 / 255.0f, 1.0f);
+
 		bodies[0].draw();
 
 
@@ -139,7 +145,17 @@ struct Solar
 			bodies[i].draw();
 		}
 
+		shader3D.setUniform("u_Model", identityMatrix);
+		shader3D.setUniform("u_fragmentMode", 1);
+		for (auto t : trajectoriesLines)
+		{
+			t.draw();
+		}
+
+
 		drawData();
+
+
 	}
 
 
@@ -159,7 +175,7 @@ struct Solar
 		{
 			for (size_t j = i + 1; j < bodies.size(); ++j)
 			{
-				float dist = magnitude3(bodies[j].position - bodies[i].position);
+				float dist = magnitude3(bodies[j].position - bodies[i].position) + eps;
 				potential += -G * bodies[i].mass * bodies[j].mass / dist;
 			}
 		}
@@ -185,7 +201,7 @@ struct Solar
 	{
 		transparent();
 		shader2D.bind();
-		shader2D.setUniform("u_Model", gv.identityMatrix);
+		shader2D.setUniform("u_Model", identityMatrix);
 		shader2D.setUniform("u_Color", 40 / 255.0f, 40 / 255.0f, 40 / 255.0f, 1.0f);
 		dataBox.draw();
 		shader2D.setUniform("u_Color", 40.0f / 255.0f, 239.9f / 255.0f, 239.0f / 255.0f, 1);
@@ -195,8 +211,9 @@ struct Solar
 
 		shaderText.bind();
 		dataText.addDynamicText({
-			{windowTotal-p2{280,60}, "Total Energy: ",totalEnergy}
+			{windowTotal - p2{280,60}, "Total Energy: ",totalEnergy}
 			});
+		shaderText.setUniform("u_Color", 1.0f, 1.0f, 1.0f);
 		dataText.draw();
 
 	}
@@ -208,6 +225,88 @@ struct Solar
 		{
 			shader3D.bind();
 			shader3D.setUniform("u_lightPos", bodies[0].position);
+		}
+	}
+
+
+
+
+
+
+
+
+	void calculateTrajectories()
+	{
+		const int steps = 2000;
+		const int stride = 5;
+		const float dt = tm.solarUpdateInterval * 1000;
+
+		vector<vector<p3>> trajectories(bodies.size());
+
+		struct State
+		{
+			p3 pos;
+			p3 vel;
+			p3 acc;
+			float mass;
+		};
+
+		vector<State> s(bodies.size());
+
+		// snapshot
+		for (size_t i = 0; i < bodies.size(); ++i)
+		{
+			s[i].pos = bodies[i].position;
+			s[i].vel = bodies[i].velocity;
+			s[i].acc = bodies[i].acceleration;
+			s[i].mass = bodies[i].mass;
+		}
+
+		for (int step = 0; step < steps; ++step)
+		{
+			// kick
+			for (auto& b : s)
+				b.vel += 0.5f * dt * b.acc;
+
+			// drift
+			for (auto& b : s)
+				b.pos += dt * b.vel;
+
+			// recompute accelerations
+			for (auto& b : s)
+				b.acc = { 0,0,0 };
+
+			for (size_t i = 0; i < s.size(); ++i)
+			{
+				for (size_t j = i + 1; j < s.size(); ++j)
+				{
+					p3 r = s[j].pos - s[i].pos;
+					float r2 = dot3(r, r) + eps * eps;
+					float inv = 1.0f / sqrt(r2);
+					float inv3 = inv * inv * inv;
+
+					p3 a = G * r * inv3;
+					s[i].acc += a * s[j].mass;
+					s[j].acc -= a * s[i].mass;
+				}
+			}
+
+			// kick
+			for (auto& b : s)
+				b.vel += 0.5f * dt * b.acc;
+
+			// record
+			if (step % stride == 0)
+			{
+				for (size_t i = 0; i < s.size(); ++i)
+					trajectories[i].push_back(s[i].pos);
+			}
+		}
+		trajectoriesLines.clear();
+		for (size_t i = 0; i < bodies.size(); i++)
+		{
+			trajectoriesLines.emplace_back();
+			trajectoriesLines.back().addSet(trajectories[i]);
 		}
 	}
 };

@@ -23,7 +23,7 @@ struct MainOC
 
 	Sphere light;
 	p3 lightPos = { 300,250,400 };
-	matrix4x4 model3DMatrix = gv.identityMatrix;
+	matrix4x4 model3DMatrix = identityMatrix;
 
 	Lines3D lines;
 	Polyhedra polygon;
@@ -54,7 +54,7 @@ struct MainOC
 
 	MainOC(Shader& shader3D_, Shader& shaderText_, Camera& camera_, GlobalVariables& gv_)
 		:shader3D(shader3D_), shaderText(shaderText_), camera(camera_), gv(gv_), light(3)
-		, axisOCC(shader3D, gv, gv.identityMatrix), axis(shader3D, gv),
+		, axisOCC(shader3D, gv, identityMatrix), axis(shader3D, gv),
 		cadCreator(shader3D, camera, gv, renders[0]), text("resources/Glyphs/Helvetica/Helvetica.otf", 36)
 		, render0(gv, shader3D), render1(gv, shader3D), render2(gv, shader3D), render3(gv, shader3D), render4(gv, shader3D)
 		, render5(gv, shader3D), render6(gv, shader3D), render7(gv, shader3D), render8(gv, shader3D), render9(gv, shader3D)
@@ -95,13 +95,13 @@ struct MainOC
 
 
 		shader3D.bind();
-		shader3D.setUniform("u_Model", gv.modelMatrixOCC);
+		shader3D.setUniform("u_Model", identityMatrix);
 		if (gv.cameraMode == centered)
 		{
-			axisOCC.draw(gv.modelMatrixOCC);
+			axisOCC.draw(identityMatrix);
 		}
 
-		axis.draw(gv.modelMatrixOCC);
+		axis.draw(identityMatrix);
 
 
 

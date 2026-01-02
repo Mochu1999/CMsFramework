@@ -10,9 +10,9 @@ struct Axis {
 
 	Axis(Shader& shader3D_, GlobalVariables& gv_) :shader3D(shader3D_), gv(gv_)
 	{
-		xLine.addSet({ {-100,0,0},{100,0,0} });
-		yLine.addSet({ {0,-100,0},{0,100,0} });
-		zLine.addSet({ {0,0,-100},{0,0,100} });
+		xLine.addSet({ {-10000,0,0},{10000,0,0} });
+		yLine.addSet({ {0,-10000,0},{0,10000,0} });
+		zLine.addSet({ {0,0,-10000},{0,0,10000} });
 		xLine2.addSet({ {0,0,0},{5,0,0} });
 		zLine2.addSet({ {0,0,0},{0,0,5} });
 		extra.addSet({ {0,0,0},{5.76847,5.76847,5.76847} },2);
@@ -26,7 +26,7 @@ struct Axis {
 	void draw() 
 	{
 		shader3D.bind();
-		shader3D.setUniform("u_Model", gv.identityMatrix);
+		shader3D.setUniform("u_Model", identityMatrix);
 
 		glLineWidth(2); //this is deprecated and platform dependent
 		shader3D.setUniform("u_fragmentMode", 1);
@@ -98,7 +98,7 @@ struct AxisOCC {
 	void draw(matrix4x4& modelMatrixOCC) 
 	{
 		shader3D.bind();
-		shader3D.setUniform("u_Model", gv.identityMatrix);
+		shader3D.setUniform("u_Model", identityMatrix);
 
 		glLineWidth(0.5);
 		shader3D.setUniform("u_fragmentMode", 1);

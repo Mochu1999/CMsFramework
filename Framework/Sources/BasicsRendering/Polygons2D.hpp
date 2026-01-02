@@ -46,7 +46,7 @@ struct Polygons2D {
 
 		positions.insert(positions.end(), items.begin(), items.end());
 
-		
+
 		createConvexIndices(items);
 
 		isBufferUpdated = true;
@@ -61,10 +61,31 @@ struct Polygons2D {
 		positions.insert(positions.end(), items.begin(), items.end());
 
 		indices = indices_;
-		
+
 
 		isBufferUpdated = true;
 	}
+
+	//Specific for buttons (or just squares giving 2 corners)
+	//the only requisit is that corners are at different heights
+	void addSet(const p2 c1, const p2 c2)
+	{
+		if (c1.y == c2.y) return;
+
+		clear(); //only one polygon can exist at any given time in this mode
+
+		float xMin = min(c1.x, c2.x);
+		float xMax = max(c1.x, c2.x);
+		float yMin = min(c1.y, c2.y);
+		float yMax = max(c1.y, c2.y);
+
+		positions.insert(positions.end(), { p2{ xMin,yMin }, p2{ xMax,yMin }, p2{xMax,yMax },p2{xMin,yMax} });
+
+		indices.insert(indices.end(), { 0,1,3,1,2,3 });
+		isBufferUpdated = true;
+	}
+
+
 
 	unsigned int indexOffset = 0;
 	//INTEGRATE SWEEPTRIANGULATION  AS ANOTHER FUNCTION TO BE USED HERE
@@ -73,7 +94,7 @@ struct Polygons2D {
 		for (unsigned int i = 0; i < items.size() - 3; i++)
 		{
 			indices.insert(indices.end(), { indexOffset,indexOffset + i + 1,indexOffset + i + 2 });
-			
+
 		}
 
 		indexOffset = indices.back() + 2;//position[indices.back()+1] is positions[indices.front()], must be +2

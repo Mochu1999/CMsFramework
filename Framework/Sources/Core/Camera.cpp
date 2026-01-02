@@ -31,7 +31,11 @@ array<float, 16> Camera::createOrthoMatrix() {
 	return orthoMatrix;
 }
 
-array<float, 16> Camera::createPerspectiveMatrix() {
+array<float, 16> Camera::createPerspectiveMatrix() 
+{
+	float nearZ = 0.1f;
+	float farZ = 500000.0f;
+
 	array<float, 16> perspectiveMatrix = {};
 
 	float tanHalfFov = tan(fov / 2);
@@ -106,7 +110,7 @@ void Camera::updateCamera() {
 	p2 currentMiddleMPosVariation = gv.LastMMPos - gv.mPos;
 
 
-	if (gv.program == telemetry || gv.program == solarProgram || gv.program == openCascade || gv.program == offshoreProgram)
+	if (gv.program == telemetry  || gv.program == openCascade || gv.program == offshoreProgram)
 	{
 		if (gv.cameraMode == drag && gv.isLmbPressed)
 		{

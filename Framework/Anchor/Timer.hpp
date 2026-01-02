@@ -1,5 +1,6 @@
 #pragma once
 
+//rename to stopwatch
 struct Timer
 {
 	string name;

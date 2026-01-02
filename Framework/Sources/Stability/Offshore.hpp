@@ -230,12 +230,12 @@ struct Offshore
 
 		ui.draw();
 
-		overlay.draw();
+		/*overlay.draw();
 
 		graphic.draw();
 		graphic2.draw();
 
-		pb.draw();
+		pb.draw();*/
 	}
 
 

@@ -17,7 +17,7 @@ struct Light
 	Camera& camera;
 	Sphere light;
 
-	std::array<float, 16> shipModel3DMatrix = camera.identityMatrix;
+	std::array<float, 16> shipModel3DMatrix = identityMatrix;
 
 
 	Polyhedra stl;
@@ -95,7 +95,7 @@ struct Light
 	void draw() 
 	{
 		shader3D.bind();
-		shader3D.setUniform("u_Model", camera.identityMatrix);
+		shader3D.setUniform("u_Model", identityMatrix);
 		shader3D.setUniform("u_fragmentMode", 1);
 		light.draw();
 
@@ -157,7 +157,7 @@ struct Light
 
 		//Timon
 		{
-			shipModel3DMatrix = camera.identityMatrix;
+			shipModel3DMatrix = identityMatrix;
 
 			camera.rotate3DModelMatrix(rudderMatrix, rudderAngle, { 0,1,0 });
 			camera.translate3DModelMatrix(rudderMatrix, shipHeave);
@@ -197,7 +197,7 @@ struct Light
 
 
 
-			shader3D.setUniform("u_Model", camera.identityMatrix);
+			shader3D.setUniform("u_Model", identityMatrix);
 
 		}
 
@@ -228,7 +228,7 @@ struct Light
 		solar2.stlDraw();
 
 
-		shader3D.setUniform("u_Model", camera.identityMatrix);
+		shader3D.setUniform("u_Model", identityMatrix);
 		camera.translate3DModelMatrix(shipModel3DMatrix, { -waterLength / 2,0,-waterLength / 2 });
 		shader3D.setUniform("u_Model", shipModel3DMatrix);
 
@@ -239,7 +239,7 @@ struct Light
 		opaque();
 
 
-		shader3D.setUniform("u_Model", camera.identityMatrix);
+		shader3D.setUniform("u_Model", identityMatrix);
 
 
 

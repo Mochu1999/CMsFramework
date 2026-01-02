@@ -1,4 +1,4 @@
-#include "IncludesAnchor.hpp"
+#include "IncludesSolar.hpp"
 
 
 int main(void)
@@ -6,7 +6,7 @@ int main(void)
 	GlobalVariables gv;
 	gv.program = offshoreProgram;
 
-	GLFWwindow* window = initialize(150, 120, "Anchor");
+	GLFWwindow* window = initialize();
 
 
 
@@ -19,36 +19,36 @@ int main(void)
 	Camera camera(window, shader3D, shader2D, shader2D_Instanced, shaderText, gv);
 
 
+	Axis axis(shader3D, gv);
+	Solar solar(shader3D, shader2D, shaderText, camera, gv, tm);
+	
 
-	Anchor anchor(window,gv,tm,shader2D, shaderText);
+	SettingsSolar settings(camera, gv);
 
-	/*shader2D.bind();
-	shader2D.setUniform("u_Model", identityMatrix);*/
-
-	//SettingsOffshore settings(camera, gv);
-
-	AllPointers allPointers(&camera, &gv, &anchor);
+	AllPointers allPointers(&camera, &gv);
 	glfwSetWindowUserPointer(window, &allPointers);
 	glfwSetKeyCallback(window, keyboardEventCallback);
 	glfwSetMouseButtonCallback(window, mouseEventCallback);
 	glfwSetScrollCallback(window, scrollCallback);
 
-
-
+	print(sizeof(double));
+	print(sizeof(long double));
 	while (!glfwWindowShouldClose(window))
 	{
-		getPos(window, gv.mPos); 
+		
+
+		getPos(window, gv.mPos);
 		if (gv.isRunning)
 		{
 			tm.update();
 
-			clearScreen(gv);
-
-			anchor.update();
-			anchor.draw();
-
+			opaque();
+			glClearColor(0.035f, 0.065f, 0.085f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
+			axis.draw();
+			solar.draw();
 
 
 			keyboardRealTimePolls(window, gv, camera);
@@ -60,7 +60,7 @@ int main(void)
 		glfwPollEvents();
 
 	}
-	//settings.write();
+	settings.write();
 	glfwDestroyWindow(window);
 	glfwTerminate();
 	return 0;

@@ -218,7 +218,7 @@ struct Graphic {
 			shader2D.setUniform("u_Color", 1, 1, 1, 1);
 			gridStatic.draw();
 
-			shader2D_Instanced.setUniform("u_Model", camera.identityMatrix);
+			shader2D_Instanced.setUniform("u_Model", identityMatrix);
 
 			shader2D_Instanced.setUniform("u_Color", 0.5, 0.5, 0.5, 0.5);
 			gridDynamic.draw();
@@ -239,7 +239,7 @@ struct Graphic {
 			shader2D.bind();
 			shader2D.setUniform("u_Color", 40.0f / 255.0f, 239.9f / 255.0f, 239.0f / 255.0f, 1);
 			glLineWidth(3);
-			shader2D_Instanced.setUniform("u_Model", camera.identityMatrix);
+			shader2D_Instanced.setUniform("u_Model", identityMatrix);
 			frame.draw();
 			glLineWidth(1);
 		}

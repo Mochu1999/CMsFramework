@@ -5,9 +5,11 @@
 #include "Time.hpp"
 #include "Camera.hpp"
 #include "BinariesManager.hpp"
-#include "KeyMouseImputs.hpp"
 #include "FilesManagement.hpp"
-#include "Settings.hpp"
+
+
+#include "SettingsSolar.hpp"
+#include "KeyMouseInputsSolar.hpp"
 
 
 #include "Lines3D.hpp"
@@ -27,17 +29,12 @@
 #include "Arrows.hpp"
 #include "Globe.hpp"
 
-#include "Waves.hpp"
 #include "Delaunay2D.hpp"
 #include "WettedSurface.hpp"
 
 #include "Graphics.hpp"
-#include "Autopilot.hpp"
 #include "Axis.hpp"
-#include "Light.hpp"
 #include "Overlay2D.hpp"
 #include "ProgressBar.hpp"
 
-//#include "Solar.hpp"
-#include "MainOC.hpp"
-#include "Offshore.hpp"
+#include "Solar.hpp"

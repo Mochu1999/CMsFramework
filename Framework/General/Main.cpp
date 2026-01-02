@@ -51,7 +51,6 @@ int main(void)
 	Graphic graphic2(shader2D, shader2D_Instanced, shaderText, camera, tm, "rudderAngle", { 1400,400 }, ship.rudderAngle);
 	//ProgressBar pb(shader2D, shader2D_Instanced, shaderText, camera, tm, { 1400 - 50,700 });
 	Autopilot autopilot(shader2D, shaderText, shader2D_Instanced, gv, tm);
-	Solar solar(shader3D, shader2D, shaderText, camera, gv, tm);
 	MainOC mainOC(shader3D, shaderText, camera, gv);
 
 	//Offshore offshore(shader3D, shader2D, shaderText, camera, gv, tm);
@@ -96,12 +95,6 @@ int main(void)
 
 			case MRS:
 				autopilot.update();
-				break;
-
-			case solarProgram:
-				axis.draw();
-				solar.draw();
-
 				break;
 
 			case openCascade:
@@ -155,7 +148,7 @@ int main(void)
 
 			transparent();
 			shader2D.bind();
-			shader2D.setUniform("u_Model", camera.identityMatrix);
+			shader2D.setUniform("u_Model", identityMatrix);
 			shader2D.setUniform("u_Color", 1, 1, 1, 0.5);
 			glLineWidth(2);
 			centerCross.draw();

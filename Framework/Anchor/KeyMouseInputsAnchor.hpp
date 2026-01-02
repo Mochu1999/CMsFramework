@@ -47,42 +47,7 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 				gv->isRunning = !gv->isRunning;
 				print(gv->isRunning);
 				break;
-			case GLFW_KEY_Q:
-				if (!anchor->brainrot.running)
-				{
-					anchor->brainrot.resume();
-					anchor->work.stop();
-					anchor->pleasure.stop();
 
-				}
-				else
-					anchor->brainrot.stop();
-
-				break;
-			case GLFW_KEY_W:
-				if (!anchor->work.running)
-				{
-					anchor->brainrot.stop();
-					anchor->work.resume();
-					anchor->pleasure.stop();
-
-				}
-				else
-					anchor->work.stop();
-
-				break;
-			case GLFW_KEY_E:
-				if (!anchor->pleasure.running)
-				{
-					anchor->brainrot.stop();
-					anchor->work.stop();
-					anchor->pleasure.resume();
-
-				}
-				else
-					anchor->pleasure.stop();
-
-				break;
 
 			}
 
@@ -108,42 +73,30 @@ void getPos(GLFWwindow* window, p2& mPos) {
 	mPos = { (float)xpos1,(float)(windowHeight - ypos1) };
 }
 
+//only triggered when a mouse button is pressed or released
 void mouseEventCallback(GLFWwindow* window, int button, int action, int mods) {
 	AllPointers* allPointers = static_cast<AllPointers*>(glfwGetWindowUserPointer(window));
-	GlobalVariables* gv = allPointers->gv;
-	Camera* camera = allPointers->camera;
+	Anchor* anchor = allPointers->anchor;
 
-	//LEFT
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	//gets in what state are we 
+	ButtonMode mode = anchor->ui.processMouseButton(button, action);
+	if (mode == None) return;
+
+	else if(mode == Close)
 	{
-		gv->isLmbPressed = 1;
-		gv->LastLMPos = gv->mPos;
-
-
-	}
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
-	{
-		gv->isLmbPressed = 0;
+		glfwSetWindowShouldClose(window, GLFW_TRUE);
+		return;
 	}
 
-	//RIGHT
-	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	else if (mode == Minimize)
 	{
-
-
+		glfwIconifyWindow(window);
+		return;
 	}
 
-
-	//MIDDLE
-	if (button == GLFW_MOUSE_BUTTON_MIDDLE && action == GLFW_PRESS)
-	{
-		gv->isMmbPressed = 1;
-		gv->LastMMPos = gv->mPos;
-	}
-	if (button == GLFW_MOUSE_BUTTON_MIDDLE && action == GLFW_RELEASE)
-	{
-		gv->isMmbPressed = 0;
-	}
+	anchor->mode = mode;
+	anchor->logic();
+	
 }
 
 

@@ -21,14 +21,13 @@ struct Camera {
 
 	float fov = 45.0f * PI / 180;
 	float aspectRatio = windowWidth / windowHeight;
-	float nearZ = 0.1f;
-	float farZ = 3000.0f;
+	
 
 	float centeredAngleRotation = 0.1;
 	float centeredRadius = 0;
 
 
-	std::array<float, 16> perspectiveMatrix, viewMatrix, vpMatrix, orthoMatrix, identityMatrix;
+	std::array<float, 16> perspectiveMatrix, viewMatrix, vpMatrix, orthoMatrix;
 	
 
 	p3 cameraPos;
@@ -45,7 +44,6 @@ struct Camera {
 	Camera(GLFWwindow* window_, Shader& shader3D_, Shader& shader2D_, Shader& shader2D_Instanced_, Shader& shaderText_, GlobalVariables& gv_)
 		:window(window_), shader3D(shader3D_), shader2D(shader2D_), shader2D_Instanced(shader2D_Instanced_), shaderText(shaderText_), gv(gv_) 
 	{
-		identityMatrix = gv.identityMatrix;
 		orthoMatrix = createOrthoMatrix();
 		perspectiveMatrix = createPerspectiveMatrix();
 

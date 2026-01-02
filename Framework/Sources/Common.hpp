@@ -42,9 +42,12 @@ constexpr double invPI = 1.0f / PI;
 
 constexpr float inv3 = 1.0f / 3.0f;
 constexpr float inv180 = 1.0f / 180.0f;
+constexpr float sqrt2 = 1.41421356237f;
+
 
 constexpr float rho = 1025;
 constexpr float g = 9.80665;
+constexpr float eps = 1e-6f;
 
 /////////////////////////////global variables are after vec3
 
@@ -324,13 +327,14 @@ float magnitude3(const vec3<T>& v) {
 
 
 
-// Mover a gv?
+
 extern float windowHeight;
 extern float windowWidth;
 extern p2 windowTotal;
 extern p2 windowCenter;
+extern matrix4x4 identityMatrix;
 
-enum Programs { telemetry, MRS, solarProgram, openCascade, offshoreProgram };
+enum Programs { telemetry, MRS, openCascade, offshoreProgram };
 enum CameraModes { drag, FPS, centered }; //Por qué no está en camara?
 enum VisualizationMode { wire, triangulated }; //OCC
 enum MrsMode { mapMRS, mapCustom }; //1 MRS map, 2 custom map
@@ -356,8 +360,7 @@ struct GlobalVariables
 
 	p2 centerWindow;
 	MrsMode mrsMode = mapMRS;//QUITAR
-	matrix4x4 identityMatrix = { 1, 0, 0, 0, 0, 1, 0, 0,0, 0, 1, 0, 0, 0, 0, 1 };
-	matrix4x4 modelMatrixOCC = identityMatrix; //QUITAR
+	
 
 	VisualizationMode visualizationMode = triangulated;//QUITAR
 	CadMode cadMode = none; //QUITAR

@@ -126,7 +126,7 @@ void Shader::unbind() {
 
 
 //General window, where you don't specify anything
-GLFWwindow* initialize() 
+GLFWwindow* initialize()
 {
 	glfwInit();
 
@@ -140,11 +140,11 @@ GLFWwindow* initialize()
 	glEnable(GL_MULTISAMPLE);
 
 	glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
-	
+
 	//fullscreen
 	//GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "CM's Framework", glfwGetPrimaryMonitor(), NULL);
 	GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "CM's Framework", NULL, NULL);
-	
+
 	/*GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 	const GLFWvidmode* mode = glfwGetVideoMode(monitor);
 
@@ -179,17 +179,18 @@ GLFWwindow* initialize()
 }
 
 //specific version where you set the window's height and name
-GLFWwindow* initialize(float windowWidth_,float windowHeight_, const char* windowName)
+GLFWwindow* initialize(float windowWidth_, float windowHeight_, const char* windowName)
 {
 	windowWidth = windowWidth_;
 	windowHeight = windowHeight_;
 	glfwInit();
-
+	glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+	//stays in front of the window
 	glfwWindowHint(GLFW_FLOATING, GLFW_TRUE);
 
 	glfwWindowHint(GLFW_SAMPLES, 4);  // Request 4x MSAA for antialiasing
@@ -212,7 +213,7 @@ GLFWwindow* initialize(float windowWidth_,float windowHeight_, const char* windo
 	glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
 
 
-
+	glfwSetWindowPos(window, 1000, 200);
 
 	return window;
 }
@@ -222,14 +223,7 @@ GLFWwindow* initialize(float windowWidth_,float windowHeight_, const char* windo
 void clearScreen(GlobalVariables gv)
 {
 	opaque();
-	if (gv.program == solarProgram)
-	{
-		glClearColor(0.035f, 0.065f, 0.085f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	}
-	else
-	{
-		glClearColor(40 / 255.0f, 40 / 255.0f, 40 / 255.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	}
+	glClearColor(40 / 255.0f, 40 / 255.0f, 40 / 255.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 }

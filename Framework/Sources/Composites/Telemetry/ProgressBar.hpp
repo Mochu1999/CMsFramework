@@ -61,7 +61,7 @@ struct ProgressBar {
 		
 		transparent();
 		shader2D.bind();
-		shader2D_Instanced.setUniform("u_Model", camera.identityMatrix);
+		shader2D_Instanced.setUniform("u_Model", identityMatrix);
 
 		shader2D.setUniform("u_Color", 1, 1, 1, 1);
 		shader2D.setUniform("u_Color", 0.7, 0.7, 0.7, 1);

@@ -32,7 +32,7 @@ struct UIOffshore
 	p3 lightPos = { 10,50,10 };
 	Arrows2 arrows;
 
-	matrix4x4 model3DMatrix = camera.identityMatrix;
+	matrix4x4 model3DMatrix = identityMatrix;
 
 	UIOffshore(Shader& shader3D_, Shader& shader2D_, Shader& shaderText_, GlobalVariables& gv_, TimeStruct& tm_
 		, Camera& camera_, Buoy& buoy_, Pendulum& pendulum_, Waves& wv_, WettedBody& wettedBody_
@@ -70,7 +70,7 @@ struct UIOffshore
 	{
 		
 		shader3D.bind();
-		shader3D.setUniform("u_Model", gv.identityMatrix);
+		shader3D.setUniform("u_Model", identityMatrix);
 		shader3D.setUniform("u_fragmentMode", 0);
 		opaque();
 
@@ -100,7 +100,7 @@ struct UIOffshore
 		
 
 		{
-			transparent();
+			opaque();
 			//opaque();
 			shader3D.setUniform("u_Color", 40.0f / 255.0f, 189.9f / 255.0f, 255.0f / 255.0f, 0.3);
 			wv.updateWavePositions();
@@ -108,7 +108,7 @@ struct UIOffshore
 		}
 
 		{//BUOY
-			transparent();
+			opaque();
 			//opaque();
 			shader3D.setUniform("u_Color", 1, 1, 1, 1);
 			buoy.body.draw();
@@ -140,7 +140,7 @@ struct UIOffshore
 			//buoy.alternator.draw();
 			drawPendulum();
 
-			shader3D.setUniform("u_Model", gv.identityMatrix);
+			shader3D.setUniform("u_Model", identityMatrix);
 		}
 
 
@@ -165,14 +165,14 @@ struct UIOffshore
 			axis.draw(); //breaking the "opaque first" rule to get the axis' color unaffected by water
 		}
 
-		drawAux();
+		//drawAux();
 	}
 
 
 	void drawMooring()
 	{
 		shader3D.bind();
-		shader3D.setUniform("u_Model", gv.identityMatrix);
+		shader3D.setUniform("u_Model", identityMatrix);
 
 		glLineWidth(3);
 		shader3D.setUniform("u_fragmentMode", 1);
@@ -216,7 +216,7 @@ struct UIOffshore
 
 		transparent();
 		shader2D.bind();
-		shader2D.setUniform("u_Model", gv.identityMatrix);
+		shader2D.setUniform("u_Model", identityMatrix);
 		shader2D.setUniform("u_Color", 1, 1, 1, 0.5);
 		glLineWidth(2);
 		//centerCross.draw();
@@ -227,7 +227,7 @@ struct UIOffshore
 
 		/*transparent();
 		shader2D.bind();
-		shader2D.setUniform("u_Model", gv.identityMatrix);
+		shader2D.setUniform("u_Model", identityMatrix);
 		shader2D.setUniform("u_Color", 40 / 255.0f, 40 / 255.0f, 40 / 255.0f, 1.0f);
 		dataBox.draw();
 		shader2D.setUniform("u_Color", 40.0f / 255.0f, 239.9f / 255.0f, 239.0f / 255.0f, 1);

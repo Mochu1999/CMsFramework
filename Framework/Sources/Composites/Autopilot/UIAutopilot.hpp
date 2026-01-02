@@ -179,7 +179,7 @@ struct UIAutopilot
 	void drawData()
 	{
 		shader2D.bind();
-		shader2D.setUniform("u_Model", gv.identityMatrix);
+		shader2D.setUniform("u_Model", identityMatrix);
 		shader2D.setUniform("u_Color", 40 / 255.0f, 40 / 255.0f, 40 / 255.0f, 1.0f);
 		dataBox.draw();
 		shader2D.setUniform("u_Color", 40.0f / 255.0f, 239.9f / 255.0f, 239.0f / 255.0f, 1);
@@ -210,7 +210,7 @@ struct UIAutopilot
 		{
 			shader2D.bind();
 			mapModel2DMatrix = create2DModelMatrix(gv.mPos, 0, 1);
-			shader2D.setUniform("u_Model", gv.identityMatrix);
+			shader2D.setUniform("u_Model", identityMatrix);
 
 			shader2D.setUniform("u_Color", 40 / 255.0f, 40 / 255.0f, 40 / 255.0f, 1.0f);
 			mouseCoordsBox.clear();

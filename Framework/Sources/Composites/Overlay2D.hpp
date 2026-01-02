@@ -21,13 +21,13 @@ struct Overlay2D {
 	void draw() {
 		shader2D.bind();
 		transparent();
-		shader2D.setUniform("u_Model", camera.identityMatrix);
+		shader2D.setUniform("u_Model", identityMatrix);
 		shader2D.setUniform("u_Color", 0.035f, 0.065f, 0.085f, 1.0f);
 		background.draw();
 
 		shader2D.setUniform("u_Color", 40.0f / 255.0f, 239.9f / 255.0f, 239.0f / 255.0f, 1);
 		glLineWidth(5);
-		shader2D.setUniform("u_Model", camera.identityMatrix);
+		shader2D.setUniform("u_Model", identityMatrix);
 		backgroundLines.draw();
 		glLineWidth(1);
 	}

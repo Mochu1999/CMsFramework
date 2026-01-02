@@ -122,7 +122,6 @@ struct Settings
 		Forward,
 		Program,
 		totalXpixels,
-		ModelMatrixOCC,
 		TotalMiddleMPosVariation
 	};
 
@@ -156,9 +155,6 @@ struct Settings
 			outFile.write(reinterpret_cast<const char*>(&var), sizeof(var));
 			outFile.write(reinterpret_cast<const char*>(&autopilot.world.totalXpixels), sizeof(autopilot.world.totalXpixels));
 
-			var = ModelMatrixOCC;
-			outFile.write(reinterpret_cast<const char*>(&var), sizeof(var));
-			outFile.write(reinterpret_cast<const char*>(&gv.modelMatrixOCC), sizeof(gv.modelMatrixOCC));
 
 			var = TotalMiddleMPosVariation;
 			outFile.write(reinterpret_cast<const char*>(&var), sizeof(var));
@@ -194,9 +190,6 @@ struct Settings
 					inFile.read(reinterpret_cast<char*>(&autopilot.world.totalXpixels), sizeof(autopilot.world.totalXpixels));
 					autopilot.world.updateCamera(); //if we end reducir all thise, just autopilot.update() at the end of read()
 					break;
-				case ModelMatrixOCC:
-					inFile.read(reinterpret_cast<char*>(&gv.modelMatrixOCC), sizeof(gv.modelMatrixOCC));
-					break;
 				case TotalMiddleMPosVariation:
 					inFile.read(reinterpret_cast<char*>(&gv.totalMiddleMPosVariation), sizeof(gv.totalMiddleMPosVariation));
 					break;
@@ -222,7 +215,6 @@ struct Settings
 		print(forward);
 		print(autopilot.world.totalXpixels);
 		print(gv.program);
-		print(gv.modelMatrixOCC);
 		print(gv.totalMiddleMPosVariation);
 	}
 	void reset()
@@ -230,7 +222,6 @@ struct Settings
 		/*cameraPos = { 0,0,0 };
 		forward = { 1,0,0 };
 		autopilot.totalXpixels = 6000;*/
-		gv.modelMatrixOCC = gv.identityMatrix;
 		gv.totalMiddleMPosVariation = { 0,0,0 };
 	}
 };
