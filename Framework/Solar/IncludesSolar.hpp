@@ -6,6 +6,7 @@
 #include "Camera.hpp"
 #include "BinariesManager.hpp"
 #include "FilesManagement.hpp"
+#include "Multithreading.hpp"
 
 
 #include "SettingsSolar.hpp"

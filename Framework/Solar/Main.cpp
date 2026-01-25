@@ -31,8 +31,7 @@ int main(void)
 	glfwSetMouseButtonCallback(window, mouseEventCallback);
 	glfwSetScrollCallback(window, scrollCallback);
 
-	print(sizeof(double));
-	print(sizeof(long double));
+
 	while (!glfwWindowShouldClose(window))
 	{
 		

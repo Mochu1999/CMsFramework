@@ -130,28 +130,28 @@ void worker(int& value, int var)
 	value += var;
 }
 
-int main()
-{
-	int value = 0;
-	int valueW = value; //only to be accesed by the thread
-	int var = 10;
-
-	
-
-	ThreadPool pool;
-
-
-	pool.submit(value, worker, var);
-
-
-	while (true) //represents the application
-	{
-		pool.tryTakeResult(value);
-		cout << value << endl;
-		if (value != 0)  break;
-	}
-
-
-}
+//int main()
+//{
+//	int value = 0;
+//	int valueW = value; //only to be accesed by the thread
+//	int var = 10;
+//
+//	
+//
+//	ThreadPool pool;
+//
+//
+//	pool.submit(value, worker, var);
+//
+//
+//	while (true) //represents the application
+//	{
+//		pool.tryTakeResult(value);
+//		cout << value << endl;
+//		if (value != 0)  break;
+//	}
+//
+//
+//}
 
 
