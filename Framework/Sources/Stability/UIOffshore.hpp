@@ -75,13 +75,6 @@ struct UIOffshore
 		opaque();
 
 
-		//buoy.body.draw();
-		//shader3D.setUniform("u_Color", 0.1, 0.1, 1, 1);
-
-		
-
-
-
 
 		{
 			vector<p3>interm;
@@ -101,7 +94,7 @@ struct UIOffshore
 
 		{
 			opaque();
-			//opaque();
+			transparent();
 			shader3D.setUniform("u_Color", 40.0f / 255.0f, 189.9f / 255.0f, 255.0f / 255.0f, 0.3);
 			wv.updateWavePositions();
 			wv.draw();
@@ -109,7 +102,7 @@ struct UIOffshore
 
 		{//BUOY
 			opaque();
-			//opaque();
+			transparent();
 			shader3D.setUniform("u_Color", 1, 1, 1, 1);
 			buoy.body.draw();
 		}
@@ -136,8 +129,8 @@ struct UIOffshore
 			shader3D.setUniform("u_Model", model3DMatrix);
 			shader3D.setUniform("u_Color", 1, 0.5, 0, 1);
 			buoy.support.draw();
-			//shader3D.setUniform("u_Color", 1, 0, 0, 1);
-			//buoy.alternator.draw();
+			shader3D.setUniform("u_Color", 0.5, 0, 1, 1);
+			buoy.alternator.draw();
 			drawPendulum();
 
 			shader3D.setUniform("u_Model", identityMatrix);
@@ -192,13 +185,19 @@ struct UIOffshore
 
 	void drawPendulum()
 	{
+		
+		camera.translate3DModelMatrix(model3DMatrix, { 0.0f, -0.508f, 0.0f });
 
-		camera.rotate3DModelMatrix(model3DMatrix, degrees(pendulum.theta), { 0,0,1 });
-		camera.translate3DModelMatrix(model3DMatrix, { buoy.x,buoy.y,0 });
+		// 2) Rotación de la boya (afecta también al offset)
+
+		camera.rotate3DModelMatrix(model3DMatrix, degrees(buoy.theta), { 0,0,1 });
+
+		// 3) Traslación global de la boya
+		camera.translate3DModelMatrix(model3DMatrix, { buoy.x, buoy.y, 0.0f });
 
 		shader3D.setUniform("u_Model", model3DMatrix);
 
-		shader3D.setUniform("u_Color", 1, 1, 1, 1);
+		shader3D.setUniform("u_Color", 0.5, 1, 1, 1);
 
 		pendulum.body.draw();
 	}

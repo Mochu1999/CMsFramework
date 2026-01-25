@@ -10,21 +10,21 @@ struct Buoy
 	vector<p3> positions;
 
 	float x = 0;
-	float y = -0.73;
+	float y = 10- 8.508;
 	float vx = 0;
 	float vy = 0;
 	float ax = 0;
 	float ay = 0;
 
-	float theta = radians(0);// rad
+	float theta = radians(-10);// rad
 	float omega = 0;// rad/s
 	float alpha = 0;// rad/s^2
 
 	float lambda = 1;
 
 	//EXCEL, A CAMBIAR
-	float draft = 80;
-	float m = 585606; //kg //support + structure
+	//float draft = 80;
+	float m = 3488312; //kg //support + structure
 
 	float A33; //added mass
 	float C33; //restoring coefficient
@@ -37,24 +37,26 @@ struct Buoy
 	float Ffk;
 	float RAO;
 
-	float waveHeight = 2, waveAmplitude = waveHeight / 2; //m
 
-	p3 oCconnectionPoint = { 0,-5,0 };
-	p3 connectionPoint = { 0,-5,0 };
+	p3 oCconnectionPoint = { 0,-10,0 };
+	p3 connectionPoint = { 0,-10,0 };
 
 	Buoy()
 	{
-		/*Polyhedra stl;
-		readSTL(stl, "Alternator.stl");
+		Polyhedra stl;
+		
+
+		/*readSTL(stl, "Alternator2.stl");
 		writeSimplePolyhedra(stl, "Alternator.bin");
 
-		readSTL(stl, "Buoy.stl");
-		writeSimplePolyhedra(stl, "Buoy.bin");
 
-		readSTL(stl, "Support.stl");
+		readSTL(stl, "Support2.stl");
 		writeSimplePolyhedra(stl, "Support.bin");*/
 
 		body.addPolyhedra("Cube.bin");
+		body.positions = { { -10, 10, -10 }, { -10,-10,-10 }, { -10,-10,10 }, { -10,10,-10 }, { -10,-10,10 }, { -10,10,10 }, { -10,-10,-10 }, { 10,-10,-10 }, { 10,-10,10 }, { -10,-10,-10 }, { 10,-10,10 }, { -10,-10,10 }, { 10,-10,-10 }, { 10,10,-10 }, { 10,10,10 }, { 10,-10,-10 }, { 10,10,10 }, { 10,-10,10 }, { 10,10,-10 }, { -10,10,-10 }, { -10,10,10 }, { 10,10,-10 }, { -10,10,10 }, { 10,10,10 }, { -10,-10,-10 }, { -10,10,-10 }, { 10,10,-10 }, { 10,10,-10 }, { 10,-10,-10 }, { -10,-10,-10 }, { -10,-10,10 }, { 10,10,10 }, { -10,10,10 }, { 10,10,10 }, { -10,-10,10 }, { 10,-10,10 } };
+		
+		
 		oPositions = body.positions;
 		updatePositions();
 

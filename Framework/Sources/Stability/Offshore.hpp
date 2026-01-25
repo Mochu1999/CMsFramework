@@ -158,7 +158,7 @@ struct Offshore
 	void calculatePitchAcceleration()
 	{
 		float Mz = 0.0;
-		p3 CG = { buoy.x, buoy.y-1.5f, 0.0f };
+		p3 CG = { buoy.x, buoy.y+5.1f, 0.0f};
 
 		for (size_t i = 0; i < wetForces.size(); ++i)
 		{
@@ -167,17 +167,18 @@ struct Offshore
 
 			Mz += r.x * F.y - r.y * F.x;
 		}
-
+		//print(wetForces);
 		//catenary horizontal forces
 		const p3 Tsum = line1.tension + line2.tension + line3.tension;
 		const p3 Th = { Tsum.x, 0.0f, 0.0f }; 
 		const p3 rc = buoy.connectionPoint - CG;
-		Mz +=  - rc.y * Th.x;
+		Mz +=  - rc.y * Th.x*5;
+		//Mz += rc.x * Th.y - rc.y * Th.x;
 
 		float bPitch = 1e3;     // [N·dm·s/rad] damping
 		float Md = -bPitch * buoy.omega;
 
-		float Iz = 54754157/3; //kg*m^2
+		float Iz = 547541570; //kg*m^2
 		buoy.alpha = (Mz /*+ Md*/) / Iz;   // rotational acceleration
 	}
 	void calculateHeaveAcceleration()
@@ -189,13 +190,14 @@ struct Offshore
 
 			Fy += wetForces[i].y;
 		}
+		
 		float Ffloater = 34775.8f * 3.0f;
 		Fy += Ffloater;
 
 		float Fcatenary = line1.tension.y + line2.tension.y + line3.tension.y;
 		Fy += Fcatenary;
 
-		const float b = 5.7e4f * 10; // [N·s/m]
+		const float b = 3e6f; // [N·s/m]
 		float Fd = -b * buoy.vy; // damping
 
 		buoy.ay = (Fy+Fd - buoy.m * g) / buoy.m;
@@ -227,7 +229,6 @@ struct Offshore
 	void draw()
 	{
 		update();
-
 		ui.draw();
 
 		/*overlay.draw();

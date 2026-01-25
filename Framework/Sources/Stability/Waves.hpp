@@ -21,7 +21,7 @@ struct Waves {
 	float omega = 2 * PI / period;
 	float k = (omega * omega) / g;
 
-	float amplitude = 1.5;
+	float amplitude =  3;
 	float offset = 0;
 	float phase = 0;
 	float phaseSpeed = 0.01;
