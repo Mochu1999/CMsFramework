@@ -8,7 +8,7 @@ int main(void)
 
 	GLFWwindow* window = initialize();
 
-
+	ThreadPool tp;
 
 	TimeStruct tm;
 
@@ -20,8 +20,8 @@ int main(void)
 
 
 	Axis axis(shader3D, gv);
-	Solar solar(shader3D, shader2D, shaderText, camera, gv, tm);
-	
+	Solar solar(shader3D, shader2D, shaderText, camera, gv, tm,tp);
+
 
 	SettingsSolar settings(camera, gv);
 
@@ -34,7 +34,7 @@ int main(void)
 
 	while (!glfwWindowShouldClose(window))
 	{
-		
+
 
 		getPos(window, gv.mPos);
 		if (gv.isRunning)
@@ -64,5 +64,3 @@ int main(void)
 	glfwTerminate();
 	return 0;
 }
-
-

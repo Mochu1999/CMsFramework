@@ -15,6 +15,7 @@ struct Solar
 	GlobalVariables& gv;
 	TimeStruct& tm;
 
+	ThreadPool& tp;
 
 	vector<Body> bodies;
 
@@ -31,9 +32,9 @@ struct Solar
 	vector<Lines3D> trajectoriesLines;
 
 
-	Solar(Shader& shader3D_, Shader& shader2D_, Shader& shaderText_, Camera& camera_, GlobalVariables& gv_, TimeStruct& tm_)
+	Solar(Shader& shader3D_, Shader& shader2D_, Shader& shaderText_, Camera& camera_, GlobalVariables& gv_, TimeStruct& tm_, ThreadPool& tp_)
 		: shader3D(shader3D_), shader2D(shader2D_), shaderText(shaderText_), camera(camera_), gv(gv_), tm(tm_)
-		, dataText("resources/Glyphs/Helvetica/Helvetica.otf", 20)
+		, dataText("resources/Glyphs/Helvetica/Helvetica.otf", 20), tp(tp_)
 	{
 
 		vector<p2> dataRectangle = createRoundedSquare(windowTotal - p2{ 300,100 }, windowTotal, 30);
