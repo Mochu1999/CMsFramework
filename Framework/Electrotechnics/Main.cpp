@@ -1,8 +1,21 @@
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <armadillo>
+
 #include "IncludesElectrotechnics.hpp"
-
-
 int main(void)
 {
+	
+	Circuit circuit;
+	return 0;
+
+
+
+
+
+
+
+
 	GlobalVariables gv;
 	gv.program = offshoreProgram;
 

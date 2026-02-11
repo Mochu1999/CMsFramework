@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "Common.hpp"
 #include "Shader.hpp"
 #include "Time.hpp"
 #include "Camera.hpp"

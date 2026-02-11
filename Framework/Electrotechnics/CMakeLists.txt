@@ -95,3 +95,8 @@ set_target_properties(Electrotechnics PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${build_root}/$<CONFIG>"
     LIBRARY_OUTPUT_DIRECTORY "${build_root}/$<CONFIG>"
 )
+
+find_package(Armadillo REQUIRED)
+target_link_libraries(Electrotechnics PRIVATE ${ARMADILLO_LIBRARIES})
+target_include_directories(Electrotechnics PRIVATE ${ARMADILLO_INCLUDE_DIRS})
+target_compile_definitions(Electrotechnics PRIVATE NOMINMAX WIN32_LEAN_AND_MEAN)

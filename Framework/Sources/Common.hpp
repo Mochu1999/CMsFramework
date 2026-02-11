@@ -459,6 +459,20 @@ void print_(const string& name, const vector<T>& items) {
 	cout << ss.str() << endl << endl;
 }
 
+//Armadillo
+#include <armadillo>
+inline void print_(const std::string& name, const arma::vec& v)
+{
+	std::stringstream ss;
+	ss << name << ": {";
+	for (arma::uword i = 0; i < v.n_elem; ++i)
+	{
+		ss << v(i);
+		if (i + 1 != v.n_elem) ss << ",";
+	}
+	ss << "}";
+	std::cout << ss.str() << "\n\n";
+}
 
 //matrix4x4
 void print_(const std::string& name, const std::array<float, 16>& matrix);

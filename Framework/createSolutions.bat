@@ -16,8 +16,13 @@ for /d %%D in (*) do (
 
         if not exist build mkdir build
 
-        cmake -S . -B . -G "Visual Studio 17 2022" -A x64
-
+        rem ANTIGUO CMAKE, TRAERLOS DE VUELTA SI SE DEJA USAR ARMADILLO cmake -S . -B . -G "Visual Studio 17 2022" -A x64
+	if /I "%%D"=="Electrotechnics" (
+	    cmake -S . -B . -G "Visual Studio 17 2022" -A x64 ^
+	      -DCMAKE_TOOLCHAIN_FILE=C:/dev/assets/Armadillo/vcpkg/scripts/buildsystems/vcpkg.cmake
+	) else (
+	    cmake -S . -B . -G "Visual Studio 17 2022" -A x64
+	)
         rem Purge ALL_BUILD from SLN
         for %%S in (*.sln) do (
             powershell -NoLogo -NoProfile -ExecutionPolicy Bypass ^
