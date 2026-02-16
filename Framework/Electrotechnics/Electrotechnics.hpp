@@ -1,370 +1,221 @@
 #pragma once
 #include <armadillo>
 
+//for large dimensions use sparse matices
+//if elements are unconnected, the solver doesn't work properly
 
-//struct Circuit
-//{
-//    //2 resistances and one voltage source
-//    //2 nodes, hardcoded from start
-//    //pos terminal of the source and one terminal to each resistor goes into node 1
-//    //neg source terminal and the other terminal of each resistance go to to node 0, which is also ground
-//
-//    struct Terminal
-//    {
-//        int node = -1; //floating/unconnected
-//
-//        //node 0 is always ground if more than one element connects to the ground
-//        //, they make a connection between them as if they were a cable
-//    };
-//
-//    struct Resistor
-//    {
-//        Terminal a;
-//        Terminal b;
-//
-//        float R; // ohms
-//
-//        Resistor(float R_) :R(R_) {}
-//    };
-//
-//    struct VoltageSource
-//    {
-//        Terminal pos;
-//        Terminal neg;
-//
-//        float V; // volts
-//
-//        VoltageSource(float V_) :V(V_) {}
-//    };
-//
-//    std::vector<Resistor> resistors;
-//    std::vector<VoltageSource> sources;
-//    std::vector<int> nodes = { 0,1 }; //manual for this case
-//
-//
-//
-//    void addResistor(float R)
-//    {
-//        Resistor res(R);
-//        resistors.push_back(res);
-//    }
-//
-//    void addVoltageSource(float V)
-//    {
-//        VoltageSource source(V);
-//        sources.push_back(source);
-//    }
-//
-//    //sets a terminal in a node
-//    void connect(Terminal& t, int node)
-//    {
-//        t.node = node;
-//    }
-//
-//    static int nodeRowIndex(int node)  // maps node -> equation row for voltage unknowns
-//    {
-//        // ground has no voltage unknown
-//        return (node == 0) ? -1 : (node - 1);
-//    }
-//
-//    // outputs (filled in constructor)
-//    std::vector<double> nodeVoltage;     // size = nodeCount, nodeVoltage[0]=0
-//    std::vector<double> sourceCurrent;   // size = sourceCount, sign per MNA variable
-//
-//    Circuit()
-//    {
-//        addResistor(5);
-//        addResistor(10);
-//        addVoltageSource(10);
-//        connect(sources[0].neg, 0);
-//        connect(sources[0].pos, 1);
-//        connect(resistors[0].a, 0);
-//        connect(resistors[0].b, 1);
-//        connect(resistors[1].a, 1);
-//        connect(resistors[1].b, 0);
-//
-//        // --------- MNA solve (generic for any counts, using current data) ---------
-//        const int nodeCount = (int)nodes.size();        // assumes nodes are 0..N-1
-//        const int sourceCount = (int)sources.size();
-//        const int dim = (nodeCount - 1) + sourceCount;
-//
-//        arma::mat A(dim, dim, arma::fill::zeros);
-//        arma::vec b(dim, arma::fill::zeros);
-//
-//        // Stamp resistors
-//        for (size_t ri = 0; ri < resistors.size(); ++ri)
-//        {
-//            const Resistor& r = resistors[ri];
-//
-//            if (r.a.node < 0 || r.b.node < 0)
-//                throw std::runtime_error("Unconnected resistor terminal.");
-//
-//            const int na = r.a.node;
-//            const int nb = r.b.node;
-//
-//            const double g = 1.0 / (double)r.R; // conductance
-//
-//            const int ia = nodeRowIndex(na);
-//            const int ib = nodeRowIndex(nb);
-//
-//            if (ia >= 0) A(ia, ia) += g;
-//            if (ib >= 0) A(ib, ib) += g;
-//
-//            if (ia >= 0 && ib >= 0)
-//            {
-//                A(ia, ib) -= g;
-//                A(ib, ia) -= g;
-//            }
-//        }
-//
-//        // Stamp voltage sources
-//        for (size_t si = 0; si < sources.size(); ++si)
-//        {
-//            const VoltageSource& s = sources[si];
-//
-//            if (s.pos.node < 0 || s.neg.node < 0)
-//                throw std::runtime_error("Unconnected voltage source terminal.");
-//
-//            const int np = s.pos.node;
-//            const int nn = s.neg.node;
-//
-//            const int ip = nodeRowIndex(np);
-//            const int in = nodeRowIndex(nn);
-//
-//            const int k = (nodeCount - 1) + (int)si; // row/col for source current variable
-//
-//            // KCL coupling (B and C = B^T)
-//            if (ip >= 0) { A(ip, k) += 1.0; A(k, ip) += 1.0; }
-//            if (in >= 0) { A(in, k) -= 1.0; A(k, in) -= 1.0; }
-//
-//            // Voltage constraint: Vpos - Vneg = Vs
-//            b(k) = (double)s.V;
-//        }
-//
-//        arma::vec x;
-//        if (!arma::solve(x, A, b))
-//            throw std::runtime_error("MNA solve failed (singular system).");
-//
-//        // Unpack results
-//        nodeVoltage.assign(nodeCount, 0.0); // ground = 0
-//        for (int n = 1; n < nodeCount; ++n)
-//            nodeVoltage[n] = x(n - 1);
-//
-//        sourceCurrent.assign(sourceCount, 0.0);
-//        for (int si = 0; si < sourceCount; ++si)
-//            sourceCurrent[si] = x((nodeCount - 1) + si);
-//
-//        std::cout << "=== Solution ===\n";
-//
-//        for (int n = 0; n < nodeCount; ++n)
-//        {
-//            std::cout << "Node " << n << " voltage = "
-//                << nodeVoltage[n] << " V\n";
-//        }
-//
-//        for (int si = 0; si < sourceCount; ++si)
-//        {
-//            std::cout << "Voltage source " << si << " current = "
-//                << sourceCurrent[si] << " A\n";
-//        }
-//
-//        for (size_t ri = 0; ri < resistors.size(); ++ri)
-//        {
-//            const Resistor& r = resistors[ri];
-//
-//            double Va = nodeVoltage[r.a.node];
-//            double Vb = nodeVoltage[r.b.node];
-//
-//            double I = (Va - Vb) / r.R;
-//
-//            std::cout << "Resistor " << ri
-//                << " (" << r.R << " ohm) current = "
-//                << I << " A\n";
-//        }
-//    }
-//};
-
+//Modified Nodal Analysis (MNA)
 struct Circuit
 {
-    //2 resistances and one voltage source
-    //2 nodes, hardcoded from start
-    //pos terminal of the source and one terminal to each resistor goes into node 1
-    //neg source terminal and the other terminal of each resistance go to to node 0, which is also ground
+	struct Resistor;
+	struct VoltageSource;
 
-    struct Terminal
-    {
-        int node = -1; //floating/unconnected
-
-        //node 0 is always ground if more than one element connects to the ground
-        //, they make a connection between them as if they were a cable
-    };
-
-    struct Resistor
-    {
-        Terminal a;
-        Terminal b;
-
-        float R; // ohms
-
-        Resistor(float R_) :R(R_) {}
-    };
-
-    struct VoltageSource
-    {
-        Terminal pos;
-        Terminal neg;
-
-        float V; // volts
-
-        VoltageSource(float V_) :V(V_) {}
-    };
-
-    std::vector<Resistor> resistors;
-    std::vector<VoltageSource> sources;
-    std::vector<int> nodes = { 0,1,2 }; //manual for this case
+	std::vector<Resistor> resistors;
+	std::vector<VoltageSource> sources;
+	std::vector<int> nodes = { 0,1,2 }; //manual for this case
+	//node 0 is always ground if more than one element connects to the ground
+	//, they make a connection between them as if they were a cable
 
 
+	// outputs (filled in constructor)
+	std::vector<float> nodeVoltage;     // size = nodesSize, nodeVoltage[0]=0
+	std::vector<float> sourceCurrent;   // size = sourcesSize, sign per MNA vaiable
 
-    void addResistor(float R)
-    {
-        Resistor res(R);
-        resistors.push_back(res);
-    }
+	int nodesSize = 0;
+	int sourcesSize = 0;
+	int dim = 0;
 
-    void addVoltageSource(float V)
-    {
-        VoltageSource source(V);
-        sources.push_back(source);
-    }
+	struct Resistor
+	{
+		//Terminals
+		int a = -1;//floating/unconnected
+		int b = -1;
 
-    //sets a terminal in a node
-    void connect(Terminal& t, int node)
-    {
-        t.node = node;
-    }
+		float R; // ohms
 
-    static int nodeRowIndex(int node)  // maps node -> equation row for voltage unknowns
-    {
-        // ground has no voltage unknown
-        return (node == 0) ? -1 : (node - 1);
-    }
+		Resistor(float R_) :R(R_) {}
+	};
 
-    // outputs (filled in constructor)
-    std::vector<double> nodeVoltage;     // size = nodeCount, nodeVoltage[0]=0
-    std::vector<double> sourceCurrent;   // size = sourceCount, sign per MNA variable
+	struct VoltageSource
+	{
+		//Terminals
+		int pos = -1;
+		int neg = -1;
 
-    Circuit()
-    {
-        addResistor(5);
-        addResistor(10);
-        addResistor(20);
-        addVoltageSource(10);
-        connect(sources[0].neg, 0);
-        connect(sources[0].pos, 1);
-        connect(resistors[0].a, 0);
-        connect(resistors[0].b, 2);
-        connect(resistors[1].a, 1);
-        connect(resistors[1].b, 0);
-        connect(resistors[2].a, 1);
-        connect(resistors[2].b, 2);
+		float V; // volts
 
-        // MNA SOLVER
-        const int nodeCount = (int)nodes.size();        // assumes nodes are 0..N-1
-        const int sourceCount = (int)sources.size();
-        const int dim = (nodeCount - 1) + sourceCount;
+		VoltageSource(float V_) :V(V_) {}
+	};
 
-        arma::mat A(dim, dim, arma::fill::zeros);
-        arma::vec b(dim, arma::fill::zeros);
 
-        // Stamp resistors
-        for (size_t ri = 0; ri < resistors.size(); ++ri)
-        {
-            const Resistor& r = resistors[ri];
 
-            if (r.a.node < 0 || r.b.node < 0)
-                throw std::runtime_error("Unconnected resistor terminal.");
 
-            const int na = r.a.node;
-            const int nb = r.b.node;
 
-            const double g = 1.0 / (double)r.R; // conductance
+	void addResistor(float R)
+	{
+		Resistor res(R);
+		resistors.push_back(res);
+	}
 
-            const int ia = nodeRowIndex(na);
-            const int ib = nodeRowIndex(nb);
+	void addVoltageSource(float V)
+	{
+		VoltageSource source(V);
+		sources.push_back(source);
+	}
 
-            if (ia >= 0) A(ia, ia) += g;
-            if (ib >= 0) A(ib, ib) += g;
+	//sets a terminal in a node
+	void connect(int& t, int node)
+	{
+		t = node;
+	}
 
-            if (ia >= 0 && ib >= 0)
-            {
-                A(ia, ib) -= g;
-                A(ib, ia) -= g;
-            }
-        }
+	void connect(int& t1, int node1, int& t2, int node2)
+	{
+		t1 = node1;
+		t2 = node2;
+	}
 
-        // Stamp voltage sources
-        for (size_t si = 0; si < sources.size(); ++si)
-        {
-            const VoltageSource& s = sources[si];
+	void connect(Resistor& resistor, int node0, int node1)
+	{
+		resistor.a = node0;
+		resistor.b = node1;
+	}
 
-            if (s.pos.node < 0 || s.neg.node < 0)
-                throw std::runtime_error("Unconnected voltage source terminal.");
 
-            const int np = s.pos.node;
-            const int nn = s.neg.node;
 
-            const int ip = nodeRowIndex(np);
-            const int in = nodeRowIndex(nn);
+	//MNA [A]·[x]=[B]
+	//[x]T = [V1,...,VnodeN,IVS0,...,IVSn], //x is our solution
+	// Contains all voltages in nodes excluding 0 and the current through each voltage source
+	void solve()
+	{
+		nodesSize = (int)nodes.size();
+		sourcesSize = (int)sources.size();
+		dim = (nodesSize - 1) + sourcesSize; //nS-1 because node 0 is known
 
-            const int k = (nodeCount - 1) + (int)si; // row/col for source current variable
+		arma::mat A(dim, dim, arma::fill::zeros);
+		arma::vec b(dim, arma::fill::zeros);
 
-            // KCL coupling (B and C = B^T)
-            if (ip >= 0) { A(ip, k) += 1.0; A(k, ip) += 1.0; }
-            if (in >= 0) { A(in, k) -= 1.0; A(k, in) -= 1.0; }
+		// Stamp resistors
+		for (size_t i = 0; i < resistors.size(); ++i)
+		{
+			const Resistor& r = resistors[i];
 
-            // Voltage constraint: Vpos - Vneg = Vs
-            b(k) = (double)s.V;
-        }
+			if (r.a < 0 || r.b < 0)
+				continue; //skips element due to open circuit for now
 
-        arma::vec x;
-        if (!arma::solve(x, A, b))
-            throw std::runtime_error("MNA solve failed (singular system).");
+			const double g = 1.0f / r.R; // conductance //because I=g·V
 
-        // Unpack results
-        nodeVoltage.assign(nodeCount, 0.0); // ground = 0
-        for (int n = 1; n < nodeCount; ++n)
-            nodeVoltage[n] = x(n - 1);
+			//matrix indices
+			//we are only interested if the terminals that aren't in node 0
+			//if they are in 0, they are set to -1 so it isn't calculated
+			//else we decrease 1 so the matrix uses 0
+			const int ia = (r.a == 0) ? -1 : (r.a - 1);
+			const int ib = (r.b == 0) ? -1 : (r.b - 1);
 
-        sourceCurrent.assign(sourceCount, 0.0);
-        for (int si = 0; si < sourceCount; ++si)
-            sourceCurrent[si] = x((nodeCount - 1) + si);
+			if (ia >= 0) A(ia, ia) += g;
+			if (ib >= 0) A(ib, ib) += g;
 
-        std::cout << "=== Solution ===\n";
+			if (ia >= 0 && ib >= 0)
+			{
+				A(ia, ib) -= g;
+				A(ib, ia) -= g;
+			}
+		}
 
-        for (int n = 0; n < nodeCount; ++n)
-        {
-            std::cout << "Node " << n << " voltage = "
-                << nodeVoltage[n] << " V\n";
-        }
+		// Stamp voltage sources
+		for (size_t si = 0; si < sources.size(); ++si)
+		{
+			const VoltageSource& s = sources[si];
 
-        for (int si = 0; si < sourceCount; ++si)
-        {
-            std::cout << "Voltage source " << si << " current = "
-                << sourceCurrent[si] << " A\n";
-        }
+			if (s.pos < 0 || s.neg < 0)
+				continue;
 
-        for (size_t ri = 0; ri < resistors.size(); ++ri)
-        {
-            const Resistor& r = resistors[ri];
+			const int np = s.pos;
+			const int nn = s.neg;
 
-            double Va = nodeVoltage[r.a.node];
-            double Vb = nodeVoltage[r.b.node];
+			const int ip = (np == 0) ? -1 : (np - 1);
+			const int in = (nn == 0) ? -1 : (nn - 1);
 
-            double I = (Va - Vb) / r.R;
 
-            std::cout << "Resistor " << ri
-                << " (" << r.R << " ohm) current = "
-                << I << " A\n";
-        }
-    }
+			const int k = (nodesSize - 1) + (int)si; // row/col for source current vaiable
+
+			// KCL coupling (B and C = B^T)
+			if (ip >= 0) { A(ip, k) += 1.0; A(k, ip) += 1.0; }
+			if (in >= 0) { A(in, k) -= 1.0; A(k, in) -= 1.0; }
+
+			// Voltage constraint: Vpos - Vneg = Vs
+			b(k) = s.V;
+		}
+
+		arma::vec x;
+		if (!arma::solve(x, A, b))
+			throw std::runtime_error("MNA solve failed (singular system).");
+
+		// Unpack results
+		nodeVoltage.assign(nodesSize, 0.0); // ground = 0
+		for (int n = 1; n < nodesSize; ++n)
+			nodeVoltage[n] = x(n - 1);
+
+		sourceCurrent.assign(sourcesSize, 0.0);
+		for (int si = 0; si < sourcesSize; ++si)
+			sourceCurrent[si] = x((nodesSize - 1) + si);
+
+		print(A);
+		print(b);
+	}
+
+	Circuit()
+	{
+		addResistor(5);
+		addResistor(10);
+		addVoltageSource(10);
+		connect(sources[0].neg, 0, sources[0].pos, 1);
+		connect(resistors[0], 0, 1);
+		connect(resistors[1], 1, 0);
+
+
+		/*addResistor(5);
+		addResistor(10);
+		addResistor(20);
+		addVoltageSource(10);
+		connect(sources[0].neg, 0);
+		connect(sources[0].pos, 1);
+		connect(resistors[0], 0, 2);
+		connect(resistors[1], 1, 0);
+		connect(resistors[2], 1, 2);*/
+
+		solve();
+		printCircuit();
+	}
+
+	void printCircuit()
+	{
+		std::cout << "=== Solution ===\n";
+
+		for (int n = 0; n < nodesSize; ++n)
+		{
+			std::cout << "Node " << n << " voltage = "
+				<< nodeVoltage[n] << " V\n";
+		}
+
+		for (int si = 0; si < sourcesSize; ++si)
+		{
+			std::cout << "Voltage source " << si << " current = "
+				<< sourceCurrent[si] << " A\n";
+		}
+
+		for (size_t i = 0; i < resistors.size(); ++i)
+		{
+			const Resistor& r = resistors[i];
+
+			double Va = nodeVoltage[r.a];
+			double Vb = nodeVoltage[r.b];
+
+			double I = (Va - Vb) / r.R;
+
+			std::cout << "Resistor " << i
+				<< " (" << r.R << " ohm) current = "
+				<< I << " A\n";
+		}
+	}
 };
