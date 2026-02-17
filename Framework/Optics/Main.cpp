@@ -3,10 +3,6 @@
 
 int main(void)
 {
-	return 0;
-
-
-
 
 
 
@@ -14,7 +10,7 @@ int main(void)
 
 	GLFWwindow* window = initialize();
 
-	ThreadPool tp;
+	//ThreadPool tp;
 
 	TimeStruct tm;
 
@@ -25,6 +21,7 @@ int main(void)
 	Camera camera(window, shader3D, shader2D, shader2D_Instanced, shaderText, gv);
 
 
+	Optics optics(shader2D,gv);
 	Axis axis(shader3D, gv);
 
 
@@ -53,6 +50,7 @@ int main(void)
 
 			axis.draw();
 
+			optics.draw();
 
 			keyboardRealTimePolls(window, gv, camera);
 			camera.updateCamera();

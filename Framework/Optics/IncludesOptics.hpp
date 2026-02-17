@@ -37,3 +37,5 @@
 #include "Axis.hpp"
 #include "Overlay2D.hpp"
 #include "ProgressBar.hpp"
+
+#include "Optics.hpp"

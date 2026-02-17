@@ -35,6 +35,7 @@ struct Lines2D {
 
 	Lines2D() {
 		genBuffers();
+
 	}
 
 	
