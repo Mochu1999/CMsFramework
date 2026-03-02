@@ -26,17 +26,13 @@ struct SurfaceHandle
 	}
 };
 
-// Can be ignored for now
-struct Mirror 
-{
-
-};
 
 struct Lens
 {
 	SurfaceHandle surface0;
 	SurfaceHandle surface1;
 	float ior; //index of refraction inside the lens
+
 };
 
 struct Optics
@@ -63,58 +59,85 @@ struct Optics
 	deque<SphericalSurface> sphericalSurfaces;
 
 
-	//Just a SurfaceHandle for now. FOR THE LONG TERM MAKE A SPECIFIC MIRROR STRUCT WITH MORE THAT
+	//Just a SurfaceHandle for now. FOR THE LONG TERM MAKE A SPECIFIC MIRROR STRUCT
 	deque<SurfaceHandle> mirrors;
+	deque<Lens> lenses;
 
 	Optics(Shader& shader2D_, GlobalVariables& gv_)
 		:shader2D(shader2D_), gv(gv_), lightPoint(rayOrigin), lightLine(rayOrigin)
 	{
 
-		//lightLine.createLightLine({ 100,350 }, { 100,650 }, { 1,0 });
-		lightPoint.createLightPoint({ 300,500 });
+		lightLine.createLightLine({ 100,350 }, { 100,650 }, { 1,0 });
+		//lightPoint.createLightPoint({ 300,500 });
+		//createParabolicMirror({ 100,500 }, { 300,500 }, 300);
 
-
-		createParabolicMirror({ 100,500 }, { 300,500 }, 300);
-
-		createSphericalMirror(100, { 800,800 }, 90, 360);
+		//createSphericalMirror(100, { 800,800 }, 90, 360);
+		
 		////createSphericalSurface(200, { 300,500 }, 270,450);
 
-		createParabolicMirror({ 1900,500 }, { 700,500 }, 300);
-		createPlanarMirror({ 700,500 }, { 1,1 }, 60);
+		/*createParabolicMirror({ 1900,500 }, { 700,500 }, 300);
+		createPlanarMirror({ 700,500 }, { 1,1 }, 60);*/
+
+		SurfaceHandle s0 = createPlanarSurface({ 500,350 }, { 500,650 });
+		SurfaceHandle s1 = createPlanarSurface({ 700,350 }, { 700,650 });
+		createLens(s0, s1, 1.5f);
 
 		generateRays();
 	}
-
-	void createParabolicMirror(p2 vertex_, p2 focus_, float width_)
+	SurfaceHandle createParabolicSurface(p2 vertex_, p2 focus_, float width_)
 	{
 		parabolicSurfaces.emplace_back();
 		parabolicSurfaces.back().createParabolicalSurface(vertex_, focus_, width_);
 
-		mirrors.emplace_back(SurfaceType::Parabola, parabolicSurfaces.size() - 1);
-
+		return { SurfaceType::Parabola, parabolicSurfaces.size() - 1 };
 	}
-	void createSphericalMirror(float r_, p2 center_, float theta0_, float theta1_)
+	SurfaceHandle createSphericalSurface(float r_, p2 center_, float theta0_, float theta1_)
 	{
 		sphericalSurfaces.emplace_back();
 		sphericalSurfaces.back().createSphericalSurface(r_, center_, theta0_, theta1_);
 
-		mirrors.emplace_back(SurfaceType::Sphere, sphericalSurfaces.size() - 1);
+		return { SurfaceType::Sphere, sphericalSurfaces.size() - 1 };
 	}
-	void createPlanarMirror(p2 point1, p2 point2)
+	SurfaceHandle createPlanarSurface(p2 p1_, p2 p2_)
 	{
 		planarSurfaces.emplace_back();
-		planarSurfaces.back().createPlanarSurface(point1, point2);
+		planarSurfaces.back().createPlanarSurface(p1_, p2_);
 
-		mirrors.emplace_back(SurfaceType::Plane, planarSurfaces.size() - 1);
+		return { SurfaceType::Plane, planarSurfaces.size() - 1 };
+	}
+
+	SurfaceHandle createPlanarSurface(p2 middle_, p2 normal_, float width_)
+	{
+		planarSurfaces.emplace_back();
+		planarSurfaces.back().createPlanarSurface(middle_, normal_, width_);
+
+		return { SurfaceType::Plane, planarSurfaces.size() - 1 };
+	}
+	void createParabolicMirror(p2 vertex_, p2 focus_, float width_)
+	{
+		SurfaceHandle h = createParabolicSurface(vertex_, focus_, width_);
+		mirrors.push_back(h);
+	}
+	void createSphericalMirror(float r_, p2 center_, float theta0_, float theta1_)
+	{
+		SurfaceHandle h = createSphericalSurface(r_, center_, theta0_, theta1_);
+		mirrors.push_back(h);
+	}
+	void createPlanarMirror(p2 p1_, p2 p2_)
+	{
+		SurfaceHandle h = createPlanarSurface(p1_, p2_);
+		mirrors.push_back(h);
 	}
 	void createPlanarMirror(p2 middlePoint_, p2 mirrorN_, float width_)
 	{
-		planarSurfaces.emplace_back();
-		planarSurfaces.back().createPlanarSurface(middlePoint_, mirrorN_, width_);
-
-		mirrors.emplace_back(SurfaceType::Plane, planarSurfaces.size() - 1);
+		SurfaceHandle h = createPlanarSurface(middlePoint_, mirrorN_, width_);
+		mirrors.push_back(h);
 	}
 
+	void createLens(const SurfaceHandle& s0, const SurfaceHandle& s1, float ior_)
+	{
+		lenses.push_back({ s0, s1, ior_ });
+	}
 
 
 	void draw()
@@ -135,23 +158,32 @@ struct Optics
 	{
 		for (auto& mirror : mirrors)
 		{
-			switch (mirror.type)
-			{
-			case SurfaceType::Plane:
-				planarSurfaces[mirror.id].draw();
-				break;
+			drawSurface(mirror);
+		}
+		for (auto& lens : lenses)
+		{
+			drawSurface(lens.surface0);
+			drawSurface(lens.surface1);
+		}
 
-			case SurfaceType::Sphere:
-				sphericalSurfaces[mirror.id].body.draw();
-				break;
+	}
+	void drawSurface(SurfaceHandle handle)
+	{
+		switch (handle.type)
+		{
+		case SurfaceType::Plane:
+			planarSurfaces[handle.id].draw();
+			break;
 
-			case SurfaceType::Parabola:
-				parabolicSurfaces[mirror.id].draw();
-				break;
-			}
+		case SurfaceType::Sphere:
+			sphericalSurfaces[handle.id].body.draw();
+			break;
+
+		case SurfaceType::Parabola:
+			parabolicSurfaces[handle.id].draw();
+			break;
 		}
 	}
-
 	//In rayOrigin are set all rays that we will try to compute, they are computed here
 	void generateRays()
 	{
