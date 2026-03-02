@@ -301,3 +301,29 @@ void transparent() {
 	//, irrelevant if there aren't multiple layers of transparent
 	glDepthMask(GL_FALSE);
 }
+
+void stableQuadraticSolver(float A, float B, float C, float& s0, float& s1)
+{
+	//Discriminat of the quadratic equation (B^2-4AC) >= 0
+	float discr = B * B - 4.0 * A * C;
+	//There won't be solution without a positive discriminant
+	if (discr >= 0.0)
+	{
+		//This is an algorithm to solve the quadratic equation that is more stable (not faster)
+		//Apparently in ray tracing, when A>>sqrt(discr). It can become unstable, and the only given solution garbage
+		//Ignore the logic of how the quadratic is solved, it's called 
+		float sqrtD = sqrt(discr);
+		float q = -0.5 * (B + copysign(sqrtD, B));
+
+		if (fabs(q) > eps)
+		{
+			s0 = q / A;
+			s1 = C / q;
+		}
+		else
+		{
+			s0 = (-B - sqrtD) / (2.0 * A);
+			s1 = (-B + sqrtD) / (2.0 * A);
+		}
+	}
+}

@@ -553,3 +553,6 @@ bool calculateIntersectionPoints(const p2 A, const p2 B, const p2 C, const p2 D,
 
 void opaque();
 void transparent();
+
+//Numerically Stable Quadratic Formula
+void stableQuadraticSolver(float A, float B, float C, float& s0, float& s1);

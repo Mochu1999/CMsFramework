@@ -32,13 +32,12 @@ struct Lines2D {
 	size_t currentBufferSize = 0;
 	size_t currentDataSize = 0;
 
-
 	Lines2D() {
 		genBuffers();
 
 	}
 
-	
+
 
 
 	void genBuffers() {
@@ -98,9 +97,10 @@ struct Lines2D {
 
 
 	~Lines2D() {
-		glDeleteVertexArrays(1, &vertexArray);
-		glDeleteBuffers(1, &vertexBuffer);
-		glDeleteBuffers(1, &indexBuffer);
+		if (vertexArray)  glDeleteVertexArrays(1, &vertexArray);
+		if (vertexBuffer) glDeleteBuffers(1, &vertexBuffer);
+		if (indexBuffer)  glDeleteBuffers(1, &indexBuffer);
+
 
 		positions.clear(); indices.clear();
 	}
@@ -115,7 +115,7 @@ struct Lines2D {
 	void addSet(const vector<p2>& items, int mode = 0) {
 
 		positions.reserve(positions.size() + items.size());
-		
+
 
 		positions.insert(positions.end(), items.begin(), items.end());
 
@@ -136,8 +136,8 @@ struct Lines2D {
 
 	void clear() {
 
-		positions.clear(); 
-		indices.clear(); 
+		positions.clear();
+		indices.clear();
 		indexOffset = 0;
 	}
 };
