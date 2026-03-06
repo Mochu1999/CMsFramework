@@ -5,9 +5,6 @@
 #include "Mirrors.hpp"
 
 
-
-
-
 enum class SurfaceType { Plane, Sphere, Parabola };
 
 struct SurfaceHandle
@@ -18,11 +15,6 @@ struct SurfaceHandle
 
 	SurfaceHandle(SurfaceType type_, size_t id_) :type(type_), id(id_)
 	{
-	}
-
-	void draw()
-	{
-
 	}
 };
 
@@ -42,7 +34,7 @@ struct Optics
 
 	//This is not very elegant, but the two light types are defined at the start, but in the constructor you develop only one
 	LightPoint lightPoint;
-	LightLine  lightLine;
+	LightLine lightLine;
 
 
 	Shader& shader2D;
@@ -72,14 +64,15 @@ struct Optics
 		//createParabolicMirror({ 100,500 }, { 300,500 }, 300);
 
 		//createSphericalMirror(100, { 800,800 }, 90, 360);
-		
+
 		////createSphericalSurface(200, { 300,500 }, 270,450);
 
 		/*createParabolicMirror({ 1900,500 }, { 700,500 }, 300);
 		createPlanarMirror({ 700,500 }, { 1,1 }, 60);*/
 
-		SurfaceHandle s0 = createPlanarSurface({ 500,350 }, { 500,650 });
-		SurfaceHandle s1 = createPlanarSurface({ 700,350 }, { 700,650 });
+		//SurfaceHandle s0 = createSphericalSurface(600, { 1100, 500 }, 160, 200);
+		SurfaceHandle s0 = createParabolicSurface({ 800,500 }, { 900,500 }, 300);
+		SurfaceHandle s1 = createPlanarSurface({ 1100,350 }, { 1100,650 });
 		createLens(s0, s1, 1.5f);
 
 		generateRays();
@@ -184,6 +177,7 @@ struct Optics
 			break;
 		}
 	}
+	//ALTERED FOR LENSES, INVALID FOR MIRRORS
 	//In rayOrigin are set all rays that we will try to compute, they are computed here
 	void generateRays()
 	{
@@ -197,6 +191,8 @@ struct Optics
 			p2 dir = ray.second;
 			int intersections = 0;
 
+			bool insideLens = false;
+
 			vector<p2> positions = { origin };
 
 			while (intersections < maxIntersections)
@@ -204,7 +200,8 @@ struct Optics
 				p2 nextR; // intersection point of the ray, R(s)
 				p2 nextN; //Surface normal on R
 
-				if (!isThereAHit(origin, dir, nextR, nextN))
+				size_t hitLensIdx = 0;
+				if (!isThereAHit(origin, dir, nextR, nextN, hitLensIdx))
 				{
 					//no intersection with any surface,pushed the ray at infinity (won't show later if intersections was 0)
 					positions.push_back(origin + dir * Lmax);
@@ -214,9 +211,29 @@ struct Optics
 				positions.push_back(nextR);
 				intersections++;
 
+				//MIRROR SPECIFIC
 				//calculating rayDir with the normal of the surface in our point given by finalHit.n
-				dir = dir - nextN * (2.0f * dot2(dir, nextN));
-				dir = normalize2(dir);
+				/*dir = dir - nextN * (2.0f * dot2(dir, nextN));
+				dir = normalize2(dir);*/
+
+				//LENS SPECIFIC
+				p2 newDir;
+				float ior0 = insideLens ? lenses[hitLensIdx].ior : 1.0f;
+				float ior1 = insideLens ? 1.0f : lenses[hitLensIdx].ior;
+
+				bool refracted = refractSnell(dir, nextN, ior0, ior1, newDir);
+
+				if (!refracted) // total internal reflection
+				{
+					newDir = dir - nextN * (2.0f * dot2(dir, nextN));
+					newDir = normalize2(newDir);
+				}
+				else
+				{
+					insideLens = !insideLens;
+				}
+				dir = newDir;
+
 
 				// move origin slightly off surface
 				origin = nextR + dir * eps;
@@ -228,30 +245,74 @@ struct Optics
 	}
 
 
+	//ior0: current medium (in textbooks appears as n)
+	//ior1: next medium
+	//ior0·sin(theta0) = ior1·sin(theta1), with theta0 the angle between incidentRay and surface normal
+	// , and theta1 between transmittedRay and surfaceNormal
+	//sin(theta0) = ior1/ior0·sin(theta1) = eta·sin(theta1)
+	bool refractSnell(p2& incidentDir, p2& n, float ior0, float ior1, p2& transmittedDir)
+	{
+		//a·b = |a||b|cos(theta), but as both are unit vectors, it's just the cosine of the incident with respect to the surface
+		float cosIncidentRay = -dot2(incidentDir, n);
+		//refractivity coefficient
+		float eta = ior0 / ior1;
+
+		float k = 1.0f - eta * eta * (1.0f - cosIncidentRay * cosIncidentRay);
+
+		if (k < 0.0f)
+			return false; // total internal reflection, when sin(theta1)>1
+
+		transmittedDir = incidentDir * eta + n * (eta * cosIncidentRay - sqrt(k));
+		transmittedDir = normalize2(transmittedDir);
+
+		return true;
+	}
+
 
 
 	//Will check for intersections with every surface and will return if isHitted and if so, finalHit will contain the data of the closest one
-	bool isThereAHit(const p2& rayOrigin, const p2& rayDir, p2& nextR, p2& nextN)
+	bool isThereAHit(const p2& rayOrigin, const p2& rayDir, p2& nextR, p2& nextN, size_t& hitLensIdx)
 	{
 		bool isHitted = false;
 		float closestS = std::numeric_limits<float>::max();
 
-		for (const SurfaceHandle& mirror : mirrors)
+		//MIRRORS AND LENSES CAN'T BE TOGETHER YET
+		/*for (const SurfaceHandle& mirror : mirrors)
 		{
 			p2 R;
 			float s;
 			p2 n;
 
-			if (intersectMirror(mirror, rayOrigin, rayDir, R, s, n)
-				&& s < closestS)
+			if (intersectMirror(mirror, rayOrigin, rayDir, R, s, n) && s < closestS)
 			{
 				closestS = s;
 				nextR = R;
 				nextN = n;
 				isHitted = true;
 			}
-		}
+		}*/
+		for (size_t i = 0; i < lenses.size(); ++i)
+		{
+			const Lens& lens = lenses[i];
 
+			for (const SurfaceHandle& lensHandle : { lens.surface0, lens.surface1 })
+			{
+				p2 R;
+				float s;
+				p2 n;
+
+				if (intersectMirror(lensHandle, rayOrigin, rayDir, R, s, n) && s < closestS)
+				{
+					closestS = s;
+					nextR = R;
+					nextN = n;
+
+					hitLensIdx = i;
+
+					isHitted = true;
+				}
+			}
+		}
 		return isHitted;
 	}
 

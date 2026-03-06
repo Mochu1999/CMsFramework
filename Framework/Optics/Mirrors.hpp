@@ -80,7 +80,7 @@ struct PlanarSurface
 	void createPlanarSurface(p2 point1, p2 point2)
 	{
 		p2 d = point2 - point1;
-		float width = magnitude2(d);
+		width = magnitude2(d);
 
 		if (width < eps)
 		{
