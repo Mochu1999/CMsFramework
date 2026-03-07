@@ -10,6 +10,7 @@ p2 windowTotal = { windowWidth,windowHeight };
 p2 windowCenter = { windowWidth * 0.5f, windowHeight * 0.5f };
 matrix4x4 identityMatrix = { 1, 0, 0, 0, 0, 1, 0, 0,0, 0, 1, 0, 0, 0, 0, 1 };
 
+// 1/sqrt(x)
 float fastInverseSqrt(float number) {
 	long i;
 	float x2, y;

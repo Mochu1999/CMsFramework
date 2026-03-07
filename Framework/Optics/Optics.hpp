@@ -2,7 +2,7 @@
 
 
 #include "Common.hpp"
-#include "Mirrors.hpp"
+#include "OpticalSurfaces.hpp"
 
 
 enum class SurfaceType { Plane, Sphere, Parabola };
@@ -12,8 +12,10 @@ struct SurfaceHandle
 
 	SurfaceType type;
 	size_t id;
-
-	SurfaceHandle(SurfaceType type_, size_t id_) :type(type_), id(id_)
+	//Every surface must know where it does belong
+	int lensId; // -1 if none
+	SurfaceHandle(SurfaceType type_, size_t id_, int lensId_ = -1)
+	: type(type_), id(id_), lensId(lensId_) 
 	{
 	}
 };
@@ -191,7 +193,7 @@ struct Optics
 			p2 dir = ray.second;
 			int intersections = 0;
 
-			bool insideLens = false;
+			float currentIOR = 1.0f; // ray starts in air
 
 			vector<p2> positions = { origin };
 
@@ -217,10 +219,14 @@ struct Optics
 				dir = normalize2(dir);*/
 
 				//LENS SPECIFIC
-				p2 newDir;
-				float ior0 = insideLens ? lenses[hitLensIdx].ior : 1.0f;
-				float ior1 = insideLens ? 1.0f : lenses[hitLensIdx].ior;
+				float cosI = dot2(dir, nextN);
+				bool entering = cosI < 0.0f;
+				if (!entering)
+					nextN = -nextN;
+				float ior0 = currentIOR;
+				float ior1 = entering ? lenses[hitLensIdx].ior : 1.0f;
 
+				p2 newDir;
 				bool refracted = refractSnell(dir, nextN, ior0, ior1, newDir);
 
 				if (!refracted) // total internal reflection
@@ -230,7 +236,7 @@ struct Optics
 				}
 				else
 				{
-					insideLens = !insideLens;
+					currentIOR = ior1;
 				}
 				dir = newDir;
 
@@ -244,26 +250,36 @@ struct Optics
 		}
 	}
 
-
+	//transmittedDir is our output, the direction the ray will have after entering or passing the lens
 	//ior0: current medium (in textbooks appears as n)
 	//ior1: next medium
-	//ior0·sin(theta0) = ior1·sin(theta1), with theta0 the angle between incidentRay and surface normal
-	// , and theta1 between transmittedRay and surfaceNormal
+	//ior0·sin(theta0) = ior1·sin(theta1)
+	// , with theta0 the angle between incidentRay and surface normal and theta1 between transmittedRay and surfaceNormal
 	//sin(theta0) = ior1/ior0·sin(theta1) = eta·sin(theta1)
+	//sin^2(theta1)=eta^2·sin^2(theta0), substituing with sin^2+cos^2=1
+	//cos^2(theta1)=1-eta^2(1-cos^2(theta0))
 	bool refractSnell(p2& incidentDir, p2& n, float ior0, float ior1, p2& transmittedDir)
 	{
-		//a·b = |a||b|cos(theta), but as both are unit vectors, it's just the cosine of the incident with respect to the surface
-		float cosIncidentRay = -dot2(incidentDir, n);
+		//a·b = |a||b|cos(theta), but as both are unit vectors
+		// , it's just the cosine of the incident with respect to the surface (and pointing outward the surface instead of inward)
+		float cosTheta0 = -dot2(incidentDir, n);
+		cosTheta0 = clamp(cosTheta0, -1.0f, 1.0f);
 		//refractivity coefficient
 		float eta = ior0 / ior1;
 
-		float k = 1.0f - eta * eta * (1.0f - cosIncidentRay * cosIncidentRay);
+		float sqrdCosTheta1 = 1.0f - eta * eta * (1.0f - cosTheta0 * cosTheta0);
 
-		if (k < 0.0f)
+		if (sqrdCosTheta1 < 0.0f)
 			return false; // total internal reflection, when sin(theta1)>1
 
-		transmittedDir = incidentDir * eta + n * (eta * cosIncidentRay - sqrt(k));
-		transmittedDir = normalize2(transmittedDir);
+		//We want to get the transmitedDir T = Tt + Tn 
+		//The normal component of incidentDir is In = -cos(theta0)·n
+		// And so if I = It - cos(theta0)·n, It = I + cos(theta0)·n
+		//And the total incidentDir are the sum of that normal and tangential components I=It+In
+		//And by applying the snell law the tangential part of the transmited is eta by the tangential of the incident we get Tt = eta·It
+		//So T = Tt + Tn = eta·It - cos(theta1)·n = eta(I + cos(theta0)·n) - cos(theta1)·n
+		//where cos(theta1) is the square root of what we just got
+		transmittedDir = normalize2(incidentDir * eta + n * (eta * cosTheta0 - sqrt(sqrdCosTheta1)));
 
 		return true;
 	}
@@ -431,8 +447,6 @@ struct Optics
 		//and then to globals, this is the normal of the surface at our point, not rayDir
 		n = normalize2(u * nLocal.x + v * nLocal.y);
 
-		// Force n to face against incoming ray
-		if (dot2(rayDir, n) > 0.0f) n = n * -1.0f;
 
 		s = bestS;
 
@@ -505,9 +519,6 @@ struct Optics
 
 		// surface normal pointing the correct direction, independent from rayDir
 		n = normalize2(R - lensCenter);
-		// Forcing n to face against incoming ray
-		if (dot2(rayDir, n) > 0.0f)
-			n = n * -1.0f;
 
 		s = bestS;
 
@@ -564,9 +575,6 @@ struct Optics
 		// mirrorN pointing to the correct place, independent from rayDir
 		n = mirrorN;
 
-		// Force n to face against incoming ray
-		if (dot2(rayDir, n) > 0.0f)
-			n = n * -1.0f;
 
 
 		return true;
