@@ -3,7 +3,6 @@
 
 #include "Common.hpp"
 #include "Camera.hpp"
-#include "Anchor.hpp"
 
 //Only have a single KeyMouseInputs included, the functions names are repeated!
 
@@ -11,10 +10,9 @@
 struct AllPointers {
 	Camera* camera;
 	GlobalVariables* gv;
-	Anchor* anchor;
 
-	AllPointers(Camera* camera_, GlobalVariables* gv_, Anchor* anchor_)
-		:camera(camera_), gv(gv_), anchor(anchor_)
+	AllPointers(Camera* camera_, GlobalVariables* gv_)
+		:camera(camera_), gv(gv_)
 	{
 	}
 };
@@ -28,7 +26,6 @@ void keyboardEventCallback(GLFWwindow* window, int key, int scancode, int action
 	AllPointers* allPointers = static_cast<AllPointers*>(glfwGetWindowUserPointer(window));
 	Camera* camera = allPointers->camera;
 	GlobalVariables* gv = allPointers->gv;
-	Anchor* anchor = allPointers->anchor;
 
 
 	if (action == GLFW_PRESS)
@@ -76,26 +73,7 @@ void getPos(GLFWwindow* window, p2& mPos) {
 //only triggered when a mouse button is pressed or released
 void mouseEventCallback(GLFWwindow* window, int button, int action, int mods) {
 	AllPointers* allPointers = static_cast<AllPointers*>(glfwGetWindowUserPointer(window));
-	Anchor* anchor = allPointers->anchor;
 
-	//gets in what state are we 
-	ButtonMode mode = anchor->ui.processMouseButton(button, action);
-	if (mode == None) return;
-
-	else if(mode == Close)
-	{
-		glfwSetWindowShouldClose(window, GLFW_TRUE);
-		return;
-	}
-
-	else if (mode == Minimize)
-	{
-		glfwIconifyWindow(window);
-		return;
-	}
-
-	anchor->mode = mode;
-	anchor->logic();
 	
 }
 

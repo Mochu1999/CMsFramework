@@ -12,10 +12,9 @@ struct SurfaceHandle
 
 	SurfaceType type;
 	size_t id;
-	//Every surface must know where it does belong
-	int lensId; // -1 if none
+
 	SurfaceHandle(SurfaceType type_, size_t id_, int lensId_ = -1)
-	: type(type_), id(id_), lensId(lensId_) 
+	: type(type_), id(id_)
 	{
 	}
 };
@@ -26,7 +25,7 @@ struct Lens
 	SurfaceHandle surface0;
 	SurfaceHandle surface1;
 	float ior; //index of refraction inside the lens
-
+	//Assumes outside of it, it's alway 1
 };
 
 struct Optics
@@ -72,9 +71,8 @@ struct Optics
 		/*createParabolicMirror({ 1900,500 }, { 700,500 }, 300);
 		createPlanarMirror({ 700,500 }, { 1,1 }, 60);*/
 
-		//SurfaceHandle s0 = createSphericalSurface(600, { 1100, 500 }, 160, 200);
-		SurfaceHandle s0 = createParabolicSurface({ 800,500 }, { 900,500 }, 300);
-		SurfaceHandle s1 = createPlanarSurface({ 1100,350 }, { 1100,650 });
+		SurfaceHandle s0 = createParabolicSurface({ 1000,500 }, { 800,500 }, 300);
+		SurfaceHandle s1 = createPlanarSurface({ 900,350 }, { 900,650 });
 		createLens(s0, s1, 1.5f);
 
 		generateRays();
