@@ -75,7 +75,9 @@ int main(void)
 
 			clearScreen(gv);
 
-
+			transparent();
+			shaderText.bind();
+			shaderText.setUniform("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 
 
 			switch (gv.program)
@@ -94,6 +96,7 @@ int main(void)
 				break;
 
 			case MRS:
+
 				autopilot.update();
 				break;
 
@@ -115,6 +118,10 @@ int main(void)
 			//text
 			transparent();
 			shaderText.bind();
+			shaderText.setUniform("u_Color", 1.0f, 1.0f, 1.0f,1.0f);
+			//shaderText.setUniform("u_Color", 1.0f, 0.0f, 0.0f);
+
+
 			text.draw();
 			text.substituteText(0, { { 10,950 }, round2d(tm.fps), " fps" });
 			text.substituteText(1, round1d(tm.currentTime), " s");

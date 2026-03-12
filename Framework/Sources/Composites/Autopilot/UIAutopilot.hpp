@@ -197,6 +197,7 @@ struct UIAutopilot
 			{ { 100,550 }, "Estimated time left: ",eta," hours"},
 			{ { 100,500 }, "Errors:  N/A"}
 			});
+		shaderText.setUniform("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 		dataText.draw();
 		
 		

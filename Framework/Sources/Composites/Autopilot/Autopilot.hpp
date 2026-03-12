@@ -35,7 +35,9 @@ struct Autopilot
 	{
 		
 
-
+		transparent();
+		shaderText.bind();
+		shaderText.setUniform("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 	}
 
 	void updateTime() {

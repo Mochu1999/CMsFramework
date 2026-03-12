@@ -1,18 +1,16 @@
-#include <torch/torch.h>
-#include "IncludesNF.hpp"
+#include "IncludesMRS.hpp"
+
 
 int main(void)
 {
 	GlobalVariables gv;
 	gv.program = offshoreProgram;
 
-	//GLFWwindow* window = initialize(150, 120, "NeuralForge");
 	GLFWwindow* window = initialize();
 
-	//torch::Tensor tensor = torch::rand({ 2, 3 });
-	//std::cout << tensor << std::endl;
 
-	//TimeStruct tm;
+
+	TimeStruct tm;
 
 	Shader shader3D("resources/shaders/shader3D.shader");
 	Shader shader2D("resources/shaders/shader2D.shader");
@@ -20,14 +18,11 @@ int main(void)
 	Shader shaderText("resources/shaders/shaderText.shader");
 	Camera camera(window, shader3D, shader2D, shader2D_Instanced, shaderText, gv);
 
-	auto t = torch::rand({ 2,3 });
 
-	return 0;
+	Autopilot autopilot(shader2D, shaderText, shader2D_Instanced, gv, tm);
 
-	/*shader2D.bind();
-	shader2D.setUniform("u_Model", identityMatrix);*/
 
-	//SettingsOffshore settings(camera, gv);
+	SettingsMRS settings(camera, gv);
 
 	AllPointers allPointers(&camera, &gv);
 	glfwSetWindowUserPointer(window, &allPointers);
@@ -36,15 +31,20 @@ int main(void)
 	glfwSetScrollCallback(window, scrollCallback);
 
 
-
 	while (!glfwWindowShouldClose(window))
 	{
-		getPos(window, gv.mPos); 
+		getPos(window, gv.mPos);
 		if (gv.isRunning)
 		{
+			tm.update();
 
 			clearScreen(gv);
 
+			shaderText.bind();
+			shaderText.setUniform("u_Color", 1.0f, 1.0f, 1.0f);
+
+
+			autopilot.update();
 
 
 
@@ -59,7 +59,7 @@ int main(void)
 		glfwPollEvents();
 
 	}
-	//settings.write();
+	settings.write();
 	glfwDestroyWindow(window);
 	glfwTerminate();
 	return 0;

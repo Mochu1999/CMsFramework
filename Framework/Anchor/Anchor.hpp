@@ -163,7 +163,8 @@ struct Anchor
 		transparent();
 		shaderText.bind();
 
-		shaderText.setUniform("u_Color", 1.0f, 0.0f, 0.0f);
+		//shaderText.setUniform("u_Color", 1.0f, 0.0f, 0.0f);
+		shaderText.setUniform("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 		textB.draw();
 
 		shaderText.setUniform("u_Color", 0.0f, 1.0f, 0.3f);

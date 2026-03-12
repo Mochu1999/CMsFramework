@@ -1,10 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(NeuralForge)
-
-# LibTorch configuration
-set(Torch_DIR "C:/dev/assets/LibTorch/libtorch/share/cmake/Torch")
-find_package(Torch REQUIRED)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
+project(MRS)
 
 set(CMAKE_SUPPRESS_REGENERATION ON)
 set(CMAKE_CXX_STANDARD 20)
@@ -19,10 +14,10 @@ file(GLOB_RECURSE RES_FILES CONFIGURE_DEPENDS ../Resources/*)
 file(GLOB LOCAL_SRC CONFIGURE_DEPENDS *.cpp)
 file(GLOB LOCAL_HDR CONFIGURE_DEPENDS *.h *.hpp *.inl)
 
-add_executable(NeuralForge ${SRC_FILES} ${LOCAL_SRC})
+add_executable(MRS ${SRC_FILES} ${LOCAL_SRC})
 
 # Make VS show headers and resources
-target_sources(NeuralForge PRIVATE ${HDR_FILES} ${RES_FILES} ${LOCAL_HDR})
+target_sources(MRS PRIVATE ${HDR_FILES} ${RES_FILES} ${LOCAL_HDR})
 
 # Visual Studio folder tree mirroring real filesystem
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -32,17 +27,17 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/.." FILES
 
 
 
-# Run NeuralForge exe with Framework as working directory while build stays in NeuralForge
-set_property(TARGET NeuralForge PROPERTY 
+# Run MRS exe with Framework as working directory while build stays in MRS
+set_property(TARGET MRS PROPERTY 
     VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/.."
 )
 
-set_target_properties(NeuralForge PROPERTIES MSVC_RUNTIME_LIBRARY "$<$<CONFIG:Debug>:MultiThreadedDebugDLL>")
+set_target_properties(MRS PROPERTIES MSVC_RUNTIME_LIBRARY "$<$<CONFIG:Debug>:MultiThreadedDebugDLL>")
 
-# Make NeuralForge the startup project in Visual Studio
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT NeuralForge)
+# Make MRS the startup project in Visual Studio
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT MRS)
 
-target_include_directories(NeuralForge PRIVATE
+target_include_directories(MRS PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/../Sources/Stability"
 	"${CMAKE_CURRENT_SOURCE_DIR}/../Sources/Deprecated"
 	"${CMAKE_CURRENT_SOURCE_DIR}/../Sources/Composites/Solar"
@@ -58,23 +53,23 @@ target_include_directories(NeuralForge PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/../Resources/External/Includes/OpenCascade"
 )
 
-target_compile_options(NeuralForge PRIVATE /W3 /sdl)
-target_compile_options(NeuralForge PRIVATE
+target_compile_options(MRS PRIVATE /W3 /sdl)
+target_compile_options(MRS PRIVATE
     $<$<CONFIG:Debug>:/Zi>
 )
-set_property(TARGET NeuralForge PROPERTY VS_GLOBAL_SupportJustMyCodeDebugging "true")
+set_property(TARGET MRS PROPERTY VS_GLOBAL_SupportJustMyCodeDebugging "true")
 
-set_target_properties(NeuralForge PROPERTIES
+set_target_properties(MRS PROPERTIES
     COMPILE_DEFINITIONS "_DEBUG;_CONSOLE;GLEW_STATIC")
 
-target_compile_options(NeuralForge PRIVATE /permissive-)
+target_compile_options(MRS PRIVATE /permissive-)
 
-target_link_directories(NeuralForge PRIVATE
+target_link_directories(MRS PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/../Resources/External/Libs"
     "${CMAKE_CURRENT_SOURCE_DIR}/../Resources/External/Libs/OpenCascade"
 )
 
-set_property(TARGET NeuralForge PROPERTY VS_LINK_LIBRARY_DEPENDENCIES "true")
+set_property(TARGET MRS PROPERTY VS_LINK_LIBRARY_DEPENDENCIES "true")
 
 #linker input, first in a semicolon format and then translated to the format CMake expects
 set(_EXTRA_LIBS
@@ -83,33 +78,21 @@ set(_EXTRA_LIBS
 
 # Split the semicolon string into a CMake list and link them
 string(REPLACE ";" ";" _EXTRA_LIBS_LIST "${_EXTRA_LIBS}")
-target_link_libraries(NeuralForge PRIVATE
-    ${_EXTRA_LIBS_LIST}
-    ${TORCH_LIBRARIES}
-)
+target_link_libraries(MRS PRIVATE ${_EXTRA_LIBS_LIST})
 
-file(GLOB TORCH_DLLS "C:/dev/assets/LibTorch/libtorch/lib/*.dll")
-
-add_custom_command(TARGET NeuralForge POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${TORCH_DLLS}
-            $<TARGET_FILE_DIR:NeuralForge>
-    COMMENT "Copying LibTorch DLLs"
-)
 file(GLOB EXTERNAL_DLLS "${CMAKE_CURRENT_SOURCE_DIR}/../Resources/External/dlls/*.dll")
-add_custom_command(TARGET NeuralForge POST_BUILD
+
+add_custom_command(TARGET MRS POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
             ${EXTERNAL_DLLS}
-            $<TARGET_FILE_DIR:NeuralForge>
+            $<TARGET_FILE_DIR:MRS>
     COMMENT "Copying external DLLs to output directory (if changed)"
 )
 
 set(build_root "${CMAKE_CURRENT_SOURCE_DIR}/build")
 
-set_target_properties(NeuralForge PROPERTIES
+set_target_properties(MRS PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${build_root}/$<CONFIG>"
     ARCHIVE_OUTPUT_DIRECTORY "${build_root}/$<CONFIG>"
     LIBRARY_OUTPUT_DIRECTORY "${build_root}/$<CONFIG>"
 )
-
-
